@@ -7,12 +7,14 @@ package edu.ccsu.cs417.finalproject.logger;
 public class LoggingService {
     
     private static LoggingService instance;
+    private static LogCollection logs;
     
     /**
      * Private constructor restricts access to a single entry point for
-     * service. 
+     * service. Initializes the Log Collection.
      */
     private LoggingService() {
+        logs = new LogCollection();
     }
     
     /**
@@ -27,4 +29,11 @@ public class LoggingService {
         return instance;
     }
     
+    /**
+     * Adds a log to the Collection of Logs being held by the service
+     * @param l Log being added to the collection
+     */
+    public void addLog(Log l) {
+        logs.addLog(l);
+    }
 }
