@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package finalproject;
+
+import edu.ccsu.cs417.finalproject.logger.Log;
+import edu.ccsu.cs417.finalproject.logger.LoggingService;
 
 /**
  *
@@ -15,7 +13,18 @@ public class Finalproject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        // testing Log, LoggingService, LogCollection, and LogIterator
+        Log a = new Log(02112016,164600);
+        Log b = new Log(02112016,164700,"Has a message.");
+        Log c = new Log(02112016,164902);
+        
+        LoggingService.getInstance().addLog(a);
+        LoggingService.getInstance().addLog(b);
+        LoggingService.getInstance().addLog(c);
+        
+        String s = LoggingService.getInstance().getLogs();
+        System.out.println(s);
     }
     
 }

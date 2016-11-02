@@ -1,5 +1,7 @@
 package edu.ccsu.cs417.finalproject.logger;
 
+import java.util.Iterator;
+
 /**
  * Singleton class used to store Collection of widget Logs
  * @author Cameron
@@ -35,5 +37,20 @@ public class LoggingService {
      */
     public void addLog(Log l) {
         logs.addLog(l);
+    }
+    
+    /**
+     * Print out of all the logs in Log Collection
+     * @return a list of all the logs
+     */
+    public String getLogs() {
+        String s = "";        
+        Iterator itr = logs.iterator();
+        
+        while(itr.hasNext()) {
+            s += itr.next().toString() + "\n";
+        }
+        
+        return s;
     }
 }
