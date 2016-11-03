@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 
 /**
  * A Collection of widget logs with an inner iterator class to iterate through
- * logs.
+ * logs. CS417 lecture slides were used as a reference. 
  * @author Cameron
  * @param <T> List of logs.
  */
@@ -35,7 +35,8 @@ public class LogCollection<T extends Log> {
     }
     
     /**
-     * Inner iterator class to cycle through list of generic Logs
+     * Inner iterator class to cycle through list of generic Logs. This section
+     * was created using CS417 lecture slide notes as a reference.
      */
     private static class LogCollectionIterator<S> implements Iterator {
         
