@@ -22,6 +22,7 @@ public class LogCollection<T extends Log> extends AbstractCollection {
      */
     public LogCollection() {
         logs = new ArrayList<>(); 
+        size = 0;
     }
     
     /**
