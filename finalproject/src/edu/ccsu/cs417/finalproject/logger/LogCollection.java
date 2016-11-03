@@ -1,5 +1,6 @@
 package edu.ccsu.cs417.finalproject.logger;
 
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
@@ -11,9 +12,10 @@ import java.util.NoSuchElementException;
  * @author Cameron
  * @param <T> List of logs.
  */
-public class LogCollection<T extends Log> {
+public class LogCollection<T extends Log> extends AbstractCollection {
     
     private List<T> logs;
+    private int size; 
     
     /**
      * Constructor creates an ArrayList of generic T
@@ -23,13 +25,28 @@ public class LogCollection<T extends Log> {
     }
     
     /**
-     * Adds a Log to the Collection of logs
+     * Adds a Log to the Collection of logs, 
      * @param t generic Log to be added to the list of logs in the Collection
      */
     public void addLog(T t) {
         logs.add(t);
+        size++;
     }
     
+    /**
+     * Implements method to get collection size
+     * @return number of logs in the collection
+     */
+    @Override
+    public int size() {
+        return size;
+    }
+    
+    /**
+     * Way to cycle through all the Logs in the 
+     * @return Iterator that allows cycling through Logs in collection
+     */
+    @Override
     public Iterator<T> iterator() {
         return new LogCollectionIterator<>(logs.iterator());
     }
@@ -84,7 +101,7 @@ public class LogCollection<T extends Log> {
          */
         @Override
         public void remove() {
-            throw new UnsupportedOperationException("Not supported yet."); 
+            throw new UnsupportedOperationException("Not supported."); 
         }
     }    
 }

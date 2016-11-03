@@ -15,9 +15,9 @@ public class Finalproject {
     public static void main(String[] args) {
         
         // testing Log, LoggingService, LogCollection, and LogIterator
-        Log a = new Log(02112016,164600);
-        Log b = new Log(02112016,164700,"Has a message.");
-        Log c = new Log(02112016,164902);
+        Log a = new Log(2112016,164600);
+        Log b = new Log(2112016,164700,"Has a message.");
+        Log c = new Log(2112016,164902);
         
         LoggingService.getInstance().addLog(a);
         LoggingService.getInstance().addLog(b);

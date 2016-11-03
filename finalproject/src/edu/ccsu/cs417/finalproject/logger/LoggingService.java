@@ -9,7 +9,7 @@ import java.util.Iterator;
 public class LoggingService {
     
     private static LoggingService instance;
-    private static LogCollection logs;
+    protected LogCollection logs;
     
     /**
      * Private constructor restricts access to a single entry point for
