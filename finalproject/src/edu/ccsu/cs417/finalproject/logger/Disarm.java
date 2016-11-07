@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
  */
 public class Disarm {
     
-    public void deactivate() throws IOException {
+    public int deactivate() throws IOException {
         
         // Set up the command and parameter
         // Location of the LED file on PI
@@ -34,10 +34,10 @@ public class Disarm {
         String line = "";
         
         while((line = bfr.readLine()) != null) {
-        // display each output line from python script
-        System.out.println(line);
+            // display each output line from python script
+            System.out.println(line);
         }
-        
+        return pr.exitValue();
     }
     
 }

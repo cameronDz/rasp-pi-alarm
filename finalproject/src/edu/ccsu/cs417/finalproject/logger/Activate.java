@@ -13,6 +13,6 @@ import java.io.IOException;
  */
 public interface Activate {
     
-    public void activate() throws IOException;
+    public int activate() throws IOException;
     
 }
