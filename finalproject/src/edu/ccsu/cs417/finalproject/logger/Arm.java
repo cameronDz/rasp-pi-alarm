@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 public class Arm implements Activate {
     
     @Override
-    public void activate() throws IOException {
+    public int activate() throws IOException {
         
         // Set up the command and parameter
         // Location of the LED files on PI
@@ -38,7 +38,7 @@ public class Arm implements Activate {
         // display each output line from python script
         System.out.println(line);
         }
-        
+        return pr.exitValue();
     }
     
 }

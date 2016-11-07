@@ -2,7 +2,7 @@
 # Program to turn on the LED at port D4
 
 import sys
-sys.path.insert(0, '/home/pi/Desktop/GrovePi/Software/Python')
+sys.path.insert(0, 'GrovePi/Software/Python')
 
 import time
 from grovepi import *
