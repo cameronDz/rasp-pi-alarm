@@ -53,6 +53,22 @@ public class LogCollection<T extends Log> extends AbstractCollection {
     }
     
     /**
+     * Iterates through the collections and creates a String of all the Logs.
+     * @return A string representation of all the logs
+     */
+    @Override
+    public String toString() {
+        String s = "";        
+        Iterator itr = logs.iterator();
+        
+        while(itr.hasNext()) {
+            s += itr.next().toString() + "\n";
+        }
+        
+        return s;
+    }
+    
+    /**
      * Inner iterator class to cycle through list of generic Logs. This section
      * was created using CS417 lecture slide notes as a reference.
      */

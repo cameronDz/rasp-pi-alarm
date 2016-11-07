@@ -40,17 +40,20 @@ public class LoggingService {
     }
     
     /**
-     * Print out of all the logs in Log Collection
+     * Calls the LogCollections toString() method to return a String 
+     * representation of all the Logs 
      * @return a list of all the logs
      */
     public String getLogs() {
-        String s = "";        
-        Iterator itr = logs.iterator();
-        
-        while(itr.hasNext()) {
-            s += itr.next().toString() + "\n";
-        }
-        
-        return s;
+        return logs.toString();
+    }
+    
+    /**
+     * Calls the getLogs() method to return all the Logs that have been recorded
+     * @return String representation of all the Logs
+     */
+    @Override 
+    public String toString() {
+        return this.getLogs();
     }
 }
