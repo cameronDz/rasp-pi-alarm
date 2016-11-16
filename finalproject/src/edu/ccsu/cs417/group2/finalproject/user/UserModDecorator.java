@@ -5,14 +5,14 @@ package edu.ccsu.cs417.group2.finalproject.user;
  * have the User name
  * @author Cameron
  */
-public class UserMod extends UserDecorator {
+public class UserModDecorator extends UserDecorator {
     
     /**
      * Constructs the abstract object of the User, and sets the status of the 
      * decorated user. 
      * @param decoratedUser object being wrapped as a User Moderator
      */
-    public UserMod(UserAbstract decoratedUser) {
+    public UserModDecorator(AbstractUser decoratedUser) {
         super(decoratedUser);
         this.status = "Moderator";
     }

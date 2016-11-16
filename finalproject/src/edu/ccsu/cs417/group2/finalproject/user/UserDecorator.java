@@ -4,21 +4,21 @@ package edu.ccsu.cs417.group2.finalproject.user;
  * Abstract class used to decorate User classes with different privileges 
  * @author Cameron
  */
-public abstract class UserDecorator extends UserAbstract {
+public abstract class UserDecorator extends AbstractUser {
     
     protected String status;
-    protected final UserAbstract decoratedUser;
+    protected final AbstractUser decoratedUser;
     
     /**
-     * Abstract constructor, creates an object that must extend UserAbstract
+     * Abstract constructor, creates an object that must extend AbstractUser
      * @param decoratedUser the abstract object of the class
      */
-    public UserDecorator(UserAbstract decoratedUser) {
+    public UserDecorator(AbstractUser decoratedUser) {
         this.decoratedUser = decoratedUser;
     }
     
     /**
-     * Makes a call to the UserAbstract class to get user name
+     * Makes a call to the AbstractUser class to get user name
      * @return the name variable from class
      */
     @Override
@@ -27,7 +27,7 @@ public abstract class UserDecorator extends UserAbstract {
     }
     
     /**
-     * Makes a call to the UserAbstract class to set the name variable
+     * Makes a call to the AbstractUser class to set the name variable
      * @param name name to be set to the name variable
      */
     @Override
@@ -52,8 +52,8 @@ public abstract class UserDecorator extends UserAbstract {
     }
     
     /**
-     * Makes a call to the UserAbstract class to get string all the public user
-     * information, then adds the status of the decorated object
+     * Makes a call to the AbstractUser class to get string all the public user
+ information, then adds the status of the decorated object
      * @return String representation of the user
      */
     @Override 

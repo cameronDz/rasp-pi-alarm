@@ -5,14 +5,14 @@ package edu.ccsu.cs417.group2.finalproject.user;
  * have the corresponding log number.
  * @author Cameron 
  */
-public class UserAdmin extends UserDecorator {
+public class UserAdminDecorator extends UserDecorator {
     
     /**
      * Constructs the abstract object of the User, and sets the status of the 
      * decorated user. 
      * @param decoratedUser object being wrapped as a UserAdmin
      */
-    public UserAdmin(UserAbstract decoratedUser) {
+    public UserAdminDecorator(AbstractUser decoratedUser) {
         super(decoratedUser);
         this.status = "Administrator";
     }

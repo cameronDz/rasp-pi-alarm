@@ -1,20 +1,20 @@
 package edu.ccsu.cs417.group2.finalproject.logger;
 
-import edu.ccsu.cs417.group2.finalproject.user.UserAbstract;
+import edu.ccsu.cs417.group2.finalproject.user.AbstractUser;
 /**
  * Log that details a Users action
  * @author Cameron
  */
 public class UserLogDecorator extends LogDecorator {
     
-    protected UserAbstract user;
+    protected AbstractUser user;
     
     /**
      * Constructor for abstract object.
      * @param decoratedLog object being wrapped by class
      * @param user user object being logged
      */
-    public UserLogDecorator(UserAbstract user, AbstractLog decoratedLog) {
+    public UserLogDecorator(AbstractUser user, AbstractLog decoratedLog) {
         super(decoratedLog);
         this.user = user;
         this.setMessage("");

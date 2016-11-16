@@ -4,7 +4,7 @@ package edu.ccsu.cs417.group2.finalproject.user;
  * Abstract class used as the basis for all user classes.
  * @author Cameron
  */
-public abstract class UserAbstract implements UserInterface {
+public abstract class AbstractUser implements UserInterface {
     
     protected String name;
     
