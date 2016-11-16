@@ -12,7 +12,7 @@ public class UserAdminDecorator extends UserDecorator {
      * decorated user. 
      * @param decoratedUser object being wrapped as a UserAdmin
      */
-    public UserAdminDecorator(AbstractUser decoratedUser) {
+    public UserAdminDecorator(UserInterface decoratedUser) {
         super(decoratedUser);
         this.status = "Administrator";
     }

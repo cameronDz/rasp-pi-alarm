@@ -7,13 +7,13 @@ package edu.ccsu.cs417.group2.finalproject.user;
 public abstract class UserDecorator implements UserInterface {
     
     protected String status;
-    protected final AbstractUser decoratedUser;
+    protected final UserInterface decoratedUser;
     
     /**
      * Abstract constructor, creates an object that must extend AbstractUser
      * @param decoratedUser the abstract object of the class
      */
-    public UserDecorator(AbstractUser decoratedUser) {
+    public UserDecorator(UserInterface decoratedUser) {
         this.decoratedUser = decoratedUser;
     }
     
