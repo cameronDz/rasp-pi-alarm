@@ -4,7 +4,7 @@ package edu.ccsu.cs417.group2.finalproject.user;
  * Abstract class used to decorate User classes with different privileges 
  * @author Cameron
  */
-public abstract class UserDecorator extends AbstractUser {
+public abstract class UserDecorator implements UserInterface {
     
     protected String status;
     protected final AbstractUser decoratedUser;

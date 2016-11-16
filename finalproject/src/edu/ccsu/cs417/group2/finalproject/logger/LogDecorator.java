@@ -4,7 +4,7 @@ package edu.ccsu.cs417.group2.finalproject.logger;
  * Abstract Log decorator class, for making LogUser and LogWidget classes.
  * @author Cameron
  */
-public abstract class LogDecorator extends AbstractLog {
+public abstract class LogDecorator implements LogInterface {
     
     protected final AbstractLog decoratedLog;
     protected String action;
