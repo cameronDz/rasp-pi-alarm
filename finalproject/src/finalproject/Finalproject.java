@@ -1,9 +1,12 @@
 package finalproject;
 
-import edu.ccsu.cs417.finalproject.logger.Arm;
-import edu.ccsu.cs417.finalproject.logger.ArmAdapter;
-import edu.ccsu.cs417.finalproject.logger.Log;
-import edu.ccsu.cs417.finalproject.logger.LoggingService;
+import edu.ccsu.cs417.group2.finalproject.adapter.Arm;
+import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapter;
+import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
+import edu.ccsu.cs417.group2.finalproject.logger.AbstractLog;
+import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
+import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecorator;
+import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import java.io.IOException;
 
 public class Finalproject {
@@ -16,9 +19,11 @@ public class Finalproject {
     public static void main(String[] args) throws InterruptedException, IOException {
         
         // testing Log, LoggingService, LogCollection, and LogIterator
-        Log a = new Log(2112016,164600);
-        Log b = new Log(2112016,164700,"Has a message.");
-        Log c = new Log(2112016,164902);
+        BasicLog a = new BasicLog(2112016,164600);
+        BasicLog b = new BasicLog(2112016,164700,"Has a message.");
+        AbstractLog c = new BasicLog(2112016,164902);
+        LogDecorator d = new WidgetLogDecorator("Motion Sensor", c);
+        d.setAction("Sense Movement");
         
         LoggingService.getInstance().addLog(a);
         LoggingService.getInstance().addLog(b);
