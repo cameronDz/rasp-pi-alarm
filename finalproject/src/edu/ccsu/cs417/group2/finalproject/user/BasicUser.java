@@ -44,4 +44,44 @@ public class BasicUser implements UserInterface {
         s += name;
         return s;
     }
+    
+    /**
+     * Creates a hash code for the log 
+     * @return int value of hash code
+     */
+    @Override
+    public int hashCode() {
+        int i = 0;
+        
+        i += this.name.hashCode();
+        
+        return i;
+    }
+    
+    /**
+     * Determines if two objects are equal
+     * @param obj Object being compared to an instance of an implemented Log
+     * @return boolean of whether logs are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean b = false; 
+        
+        // makes sure object is not null
+        if( obj == null ){
+            return b;
+        } 
+        
+        // logic checking all variables of two objects are equal
+        if( this == obj ){
+            b = true;
+        } else if( obj instanceof BasicUser) {
+            BasicUser otherObj = (BasicUser) obj;
+            if( otherObj.getName().equals(this.getName()) ){
+                b = true;
+            }
+        }
+        
+        return b;
+    }
 }

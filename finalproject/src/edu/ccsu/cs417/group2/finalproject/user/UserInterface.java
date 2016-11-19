@@ -24,4 +24,19 @@ public interface UserInterface {
      */
     @Override
     public String toString();
+    
+    /**
+     * Creates a hash code for the log 
+     * @return int value of hash code
+     */
+    @Override
+    public int hashCode();
+    
+    /**
+     * Determines if two objects are equal
+     * @param obj Object being compared to an instance of an implemented Log
+     * @return boolean of whether logs are equal
+     */
+    @Override
+    public boolean equals(Object obj);
 }

@@ -52,8 +52,16 @@ public abstract class UserDecorator implements UserInterface {
     }
     
     /**
+     * Getter for decoratedUser
+     * @return an implementation of the UserInterface of a user
+     */
+    public UserInterface getDecoratedUser() {
+        return this.decoratedUser;
+    }
+    
+    /**
      * Makes a call to the AbstractUser class to get string all the public user
- information, then adds the status of the decorated object
+     * information, then adds the status of the decorated object
      * @return String representation of the user
      */
     @Override 
@@ -61,5 +69,47 @@ public abstract class UserDecorator implements UserInterface {
         String s = decoratedUser.toString();
         s += " " + status;
         return s;
+    }
+        
+    /**
+     * Creates a hash code for the log 
+     * @return int value of hash code
+     */
+    @Override
+    public int hashCode() {
+        int i = 0;
+        
+        i += this.status.hashCode();
+        i += this.decoratedUser.hashCode();
+        
+        return i;
+    }
+    
+    /**
+     * Determines if two objects are equal
+     * @param obj Object being compared to an instance of an implemented Log
+     * @return boolean of whether logs are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean b = false; 
+        
+        // makes sure object is not null
+        if( obj == null ){
+            return b;
+        } 
+        
+        // logic checking all variables of two objects are equal
+        if( this == obj ){
+            b = true;
+        } else if( obj instanceof UserDecorator) {
+            UserDecorator otherObj = (UserDecorator) obj;
+            if( otherObj.getDecoratedUser().equals(this.getDecoratedUser()) &&
+                    otherObj.getStatus().equals(this.getStatus()) ){
+                b = true;
+            }
+        }
+        
+        return b;
     }
 }
