@@ -36,7 +36,7 @@ public class BasicUser implements UserInterface {
     
     /**
      * Will return all publicly available user information
-     * @return String representing 
+     * @return String representing user name
      */
     @Override
     public String toString() {
