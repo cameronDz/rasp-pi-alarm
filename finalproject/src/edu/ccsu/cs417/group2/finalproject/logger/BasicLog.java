@@ -6,7 +6,11 @@ package edu.ccsu.cs417.group2.finalproject.logger;
  * for them.
  * @author Cameron
  */
-public class BasicLog extends AbstractLog {
+public class BasicLog implements LogInterface {
+    
+    protected int date;
+    protected int time;
+    protected String message;
     
     /**
      * Constructor with no message; message variable set to "No Message."
@@ -38,5 +42,89 @@ public class BasicLog extends AbstractLog {
     @Override
     public void setMessage(String s) {
         this.message = s;
-    }    
+    }
+    
+    /**
+     * Getter for message variable
+     * @return String of log message
+     */
+    @Override
+    public String getMessage() {
+        return this.message;
+    }
+    
+    /**
+     * Getter for time variable
+     * @return int of time log occurred
+     */
+    @Override
+    public int getTime() {
+        return this.time;
+    }
+    
+    /**
+     * Getter for date variable
+     * @return int of date log occurred
+     */
+    @Override
+    public int getDate() {
+        return this.date;
+    }
+    
+    /**
+     * Print out that will be used to store log.
+     * @return String representing Date, Time, and message of the Log.
+     */
+    @Override 
+    public String toString() {
+        String s = "";        
+        s += date + " ";
+        s += time + " ";
+        s += message;        
+        return s;
+    } 
+    
+    /**
+     * Creates hash code value for the log
+     * @return integer of the hash code value
+     */
+    @Override
+    public int hashCode() {
+        int i = 0;
+        
+        i += date;
+        i += time;
+        i += message.hashCode();
+        
+        return i;
+    }
+    
+    /**
+     * Goes through all variables and checks that they are all equal
+     * @param obj Object being compared
+     * @return boolean on whether obj is equal to an instance
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean b = false;
+        
+        // makes sure object is not null
+        if( obj == null ){
+            return b;
+        } 
+        
+        // logic checking all variables of two objects are equal
+        if( this == obj ){
+            b = true;
+        } else if( obj instanceof BasicLog) {
+            BasicLog otherObj = (BasicLog) obj;
+            if( otherObj.getDate() == this.getDate() && 
+                    otherObj.getTime() == this.getTime() && 
+                    otherObj.getMessage().equals(this.getMessage()) ){
+                b = true;
+            }
+        }
+        
+        return b;
+    }
 }

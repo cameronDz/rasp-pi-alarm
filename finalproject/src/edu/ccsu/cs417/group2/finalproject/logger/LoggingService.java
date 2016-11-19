@@ -1,11 +1,13 @@
 package edu.ccsu.cs417.group2.finalproject.logger;
 
 /**
- * Singleton class used to store Collection of widget Logs
+ * Singleton class used to store Collection of widget Logs. No implementation of
+ * hashCode() or equals(Object obj) function since singleton design pattern will
+ * always be referencing the same object through out entire application.
  * @author Cameron
  * @param <T> Log that is extends from the AbstractLog class
  */
-public class LoggingService<T extends AbstractLog> {
+public class LoggingService<T extends BasicLog> {
     
     private static LoggingService instance;
     protected LogCollection logs;
@@ -43,8 +45,8 @@ public class LoggingService<T extends AbstractLog> {
      * representation of all the Logs 
      * @return a list of all the logs
      */
-    public String getLogs() {
-        return logs.toString();
+    public LogCollection getLogs() {
+        return logs;
     }
     
     /**
@@ -53,6 +55,6 @@ public class LoggingService<T extends AbstractLog> {
      */
     @Override 
     public String toString() {
-        return this.getLogs();
+        return this.getLogs().toString();
     }
 }

@@ -3,7 +3,7 @@ package finalproject;
 import edu.ccsu.cs417.group2.finalproject.adapter.Arm;
 import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapter;
 import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
-import edu.ccsu.cs417.group2.finalproject.logger.AbstractLog;
+import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
 import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
 import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecorator;
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
@@ -21,7 +21,7 @@ public class Finalproject {
         // testing Log, LoggingService, LogCollection, and LogIterator
         BasicLog a = new BasicLog(2112016,164600);
         BasicLog b = new BasicLog(2112016,164700,"Has a message.");
-        AbstractLog c = new BasicLog(2112016,164902);
+        BasicLog c = new BasicLog(2112016,164902);
         LogDecorator d = new WidgetLogDecorator("Motion Sensor", c);
         d.setAction("Sense Movement");
         
@@ -29,7 +29,15 @@ public class Finalproject {
         LoggingService.getInstance().addLog(b);
         LoggingService.getInstance().addLog(c);
         
-        String s = LoggingService.getInstance().getLogs();
+        LogCollection l1 = LoggingService.getInstance().getLogs();
+        LogCollection l2 = new LogCollection();
+        l2.add(a);
+        l2.add(b);
+        
+        System.out.println(LoggingService.getInstance().hashCode());
+        System.out.println( l1.equals(l2) + " " + l2.equals(l2));
+        
+        String s = LoggingService.getInstance().toString();
         System.out.println(s);
         
         Arm arm = new Arm();

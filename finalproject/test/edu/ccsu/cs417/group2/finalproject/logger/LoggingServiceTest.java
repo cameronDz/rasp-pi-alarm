@@ -60,7 +60,7 @@ public class LoggingServiceTest {
         System.out.println("addLog");
         BasicLog l = new BasicLog(1, 2);
         instance.addLog(l);
-        assertEquals("1 2 No message.\n1 2 No message.\n", instance.getLogs());
+        assertEquals("1 2 No message.\n1 2 No message.\n", instance.toString());
     }
 
     /**
@@ -72,7 +72,7 @@ public class LoggingServiceTest {
         String expResult = "1 2 No message.\n";
         BasicLog l = new BasicLog(1, 2);
         instance.addLog(l);
-        String result = instance.getLogs();
+        String result = instance.toString();
         assertEquals(expResult, result);
     }
     
