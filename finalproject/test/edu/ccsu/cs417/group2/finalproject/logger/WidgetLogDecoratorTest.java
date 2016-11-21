@@ -43,11 +43,14 @@ public class WidgetLogDecoratorTest {
     @Test
     public void testSetMessage() {
         System.out.println("setMessage");
-        String s = "";
-        WidgetLogDecorator instance = null;
+        String s = "ducks";
+        String w = "Widget-A";
+        BasicLog log = new BasicLog(1,2);
+        WidgetLogDecorator instance = new WidgetLogDecorator(w, log); 
         instance.setMessage(s);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expResult = "WIDGET: " + w + " ACTION: " + s;
+        String result = instance.getMessage();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -56,12 +59,10 @@ public class WidgetLogDecoratorTest {
     @Test
     public void testGetWidget() {
         System.out.println("getWidget");
-        WidgetLogDecorator instance = null;
-        String expResult = "";
+        WidgetLogDecorator instance = new WidgetLogDecorator("Widget-A", new BasicLog(1,2)); 
+        String expResult = "Widget-A";
         String result = instance.getWidget();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -70,27 +71,42 @@ public class WidgetLogDecoratorTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        WidgetLogDecorator instance = null;
-        int expResult = 0;
+        BasicLog log = new BasicLog(1,2);
+        String wid = "Widget-A";
+        WidgetLogDecorator instance = new WidgetLogDecorator(wid, log); 
+        int expResult = log.hashCode() + wid.hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of equals method, of class WidgetLogDecorator.
      */
     @Test
-    public void testEquals() {
+    public void testEqualsTrue() {
         System.out.println("equals");
+        BasicLog log = new BasicLog(1,2);
+        String wid = "Widget-A";
+        WidgetLogDecorator instance = new WidgetLogDecorator(wid, log); 
+        Object obj = instance;
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of equals method, of class WidgetLogDecorator.
+     */
+    @Test
+    public void testEqualsFalse() {
+        System.out.println("equals");
+        BasicLog log = new BasicLog(1,2);
+        String wid = "Widget-A";
+        WidgetLogDecorator instance = new WidgetLogDecorator(wid, log); 
         Object obj = null;
-        WidgetLogDecorator instance = null;
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

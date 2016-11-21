@@ -91,7 +91,7 @@ public class BasicLogTest {
      * Test of getDate method, of class BasicLog.
      */
     @Test
-    public void testGetDate() {
+    public void testGetDateTrue() {
         System.out.println("getDate");
         BasicLog instance = new BasicLog(1, 2, "Message Test." );
         int expResult = 1;
@@ -103,8 +103,8 @@ public class BasicLogTest {
      * Test of hashCode method, of class BasicLog.
      */
     @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
+    public void testHashCodeTrue() {
+        System.out.println("hashCode-true");
         BasicLog instance = new BasicLog(1, 2, "M");
         int expResult = 3 + "M".hashCode();
         int result = instance.hashCode();
@@ -112,12 +112,50 @@ public class BasicLogTest {
     }
 
     /**
+     * Test of hashCode method, of class BasicLog.
+     */
+    @Test
+    public void testHashCodeFalse() {
+        System.out.println("hashCode-false");
+        BasicLog instance = new BasicLog(1, 2, "M");
+        int expResult = 3 + "t".hashCode();
+        int result = instance.hashCode();
+        assertNotEquals(expResult, result);
+    }
+
+    /**
      * Test of equals method, of class BasicLog.
      */
     @Test
-    public void testEquals() {
-        System.out.println("equals");
+    public void testEqualsTrue() {
+        System.out.println("equals-true");
         Object obj = new BasicLog(1, 2, "Message Test." );
+        BasicLog instance = new BasicLog(1, 2, "Message Test." );
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of equals method, of class BasicLog.
+     */
+    @Test
+    public void testEqualsFalse() {
+        System.out.println("equals-false");
+        Object obj = new BasicLog(1, 3, "Message Test." );
+        BasicLog instance = new BasicLog(1, 2, "Message Test" );
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of equals method, of class BasicLog.
+     */
+    @Test
+    public void testEqualsNull() {
+        System.out.println("equals-null_obj");
+        Object obj = null;
         BasicLog instance = new BasicLog(1, 2, "Message Test" );
         boolean expResult = false;
         boolean result = instance.equals(obj);

@@ -15,6 +15,7 @@ public abstract class LogDecorator implements LogInterface {
      */
     public LogDecorator(BasicLog decoratedLog) {
         this.decoratedLog = decoratedLog;
+        this.action = "";
     }
     
     /**
@@ -39,6 +40,7 @@ public abstract class LogDecorator implements LogInterface {
      * @return String of the action.
      */
     public String getAction() {
+        
         return action;
     }
     
@@ -94,7 +96,10 @@ public abstract class LogDecorator implements LogInterface {
     public int hashCode() {
         int i = 0;
         
-        i += action.hashCode();
+        if( action != null) {
+            i += action.hashCode();
+        }
+        
         i += decoratedLog.hashCode();
         
         return i;

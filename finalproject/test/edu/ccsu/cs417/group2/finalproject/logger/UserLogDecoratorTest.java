@@ -5,6 +5,7 @@
  */
 package edu.ccsu.cs417.group2.finalproject.logger;
 
+import edu.ccsu.cs417.group2.finalproject.user.BasicUser;
 import edu.ccsu.cs417.group2.finalproject.user.UserInterface;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -44,11 +45,14 @@ public class UserLogDecoratorTest {
     @Test
     public void testSetMessage() {
         System.out.println("setMessage");
-        String s = "";
-        UserLogDecorator instance = null;
+        String s = "message";
+        BasicUser user = new BasicUser("Sammy");
+        BasicLog log = new BasicLog(1,2);
+        UserLogDecorator instance = new UserLogDecorator(user, log);
         instance.setMessage(s);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String expResult = "USER: Sammy PERFORMED: " + s;
+        String result = instance.getMessage();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -57,12 +61,12 @@ public class UserLogDecoratorTest {
     @Test
     public void testGetUser() {
         System.out.println("getUser");
-        UserLogDecorator instance = null;
-        UserInterface expResult = null;
+        BasicUser user = new BasicUser("Sammy");
+        BasicLog log = new BasicLog(1,2);
+        UserLogDecorator instance = new UserLogDecorator(user, log);
+        UserInterface expResult = user;
         UserInterface result = instance.getUser();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,27 +75,41 @@ public class UserLogDecoratorTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        UserLogDecorator instance = null;
-        int expResult = 0;
+        BasicUser user = new BasicUser("Sammy");
+        BasicLog log = new BasicLog(1,2);
+        UserLogDecorator instance = new UserLogDecorator(user, log);
+        int expResult = log.hashCode() + user.hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of equals method, of class UserLogDecorator.
      */
     @Test
-    public void testEquals() {
-        System.out.println("equals");
+    public void testEqualsFalse() {
+        System.out.println("equals-false");
+        BasicUser user = new BasicUser("Sammy");
+        BasicLog log = new BasicLog(1,2);
+        UserLogDecorator instance = new UserLogDecorator(user, log);
         Object obj = null;
-        UserLogDecorator instance = null;
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
+    /**
+     * Test of equals method, of class UserLogDecorator.
+     */
+    @Test
+    public void testEqualsTrue() {
+        System.out.println("equals-true");
+        BasicUser user = new BasicUser("Sammy");
+        BasicLog log = new BasicLog(1,2);
+        UserLogDecorator instance = new UserLogDecorator(user, log);
+        Object obj = new UserLogDecorator(user, log);
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+    }
 }

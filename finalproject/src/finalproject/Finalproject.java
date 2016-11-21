@@ -28,6 +28,9 @@ public class Finalproject {
         LoggingService.getInstance().addLog(a);
         LoggingService.getInstance().addLog(b);
         LoggingService.getInstance().addLog(c);
+        String x = LoggingService.getInstance().toString();
+        
+        System.out.println("initial" + x);
         
         LogCollection l1 = LoggingService.getInstance().getLogs();
         LogCollection l2 = new LogCollection();
