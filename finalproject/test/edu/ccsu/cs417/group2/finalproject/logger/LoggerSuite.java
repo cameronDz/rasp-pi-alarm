@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author ngreeshdfg
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({edu.ccsu.cs417.group2.finalproject.adapter.ArmTest.class, edu.ccsu.cs417.group2.finalproject.adapter.ActivateTest.class, edu.ccsu.cs417.group2.finalproject.logger.LoggingServiceTest.class, edu.ccsu.cs417.group2.finalproject.logger.BasicLogTest.class, edu.ccsu.cs417.group2.finalproject.adapter.DisarmTest.class, edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapterTest.class, edu.ccsu.cs417.group2.finalproject.logger.LogCollectionTest.class})
+@Suite.SuiteClasses({LogCollectionTest.class, LogDecoratorTest.class, UserLogDecoratorTest.class, LoggingServiceTest.class, LogInterfaceTest.class, WidgetLogDecoratorTest.class, BasicLogTest.class})
 public class LoggerSuite {
 
     @BeforeClass

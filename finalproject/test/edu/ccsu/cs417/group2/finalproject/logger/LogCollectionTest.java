@@ -5,8 +5,6 @@
  */
 package edu.ccsu.cs417.group2.finalproject.logger;
 
-import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
-import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
 import java.util.Iterator;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -75,6 +73,71 @@ public class LogCollectionTest {
         LogCollection instance = new LogCollection();
         Iterator result = instance.iterator();
         assertThat(result, instanceOf(Iterator.class));
+    }
+
+    /**
+     * Test of add method, of class LogCollection.
+     */
+    @Test
+    public void testAdd() {
+        BasicLog t = new BasicLog(1, 2, "first");
+        BasicLog t2 = new BasicLog(2, 3, "second");
+        LogCollection instance = new LogCollection();
+        instance.add(t);
+        instance.add(t2);
+        assertEquals(instance.size(), 2);
+    }
+
+    /**
+     * Test of toString method, of class LogCollection.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        LogCollection instance = new LogCollection();
+        BasicLog t = new BasicLog(1, 2, "first");
+        BasicLog t2 = new BasicLog(2, 3, "second");
+        instance.add(t);
+        instance.add(t2);
+        String expResult = "1 2 first" + "\n" + "2 3 second" + "\n";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hashCode method, of class LogCollection.
+     */
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        LogCollection instance = new LogCollection();
+        BasicLog t = new BasicLog(1, 2, "first");
+        BasicLog t2 = new BasicLog(2, 3, "second");
+        instance.add(t);
+        instance.add(t2);
+        int expResult = t.hashCode() + t2.hashCode() + instance.size();
+        int result = instance.hashCode();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of equals method, of class LogCollection.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        LogCollection objCol = new LogCollection();
+        LogCollection instance = new LogCollection();
+        BasicLog t = new BasicLog(1, 2, "first");
+        BasicLog t2 = new BasicLog(2, 3, "second");
+        instance.add(t);
+        instance.add(t2);
+        objCol.add(t);
+        objCol.add(t2);
+        Object obj = objCol;
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
     }
     
 }

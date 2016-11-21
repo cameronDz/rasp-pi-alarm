@@ -10,14 +10,14 @@ package edu.ccsu.cs417.group2.finalproject.logger;
 public class LoggingService<T extends BasicLog> {
     
     private static LoggingService instance;
-    protected LogCollection logs;
+    protected LogCollection<T> logs;
     
     /**
      * Private constructor restricts access to a single entry point for
      * service. Initializes the Log Collection.
      */
     private LoggingService() {
-        logs = new LogCollection();
+        logs = new LogCollection<>();
     }
     
     /**

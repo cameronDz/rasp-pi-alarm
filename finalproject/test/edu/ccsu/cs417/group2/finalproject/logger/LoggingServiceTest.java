@@ -75,5 +75,19 @@ public class LoggingServiceTest {
         String result = instance.toString();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of toString method, of class LoggingService.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        LoggingService instance = null;
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
