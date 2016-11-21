@@ -6,8 +6,10 @@
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
 
 /**
  * Calls a python file currently set on the desktop of the rPi
@@ -20,11 +22,12 @@ public class Arm implements Activate {
     public int activate() throws IOException {
         
         // Set up the command and parameter
-        // Location of the LED files on PI
-        String pythonScriptPath = "/home/pi/Desktop/led_on.py";
+        // Location of the range file
+        URL url = getClass().getResource("range_sensor.py");
+        File file = new File(url.getPath());
         String[] cmd = new String[2];
         cmd[0] = "python";
-        cmd[1] = pythonScriptPath;
+        cmd[1] = file.toString();
 
         // create runtime to execute external command
         Runtime rt = Runtime.getRuntime();

@@ -45,14 +45,14 @@ public class Finalproject {
         
         // Activates LED by calling Python file
         arm.activate();
-        System.out.println("Activated LED");
+        System.out.println("Activated system");
         
         // Pause 10 seconds before deactivating
-        Thread.sleep(10000);
+        //Thread.sleep(10000);
         
         // Deactivates LED with adapter class which calls Python file
-        adapter.activate();
-        System.out.println("Deactivated LED");
+        //adapter.activate();
+        //System.out.println("Deactivated LED");
     }
     
 }
