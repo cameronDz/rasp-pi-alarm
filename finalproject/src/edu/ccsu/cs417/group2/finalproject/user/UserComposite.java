@@ -13,7 +13,7 @@ public abstract class UserComposite implements UserInterface {
     protected List<UserInterface> userList;
     
     /**
-     * Used to get the name of a the composite. 
+     * Used to get the name of the composite. 
      * @return String of the composite. 
      */
     @Override
@@ -41,9 +41,13 @@ public abstract class UserComposite implements UserInterface {
     /**
      * Removes a user/composite from the composites list
      * @param user the object to be removed from the list
+     * @return user that was removed from the list
      */
-    public void removeUser(UserInterface user) {
-        this.userList.remove(user);
+    public UserInterface removeUser(UserInterface user) {
+        UserInterface r = null;
+        if(this.userList.remove(user) == true)
+            r = user;
+        return r;
     }
     
     /**
