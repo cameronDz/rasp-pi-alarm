@@ -23,11 +23,14 @@ public class Arm implements Activate {
         
         // Set up the command and parameter
         // Location of the range file
-        URL url = getClass().getResource("range_sensor.py");
-        File file = new File(url.getPath());
+        File f = new File(System.getProperty("java.class.path"));
+        File dir = f.getAbsoluteFile().getParentFile().getParentFile();
+        
+        String path = dir.toString() + "/python_files/working.py";
+        System.out.println(path);
         String[] cmd = new String[2];
         cmd[0] = "python";
-        cmd[1] = file.toString();
+        cmd[1] = path;
 
         // create runtime to execute external command
         Runtime rt = Runtime.getRuntime();
