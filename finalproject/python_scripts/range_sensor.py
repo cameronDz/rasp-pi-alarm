@@ -1,8 +1,16 @@
 # Date: 11/20/16
 # Program to use Ultrasonic Ranger at port D2
 
+import platform
 import sys
-sys.path.insert(0, '/home/pi/Desktop/GrovePi/Software/Python')
+
+from os.path import dirname, abspath
+d = dirname(dirname(abspath(__file__)))
+
+if platform.system() == 'Windows':
+    sys.path.insert(0, d+'\\GrovePi\\Software\\Python')
+else:
+    sys.path.insert(0, 'home/pi/Desktop/GrovePi/Software/Python')
 
 import time
 from grovepi import *

@@ -54,8 +54,8 @@ public class Finalproject {
         //Thread.sleep(10000);
         
         // Deactivates LED with adapter class which calls Python file
-        //adapter.activate();
-        //System.out.println("Deactivated LED");
+        adapter.activate();
+        System.out.println("Deactivated LED");
     }
     
 }
