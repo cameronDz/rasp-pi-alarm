@@ -56,7 +56,7 @@ public class JsonLogBuilder implements LogBuilder {
         if(json == null) {
             json = "{" + s;
         } else {
-            json += s;
+            json += " , " +s;
         }
     }
 }

@@ -2,6 +2,9 @@ package finalproject;
 
 import edu.ccsu.cs417.group2.finalproject.adapter.Arm;
 import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapter;
+import edu.ccsu.cs417.group2.finalproject.builder.JsonLogBuilder;
+import edu.ccsu.cs417.group2.finalproject.builder.LogBuilder;
+import edu.ccsu.cs417.group2.finalproject.builder.LogReader;
 import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
 import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
 import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
@@ -25,24 +28,26 @@ public class Finalproject {
         LogDecorator d = new WidgetLogDecorator("Motion Sensor", c);
         d.setAction("Sense Movement");
         
+        // put logs into logging service collection
         LoggingService.getInstance().addLog(a);
         LoggingService.getInstance().addLog(b);
         LoggingService.getInstance().addLog(c);
-        String x = LoggingService.getInstance().toString();
         
-        System.out.println("initial" + x);
+        // print currect log list
+        String x = LoggingService.getInstance().toString();        
+        System.out.println("***Logging Service test***");
+        System.out.println(x);
         
-        LogCollection l1 = LoggingService.getInstance().getLogs();
-        LogCollection l2 = new LogCollection();
-        l2.add(a);
-        l2.add(b);
+        // test builder package
+        JsonLogBuilder lb = new JsonLogBuilder();
+        LogReader lr = new LogReader(lb);
+        lr.parseLog(a);
+        String json = lb.getJsonLog();
+        System.out.println("***Json test***");
+        System.out.println(json);
+        System.out.println();
         
-        System.out.println(LoggingService.getInstance().hashCode());
-        System.out.println( l1.equals(l2) + " " + l2.equals(l2));
-        
-        String s = LoggingService.getInstance().toString();
-        System.out.println(s);
-        
+        // Test LED code
         Arm arm = new Arm();
         ArmAdapter adapter = new ArmAdapter();
         
@@ -50,12 +55,5 @@ public class Finalproject {
         arm.activate();
         System.out.println("Activated system");
         
-        // Pause 10 seconds before deactivating
-        //Thread.sleep(10000);
-        
-        // Deactivates LED with adapter class which calls Python file
-        //adapter.activate();
-        //System.out.println("Deactivated LED");
     }
-    
 }
