@@ -50,6 +50,9 @@ public class LogReader {
      */
     @Override
     public int hashCode() {
+        if( builder == null ) {
+            return 0;
+        }
         return builder.hashCode();
     }
     

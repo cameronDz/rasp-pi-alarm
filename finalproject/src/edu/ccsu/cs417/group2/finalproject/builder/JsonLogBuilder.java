@@ -53,6 +53,9 @@ public class JsonLogBuilder implements LogBuilder {
      * @return json variable String
      */
     public String getJsonVariable() {
+        if(json == null) {
+            return "";
+        }
         return json;
     }
     
@@ -83,6 +86,9 @@ public class JsonLogBuilder implements LogBuilder {
      */
     @Override
     public int hashCode() {
+        if(json == null) {
+            return 0;
+        }
         return json.hashCode();
     }
     
