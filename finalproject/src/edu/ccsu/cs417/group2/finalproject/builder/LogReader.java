@@ -26,4 +26,58 @@ public class LogReader {
         this.builder.buildTime(log.getTime());
         this.builder.buildMessage(log.getMessage());
     }
+    
+    /**
+     * Getter for the builder variable in the instance
+     * @return builder variable in the instance
+     */
+    public LogBuilder getBuilder() {
+        return builder;
+    }
+    
+    /**
+     * Returns String representation of builder and header
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return "LogReader:\n" + builder.toString();
+    }
+    
+    /**
+     * Creates a hash code based off builder variable
+     * @return generated hash value
+     */
+    @Override
+    public int hashCode() {
+        return builder.hashCode();
+    }
+    
+    /**
+     * Checks if an object is equal to Reader object
+     * @param obj object being compared to instance
+     * @return boolean on whether objects are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean b = false;
+        
+        // makes sure object is not null
+        if( obj == null ){
+            return b;
+        } 
+        
+        // check if builder variable present and equal in objects
+        if( this == obj ){
+            b = true;
+        } else if( obj instanceof LogReader) {
+            LogReader otherObj = (LogReader) obj;
+            
+            if( otherObj.getBuilder().equals(builder) ) {
+                b = true;
+            }
+        }
+        
+        return b;
+    }
 }

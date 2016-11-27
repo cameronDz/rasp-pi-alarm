@@ -49,6 +49,14 @@ public class JsonLogBuilder implements LogBuilder {
     }
     
     /**
+     * Returns just the json variable. Used for testing in equals method
+     * @return json variable String
+     */
+    public String getJsonVariable() {
+        return json;
+    }
+    
+    /**
      * Test for start of JSON String, creates brackets if new String
      * @param s String to be added to the JSON String
      */
@@ -58,5 +66,51 @@ public class JsonLogBuilder implements LogBuilder {
         } else {
             json += " , " +s;
         }
+    }
+    
+    /**
+     * Returns current json String plus header
+     * @return json variable String with header
+     */
+    @Override
+    public String toString() {
+        return "JsonLogBuilder:\n" + json;
+    }
+    
+    /**
+     * Creates hash code from single variable in object
+     * @return Hash code of the current json variable
+     */
+    @Override
+    public int hashCode() {
+        return json.hashCode();
+    }
+    
+    /**
+     * Checks if an object is equal to Builder object
+     * @param obj object being compared to instance
+     * @return boolean on whether objects are equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean b = false;
+        
+        // makes sure object is not null
+        if( obj == null ){
+            return b;
+        } 
+        
+        // check if json variable present and equal in objects
+        if( this == obj ){
+            b = true;
+        } else if( obj instanceof JsonLogBuilder) {
+            JsonLogBuilder otherObj = (JsonLogBuilder) obj;
+            
+            if( otherObj.getJsonVariable().equals(json) ) {
+                b = true;
+            }
+        }
+        
+        return b;
     }
 }
