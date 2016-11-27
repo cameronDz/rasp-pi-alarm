@@ -14,7 +14,7 @@ public class JsonLogBuilder implements LogBuilder {
      */
     @Override
     public void buildTime(int time) {
-        String s = "\"time\":\"" + time + "\"";
+        String s = "\"time\": " + time;
         nullTest(s);
     }
 
@@ -24,7 +24,7 @@ public class JsonLogBuilder implements LogBuilder {
      */
     @Override
     public void buildDate(int date) {
-        String s = "\"date\":\"" + date + "\"";
+        String s = "\"date\": " + date;
         nullTest(s);
     }
     
@@ -34,7 +34,7 @@ public class JsonLogBuilder implements LogBuilder {
      */
     @Override
     public void buildMessage(String message) {
-        String s = "\"messsage\":\"" + message + "\"";
+        String s = "\"messsage\": \"" + message + "\"";
         nullTest(s);
     }
     
@@ -67,7 +67,7 @@ public class JsonLogBuilder implements LogBuilder {
         if(json == null) {
             json = "{" + s;
         } else {
-            json += " , " +s;
+            json += ", " +s;
         }
     }
     

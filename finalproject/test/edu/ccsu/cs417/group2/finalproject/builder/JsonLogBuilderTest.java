@@ -41,7 +41,7 @@ public class JsonLogBuilderTest {
         int time = 1;
         JsonLogBuilder instance = new JsonLogBuilder();
         instance.buildTime(time);
-        String expResult = "{\"time\":\"1\"}";
+        String expResult = "{\"time\": 1}";
         String result = instance.getJsonLog();
         assertEquals(expResult, result);
     }
@@ -55,7 +55,7 @@ public class JsonLogBuilderTest {
         int date = 1;
         JsonLogBuilder instance = new JsonLogBuilder();
         instance.buildDate(date);
-        String expResult = "{\"date\":\"1\"}";
+        String expResult = "{\"date\": 1}";
         String result = instance.getJsonLog();
         assertEquals(expResult, result);
     } 
@@ -69,7 +69,7 @@ public class JsonLogBuilderTest {
         JsonLogBuilder instance = new JsonLogBuilder();
         String message = "message";
         instance.buildMessage(message);
-        String expResult = "{\"messsage\":\"" + message + "\"}";
+        String expResult = "{\"messsage\": \"" + message + "\"}";
         String result = instance.getJsonLog();
         assertEquals(expResult, result);
     }
@@ -82,7 +82,7 @@ public class JsonLogBuilderTest {
         System.out.println("getJsonLog");
         JsonLogBuilder instance = new JsonLogBuilder();
         instance.buildDate(1);
-        String expResult = "{\"date\":\"1\"}";
+        String expResult = "{\"date\": 1}";
         String result = instance.getJsonLog();
         assertEquals(expResult, result);
     }
@@ -95,7 +95,7 @@ public class JsonLogBuilderTest {
         System.out.println("getJsonVariable-nonEmpty");
         JsonLogBuilder instance = new JsonLogBuilder();
         instance.buildDate(1);
-        String expResult = "{\"date\":\"1\"";
+        String expResult = "{\"date\": 1";
         String result = instance.getJsonVariable();
         assertEquals(expResult, result);
     }
@@ -120,7 +120,7 @@ public class JsonLogBuilderTest {
         System.out.println("toString-non-empty");
         JsonLogBuilder instance = new JsonLogBuilder();
         instance.buildDate(1);
-        String expResult = "JsonLogBuilder:\n" + "{\"date\":\"1\"";
+        String expResult = "JsonLogBuilder:\n" + "{\"date\": 1";
         String result = instance.toString();
         assertEquals(expResult, result);
     }

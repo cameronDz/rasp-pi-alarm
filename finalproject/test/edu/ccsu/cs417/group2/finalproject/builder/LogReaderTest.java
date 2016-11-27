@@ -51,7 +51,7 @@ public class LogReaderTest {
         instance.parseLog(log);
         
         String expResult = "LogReader:\n" + "JsonLogBuilder:\n" +
-                "{\"date\":\"123\" , \"time\":\"234\" , \"messsage\":\"Message.\"";
+                "{\"date\": 123, \"time\": 234, \"messsage\": \"Message.\"";
         String result = instance.toString();
         assertEquals(expResult, result);
     }
