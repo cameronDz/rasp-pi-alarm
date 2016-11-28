@@ -2,6 +2,8 @@ package finalproject;
 
 import edu.ccsu.cs417.group2.finalproject.adapter.Arm;
 import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapter;
+import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapterLED;
+import edu.ccsu.cs417.group2.finalproject.adapter.ArmLED;
 import edu.ccsu.cs417.group2.finalproject.builder.JsonLogBuilder;
 import edu.ccsu.cs417.group2.finalproject.builder.LogBuilder;
 import edu.ccsu.cs417.group2.finalproject.builder.LogReader;
@@ -47,12 +49,28 @@ public class Finalproject {
         System.out.println(json);
         System.out.println();
         
-        // Test LED code
+        ArmLED armLED = new ArmLED();
+        ArmAdapterLED adapterLED = new ArmAdapterLED();
+        
+        // Activates LED by calling Python file
+        armLED.activate();
+        System.out.println("Activated LED");
+        
+        // Pause 10 seconds before deactivating
+        Thread.sleep(10000);
+        
+        // Deactivates LED with adapter class which calls Python file
+        adapterLED.activate();
+        System.out.println("Deactivated LED");
+        
+        // Create instances of ultrasonic sensor
         Arm arm = new Arm();
         ArmAdapter adapter = new ArmAdapter();
         
-        // Activates LED by calling Python file
+        // Activate ultrasonic detection system
         arm.activate();
-        System.out.println("Activated system");
+        
+        // Print message to press button to deactivate system
+        adapter.activate();
     }
 }

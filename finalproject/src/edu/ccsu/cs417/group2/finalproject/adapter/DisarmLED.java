@@ -11,23 +11,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Arm class implements Activate interface in adapter pattern to activate 
- *  ultrasonic sensor system.
+ * ArmLED class implements ActivateLED interface in adapter pattern to deactivate an LED.
  * @author Tom
  */
-public class Arm implements Activate {
+public class DisarmLED {
     
-      /**
-     *  Method activate() collects system type information to create an appropriate runtime
-     *  environment which invokes a Python script. Feedback from the script is passed 
-     *  back to the method.
-     * @throws IOException
-     * @return int runtime exitValue
-     */
-    @Override
-    public int activate() throws IOException {
+        /**
+       *  Method activate() collects system type information to create an appropriate runtime
+       *  environment which invokes a Python script. Feedback from the script is passed 
+       *  back to the method.
+       * param String red (rPi D7) or green (rPi D2)
+       * @throws IOException
+       * @return int runtime exitValue
+       */
+        public int deactivate() throws IOException {
         
-        // Set up the command and parameter
+         // Set up the command and parameter
         // Location of the range file
         String[] cmd = new String[2];
         
@@ -42,11 +41,11 @@ public class Arm implements Activate {
         // Note: Windows 10 returns Windows 8.1 as OS identifier
         if (osName.equals("Windows 8.1") || osName.equals("Windows 7")) {
             // For Windows based systems
-            path = dir.toString() + "\\python_scripts\\range_sensor.py";
+            path = dir.toString() + "\\python_scripts\\led_off.py";
             cmd[0] = "python.exe";
         } else {
             // For Linux based systems
-            path = dir.toString() + "/python_scripts/range_sensor.py";
+            path = dir.toString() + "/python_scripts/led_off.py";
             cmd[0] = "python";
         }
         

@@ -32,6 +32,12 @@ grovepi.pinMode(button, "INPUT")
 
 loop = True
 
+# Loop to warm up ultrasonic sensor so it returns consistent readings
+for x in range(0, 10):
+    # For testing purposes
+    #print("Test: " + str(grovepi.ultrasonicRead(ultrasonic_ranger)))
+    x += 1
+
 # Get sample distance for buffer in while loop
 prevDistance = grovepi.ultrasonicRead(ultrasonic_ranger)
 distance = prevDistance
