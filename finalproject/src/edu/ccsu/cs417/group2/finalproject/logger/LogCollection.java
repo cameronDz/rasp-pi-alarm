@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  * @author Cameron
  * @param <T> List of logs.
  */
-public class LogCollection<T extends AbstractLog> extends AbstractCollection {
+public class LogCollection<T extends BasicLog> extends AbstractCollection {
     
     private List<T> logs;
     private int size; 
@@ -32,6 +32,14 @@ public class LogCollection<T extends AbstractLog> extends AbstractCollection {
     public void addLog(T t) {
         logs.add(t);
         size++;
+    }
+    
+    /**
+     * Does the same as addLog()
+     * @param t Log to be added to collection
+     */
+    public void add(T t) {
+        this.addLog(t);
     }
     
     /**
@@ -66,6 +74,61 @@ public class LogCollection<T extends AbstractLog> extends AbstractCollection {
         }
         
         return s;
+    }
+    
+    /**
+     * Creates a hash value for the collection
+     * @return int of hash value
+     */
+    @Override
+    public int hashCode() {
+        int i = 0;
+        
+        // cycle through collection and sum the hash values of all elements
+        Iterator itr = logs.iterator();        
+        while(itr.hasNext()) {
+            i += itr.next().hashCode();
+        }
+        
+        i += size; 
+        
+        return i;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean b = false;
+        
+        // makes sure object is not null
+        if( obj == null ){
+            return b;
+        } 
+        
+        // logic checking all variables of two objects are equal
+        if( this == obj ){
+            b = true;
+        } else if( obj instanceof LogCollection) {
+            LogCollection otherObj = (LogCollection) obj;
+            if( otherObj.size() == this.size() ){
+                // iterate through both collections, checking each element                
+                Iterator otherItr = otherObj.iterator();
+                Iterator thisItr = this.iterator();
+                while(otherItr.hasNext()) {
+                    if( !(otherItr.next().equals(thisItr.next())) )
+                        return false;
+                }
+                
+                // if object is iterated through entire collection and does not
+                // fall any element equal tests, returns true
+                b = true;
+            }
+        }
+        
+        return b;
     }
     
     /**
