@@ -8,22 +8,22 @@ package edu.ccsu.cs417.group2.finalproject.adapter;
 import java.io.IOException;
 
 /**
- * Adapter pattern class to call for deactivation of Ultrasonic sensor
+ * Class involved in LED adapter to call method to turn off (deactivate) LED
  *  using same method call.
  * @author Tom
  */
-public class ArmAdapter implements Activate {
+public class ArmAdapterLED implements ActivateLED {
     
-    Disarm action;
+        DisarmLED action;
     
-    public ArmAdapter () {
+    public ArmAdapterLED () {
         
-        action = new Disarm();
+        action = new DisarmLED();
         
     }
     
     @Override
-    public String activate() throws IOException {
+    public int activate() throws IOException {
         
         return action.deactivate();
         

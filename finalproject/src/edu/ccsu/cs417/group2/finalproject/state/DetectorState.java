@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ccsu.cs417.group2.finalproject.adapter;
+package edu.ccsu.cs417.group2.finalproject.state;
 
 import java.io.IOException;
 
 /**
- * Adapter interface used for LED activation event
+ * An interface for the security system states that are expected.
+ *  Part of state design pattern.
  * @author Tom
  */
-public interface Activate {
+public interface DetectorState {
     
-    public String activate() throws IOException;
+    void arm() throws IOException;
+    void disarm();
     
 }

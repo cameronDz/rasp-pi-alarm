@@ -5,7 +5,6 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
-import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapter;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,13 +40,14 @@ public class ArmAdapterTest {
 
     /**
      * Test of activate method, of class ArmAdapter.
+     * @throws IOException
      */
     @Test
-    public void testActivate() throws Exception {
+    public void testActivate() throws IOException {
         System.out.println("activate");
         ArmAdapter instance = new ArmAdapter();
-        int expResult = 0;
-        int result = 1;
+        String expResult = "";
+        String result = instance.activate();
         try {
             result = instance.activate();
         } catch(IOException ex) {

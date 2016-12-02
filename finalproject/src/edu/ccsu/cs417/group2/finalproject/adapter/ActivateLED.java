@@ -11,8 +11,8 @@ import java.io.IOException;
  * Adapter interface used for LED activation event
  * @author Tom
  */
-public interface Activate {
+public interface ActivateLED {
     
-    public String activate() throws IOException;
+    public int activate() throws IOException;
     
 }

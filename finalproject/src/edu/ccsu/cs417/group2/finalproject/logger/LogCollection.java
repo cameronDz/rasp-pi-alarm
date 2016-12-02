@@ -10,11 +10,10 @@ import java.util.NoSuchElementException;
  * A Collection of widget logs with an inner iterator class to iterate through
  * logs. CS417 lecture slides were used as a reference. 
  * @author Cameron
- * @param <T> List of logs.
  */
-public class LogCollection<T extends BasicLog> extends AbstractCollection {
+public class LogCollection extends AbstractCollection {
     
-    private List<T> logs;
+    private List<LogInterface> logs;
     private int size; 
     
     /**
@@ -27,19 +26,19 @@ public class LogCollection<T extends BasicLog> extends AbstractCollection {
     
     /**
      * Adds a Log to the Collection of logs, 
-     * @param t generic Log to be added to the list of logs in the Collection
+     * @param l Log to be added to the list of logs in the Collection
      */
-    public void addLog(T t) {
-        logs.add(t);
+    public void addLog(LogInterface l) {
+        logs.add(l);
         size++;
     }
     
     /**
      * Does the same as addLog()
-     * @param t Log to be added to collection
+     * @param l Log to be added to collection
      */
-    public void add(T t) {
-        this.addLog(t);
+    public void add(LogInterface l) {
+        this.addLog(l);
     }
     
     /**
@@ -56,7 +55,7 @@ public class LogCollection<T extends BasicLog> extends AbstractCollection {
      * @return Iterator that allows cycling through Logs in collection
      */
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<LogInterface> iterator() {
         return new LogCollectionIterator<>(logs.iterator());
     }
     
@@ -137,7 +136,7 @@ public class LogCollection<T extends BasicLog> extends AbstractCollection {
      */
     private static class LogCollectionIterator<S> implements Iterator {
         
-        // S is the same as T in the outer class
+        // S is the same as LogInterface in the outer class
         private Iterator<S> logIter;
 
         /**

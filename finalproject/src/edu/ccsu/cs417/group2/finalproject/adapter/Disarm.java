@@ -5,43 +5,17 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-
 /**
- * Calls a python file currently set on the desktop of the rPi
- *  which turns off an LED in port D4.
+ * Returns a statement to press button on rPi to deactivate
+ *  system. Part of the adapter design pattern for ultrasonic sensor system.
  * @author Tom
  */
 public class Disarm {
     
-    public int deactivate() throws IOException {
+    public String deactivate() {
         
-        // Set up the command and parameter
-        // Location of the sensor file
+        System.out.println("Press Button to Deactivate System");
         
-        URL url = getClass().getResource("led_off.py");
-        File file = new File(url.getPath());
-        String[] cmd = new String[2];
-        cmd[0] = "python";
-        cmd[1] = file.toString();
-
-        // create runtime to execute external command
-        Runtime rt = Runtime.getRuntime();
-        Process pr = rt.exec(cmd);
-
-        // retrieve output from python script
-        BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-        String line = "";
-        
-        while((line = bfr.readLine()) != null) {
-            // display each output line from python script
-            System.out.println(line);
-        }
-        return pr.exitValue();
+        return "";
     }
-    
 }

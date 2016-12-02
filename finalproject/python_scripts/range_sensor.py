@@ -1,8 +1,16 @@
 # Date: 11/20/16
 # Program to use Ultrasonic Ranger at port D2
 
+import platform
 import sys
-sys.path.insert(0, '/home/pi/Desktop/GrovePi/Software/Python')
+
+from os.path import dirname, abspath
+d = dirname(dirname(abspath(__file__)))
+
+if platform.system() == 'Windows':
+    sys.path.insert(0, d+'\\GrovePi\\Software\\Python')
+else:
+    sys.path.insert(0, 'home/pi/Desktop/GrovePi/Software/Python')
 
 import time
 from grovepi import *
@@ -23,6 +31,13 @@ time.sleep(1)
 grovepi.pinMode(button, "INPUT")
 
 loop = True
+widget = "sensor"
+
+# Loop to warm up ultrasonic sensor so it returns consistent readings
+for x in range(0, 10):
+    # For testing purposes
+    #print("Test: " + str(grovepi.ultrasonicRead(ultrasonic_ranger)))
+    x += 1
 
 # Get sample distance for buffer in while loop
 prevDistance = grovepi.ultrasonicRead(ultrasonic_ranger)
@@ -42,6 +57,7 @@ while loop:
             # Turn off green LED
             digitalWrite(led, 0)
             loop = False
+            widget = "button"
             # Add code for red LED on            
 
         # Allow slight buffer distance for unintentional movement
@@ -55,3 +71,6 @@ while loop:
     except IOError:
         print ("Error")
 
+print (time.strftime("%m%d%Y"))
+print (time.strftime("%H%M%S"))
+print (widget)

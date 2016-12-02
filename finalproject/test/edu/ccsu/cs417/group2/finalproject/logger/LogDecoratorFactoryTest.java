@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ccsu.cs417.group2.finalproject.adapter;
+package edu.ccsu.cs417.group2.finalproject.logger;
 
-import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author ngreeshdfg
  */
-public class ArmTest {
+public class LogDecoratorFactoryTest {
     
-    public ArmTest() {
+    public LogDecoratorFactoryTest() {
     }
     
     @BeforeClass
@@ -39,20 +38,15 @@ public class ArmTest {
     }
 
     /**
-     * Test of activate method, of class Arm.
-     * @throws Exception
+     * Test of getLogDecorator method, of class LogDecoratorFactory.
      */
     @Test
-    public void testActivate() throws Exception {
-        System.out.println("activate");
-        Arm instance = new Arm();
-        String expResult = "";
-        String result = instance.activate();
-        try {
-            result = instance.activate();
-        } catch(IOException ex) {
-            fail("IOException reported: " + ex.getMessage());
-        }
+    public void testGetLogDecorator() {
+        System.out.println("getLogDecorator");
+        BasicLog c = new BasicLog(2112016,164902);
+        LogDecoratorAbstractFactory factory = new WidgetLogDecoratorFactory("A", c);
+        LogDecorator expResult = new WidgetLogDecorator("A", c);
+        LogDecorator result = LogDecoratorFactory.getLogDecorator(factory);
         assertEquals(expResult, result);
     }
     
