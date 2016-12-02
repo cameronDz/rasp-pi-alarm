@@ -1,16 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.ccsu.cs417.group2.finalproject.strategy;
 
 /**
- *
+ * Interface that all strategies will implement
  * @author curti
  */
 public interface UserNotificationStrategy {
     
+    /**
+     * Used to execute the strategy for user notification
+     */
     void execute();
     
 }
