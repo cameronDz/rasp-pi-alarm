@@ -5,7 +5,7 @@ package edu.ccsu.cs417.group2.finalproject.strategy;
  * Interface that all strategies will implement
  * @author curti
  */
-@FunctionalInterface
+
 public interface UserNotificationStrategy {
     
     /**

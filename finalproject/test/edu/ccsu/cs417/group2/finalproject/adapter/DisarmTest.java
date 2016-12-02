@@ -43,7 +43,7 @@ public class DisarmTest {
      * Test of deactivate method, of class Disarm.
      */
     @Test
-    public void testDeactivate() throws Exception {
+    public void testDeactivate() throws IOException {
         System.out.println("deactivate");
         Disarm instance = new Disarm();
         int expResult = 0;
