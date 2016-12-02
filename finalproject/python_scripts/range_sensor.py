@@ -31,6 +31,7 @@ time.sleep(1)
 grovepi.pinMode(button, "INPUT")
 
 loop = True
+widget = "sensor"
 
 # Loop to warm up ultrasonic sensor so it returns consistent readings
 for x in range(0, 10):
@@ -56,6 +57,7 @@ while loop:
             # Turn off green LED
             digitalWrite(led, 0)
             loop = False
+            widget = "button"
             # Add code for red LED on            
 
         # Allow slight buffer distance for unintentional movement
@@ -69,3 +71,6 @@ while loop:
     except IOError:
         print ("Error")
 
+print (time.strftime("%m%d%Y"))
+print (time.strftime("%H%M%S"))
+print (widget)

@@ -12,10 +12,10 @@ package edu.ccsu.cs417.group2.finalproject.adapter;
  */
 public class Disarm {
     
-    public int deactivate() {
+    public String deactivate() {
         
         System.out.println("Press Button to Deactivate System");
         
-        return -1;
+        return "";
     }
 }

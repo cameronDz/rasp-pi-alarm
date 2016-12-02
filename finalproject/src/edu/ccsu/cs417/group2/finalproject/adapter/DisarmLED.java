@@ -64,7 +64,7 @@ public class DisarmLED {
             System.out.println(line);
         }
         //return pr.exitValue();
-        return -1;
+        return 0;
     }
     
 }

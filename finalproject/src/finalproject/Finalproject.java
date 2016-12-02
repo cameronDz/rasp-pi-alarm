@@ -16,6 +16,9 @@ import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
 import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 
+import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
+
+
 import edu.ccsu.cs417.group2.finalproject.logger.LogDecoratorFactory;
 import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecoratorFactory;
 

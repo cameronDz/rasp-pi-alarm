@@ -5,7 +5,6 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
-import edu.ccsu.cs417.group2.finalproject.adapter.Disarm;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,18 +40,14 @@ public class DisarmTest {
 
     /**
      * Test of deactivate method, of class Disarm.
+     * @throws Exception
      */
     @Test
     public void testDeactivate() throws IOException {
         System.out.println("deactivate");
         Disarm instance = new Disarm();
-        int expResult = 0;
-        int result = 1;
-        try {
-            result = instance.deactivate();
-        } catch(IOException ex) {
-            fail("IOException reported: " + ex.getMessage());
-        }
+        String expResult = "";
+        String result = instance.deactivate();
         assertEquals(expResult, result);
     }
     

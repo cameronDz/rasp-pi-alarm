@@ -23,7 +23,7 @@ public class ArmAdapter implements Activate {
     }
     
     @Override
-    public int activate() throws IOException {
+    public String activate() throws IOException {
         
         return action.deactivate();
         

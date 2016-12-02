@@ -5,8 +5,6 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
-import edu.ccsu.cs417.group2.finalproject.adapter.Activate;
-import edu.ccsu.cs417.group2.finalproject.adapter.Arm;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -42,13 +40,14 @@ public class ActivateTest {
 
     /**
      * Test of activate method for the exception and expected return code
+     * @throws IOException
      */
     @Test
-    public void testActivateArmException() {
+    public void testActivateArmException() throws IOException {
         System.out.println("activateArm");
         Activate instance = new Arm();
-        int expResult = 0;
-        int result = 1;
+        String expResult = "";
+        String result = instance.activate();
         try {
             result = instance.activate();
         } catch(IOException ex) {
@@ -59,19 +58,29 @@ public class ActivateTest {
 
     /**
      * Test of deactivate method for the exception and expected return code
+     * @throws IOException
      */
     @Test
-    public void testActivateDisarmException() {
+    public void testActivateDisarmException() throws IOException {
         System.out.println("activateDisarm");
         Activate instance = new Arm();
-        int expResult = 0;
-        int result = 1;
+        String expResult = "";
+        String result = instance.activate();
         try {
             result = instance.activate();
         } catch(IOException ex) {
             fail("IOException reported: " + ex.getMessage());
         }
         assertEquals(expResult, result);
+    }
+
+    
+    public class ActivateImpl implements Activate {
+
+        @Override
+        public String activate() throws IOException {
+            return "";
+        }
     }
    
 }

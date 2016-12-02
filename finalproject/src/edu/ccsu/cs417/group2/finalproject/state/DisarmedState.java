@@ -26,9 +26,16 @@ public class DisarmedState implements DetectorState {
     @Override
     public void arm() throws IOException {
         
-        securitySystem.setDetectorState(securitySystem.getIsArmedState());
-        Arm arm = new Arm();
-        arm.activate();
+        
+        String widget = "";
+        
+        while (!widget.equals("button")) {
+        
+            securitySystem.setDetectorState(securitySystem.getIsArmedState());
+            Arm arm = new Arm();
+            widget = arm.activate();
+        
+        }
         
         // Set disarmed state when control is passed back
         securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
