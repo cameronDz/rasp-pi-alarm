@@ -6,6 +6,10 @@ import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapterLED;
 import edu.ccsu.cs417.group2.finalproject.adapter.ArmLED;
 import edu.ccsu.cs417.group2.finalproject.builder.JsonLogBuilder;
 import edu.ccsu.cs417.group2.finalproject.builder.LogBuilder;
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotificationStrategy;
+import edu.ccsu.cs417.group2.finalproject.strategy.BuzzerStrategy;
+import edu.ccsu.cs417.group2.finalproject.strategy.SilentStrategy;
 import edu.ccsu.cs417.group2.finalproject.builder.LogReader;
 import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
 import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
@@ -48,6 +52,12 @@ public class Finalproject {
         System.out.println("***Json test***");
         System.out.println(json);
         System.out.println();
+        
+        // test strategy package
+        UserNotification notifier = new UserNotification(new SilentStrategy());
+        notifier.notifyUser();
+        notifier.changeStrategy(new BuzzerStrategy());
+        notifier.notifyUser();
         
         ArmLED armLED = new ArmLED();
         ArmAdapterLED adapterLED = new ArmAdapterLED();
