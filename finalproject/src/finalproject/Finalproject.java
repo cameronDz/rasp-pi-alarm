@@ -12,6 +12,7 @@ import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
 import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
 import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecorator;
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
+import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
 import java.io.IOException;
 
 public class Finalproject {
@@ -49,28 +50,45 @@ public class Finalproject {
         System.out.println(json);
         System.out.println();
         
+        // Create new security system object and run
+        SecuritySystem system = new SecuritySystem();
+        
+        // Sgin in user
+        // if admin/mod
+            // create user
+            
+            
+        // while loop 
+            // print, save, arm
+        
+        
+        system.arm();
+        
+        
+        system.disarm();
+        
+        
+        
+        // end loop
+        
+        
+        // Test activation of LED through adapter pattern
+        /*
         ArmLED armLED = new ArmLED();
         ArmAdapterLED adapterLED = new ArmAdapterLED();
-        
-        // Activates LED by calling Python file
         armLED.activate();
-        System.out.println("Activated LED");
-        
-        // Pause 10 seconds before deactivating
+             // Pause 10 seconds before deactivating
         Thread.sleep(10000);
-        
-        // Deactivates LED with adapter class which calls Python file
         adapterLED.activate();
-        System.out.println("Deactivated LED");
-        
-        // Create instances of ultrasonic sensor
+        */
+
+        // Test activation of system through adapter pattern
+        /*
         Arm arm = new Arm();
         ArmAdapter adapter = new ArmAdapter();
-        
-        // Activate ultrasonic detection system
         arm.activate();
-        
-        // Print message to press button to deactivate system
         adapter.activate();
+        */
+        
     }
 }

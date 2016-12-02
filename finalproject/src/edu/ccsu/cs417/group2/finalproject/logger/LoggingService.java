@@ -5,19 +5,18 @@ package edu.ccsu.cs417.group2.finalproject.logger;
  * hashCode() or equals(Object obj) function since singleton design pattern will
  * always be referencing the same object through out entire application.
  * @author Cameron
- * @param <T> Log that is extends from the AbstractLog class
  */
-public class LoggingService<T extends BasicLog> {
+public class LoggingService {
     
     private static LoggingService instance;
-    protected LogCollection<T> logs;
+    protected LogCollection logs;
     
     /**
      * Private constructor restricts access to a single entry point for
      * service. Initializes the Log Collection.
      */
     private LoggingService() {
-        logs = new LogCollection<>();
+        logs = new LogCollection();
     }
     
     /**
@@ -34,10 +33,10 @@ public class LoggingService<T extends BasicLog> {
     
     /**
      * Adds a log to the Collection of Logs being held by the service
-     * @param t Log being added to the collection
+     * @param l Log being added to the collection
      */
-    public void addLog(T t) {
-        logs.addLog(t);
+    public void addLog(LogInterface l) {
+        logs.addLog(l);
     }
     
     /**

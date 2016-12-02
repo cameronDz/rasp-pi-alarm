@@ -5,6 +5,8 @@
  */
 package edu.ccsu.cs417.group2.finalproject.state;
 
+import java.io.IOException;
+
 /**
  * An interface for the security system states that are expected.
  *  Part of state design pattern.
@@ -12,7 +14,7 @@ package edu.ccsu.cs417.group2.finalproject.state;
  */
 public interface DetectorState {
     
-    void arm();
+    void arm() throws IOException;
     void disarm();
     
 }

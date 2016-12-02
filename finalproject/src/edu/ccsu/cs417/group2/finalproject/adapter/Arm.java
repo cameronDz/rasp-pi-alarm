@@ -5,6 +5,7 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
+import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -59,11 +60,21 @@ public class Arm implements Activate {
         // Retrieve output from python script
         BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
         String line = "";
-        
         while((line = bfr.readLine()) != null) {
             // Display each output line from python script
             System.out.println(line);
+            
+            
+            
+            //LoggingService ls = LoggingService.getInstance();
+            //date = getDate
+            //time = getTime
+            //BasicLog b = new BasicLog()
+            //WidgetLog wg = new WidgetLog("widgetname", b)
+            //wg.setMessage("what happened");
+            //ls.addLog
         }
+        
         //return pr.exitValue();
         return -1;
     }

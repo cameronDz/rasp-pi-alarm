@@ -5,6 +5,8 @@
  */
 package edu.ccsu.cs417.group2.finalproject.state;
 
+import java.io.IOException;
+
 /**
  *
  * @author Tom
@@ -22,6 +24,9 @@ public class SecuritySystem {
         disarmed = new DisarmedState(this);
         
         detectorState = disarmed;
+        // Activate red LED for disarmed state
+        // ArmLED armLED = new ArmLED();
+        // armLED.activate(red);
         
     }
     
@@ -31,7 +36,7 @@ public class SecuritySystem {
         
     }
     
-    public void arm() {
+    public void arm() throws IOException {
         
         detectorState.arm();
         

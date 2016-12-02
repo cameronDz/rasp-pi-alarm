@@ -22,14 +22,17 @@ public class ArmedState implements DetectorState {
     @Override
     public void arm() {
         
-        
+        System.out.println("System is already armed.");
         
     }
     
     @Override
     public void disarm() {
         
-        
+        // Activate red LED for disarmed state
+        // ArmLED armLED = new ArmLED();
+        // armLED.activate(red);
+        securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
         
     }
     
