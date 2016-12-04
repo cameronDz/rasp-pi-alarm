@@ -36,8 +36,8 @@ with open('../config/environment.properties') as f:
             keys[name.strip()] = value.strip()
 
 ultrasonic_ranger = int(keys['RANGER_PORT'])
-button = keys['BUTTON_PORT']
-led = keys['GREEN_LED_PORT']
+button = int(keys['BUTTON_PORT'])
+led = int(keys['GREEN_LED_PORT'])
 
 # Set up led
 pinMode(led,"OUTPUT")
