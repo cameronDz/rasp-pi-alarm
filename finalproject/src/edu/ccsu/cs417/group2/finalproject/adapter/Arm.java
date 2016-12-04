@@ -102,6 +102,7 @@ public class Arm implements Activate {
             
             if (widget.equals("sensor")) {
                 action = "Sensor tripped";
+                
             } else if (widget.equals("button")) {
                 action = "Deactivated by button";
             }

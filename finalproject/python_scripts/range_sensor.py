@@ -74,7 +74,8 @@ while loop:
             digitalWrite(led, 0)
             loop = False
             widget = "button"
-            # Add code for red LED on            
+            # Add code for red LED on
+            led = int(keys['RED_LED_PORT'])
 
         # Allow slight buffer distance for unintentional movement
         if distance < (prevDistance - 50) or distance > (prevDistance + 50):

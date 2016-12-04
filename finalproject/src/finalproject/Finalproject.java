@@ -36,37 +36,37 @@ public class Finalproject {
      */
     public static void main(String[] args) throws InterruptedException, IOException {
         
-        FileInputStream environmentProperties;
-        
-        try {
-            environmentProperties = new FileInputStream("config/environment.properties");
-            Properties props = new Properties();
-            props.load(environmentProperties);
-            
-            if(props.containsKey(GREEN_LED_PORT)) {
-                // Component greenLed = new Led(props.getProperty(GREEN_LED_PORT));
-                System.out.println("Set green led");
-            }
-            if(props.containsKey(RED_LED_PORT)) {
-                // Component redLed = new Led(props.getProperty(RED_LED_PORT));
-                System.out.println("Set red led");
-            }
-            if(props.containsKey(BUZZER_PORT)) {
-                // Component buzzer = new Buzzer(props.getProperty(BUZZER_PORT));
-                System.out.println("Set buzzer");
-            }
-            if(props.containsKey(RANGER_PORT)) {
-                // Component ranger = new Ranger(props.getProperty(RANGER_PORT));
-                System.out.println("Set ranger");
-            }
-            if(props.containsKey(BUTTON_PORT)) {
-                // Component button = new Button(props.getProperty(BUTTON_PORT));
-                System.out.println("Set button");
-            }
-            
-        } catch (Exception ex) {
-          ex.printStackTrace();
-        }
+//        FileInputStream environmentProperties;
+//        
+//        try {
+//            environmentProperties = new FileInputStream("config/environment.properties");
+//            Properties props = new Properties();
+//            props.load(environmentProperties);
+//            
+//            if(props.containsKey(GREEN_LED_PORT)) {
+//                // Component greenLed = new Led(props.getProperty(GREEN_LED_PORT));
+//                System.out.println("Set green led");
+//            }
+//            if(props.containsKey(RED_LED_PORT)) {
+//                // Component redLed = new Led(props.getProperty(RED_LED_PORT));
+//                System.out.println("Set red led");
+//            }
+//            if(props.containsKey(BUZZER_PORT)) {
+//                // Component buzzer = new Buzzer(props.getProperty(BUZZER_PORT));
+//                System.out.println("Set buzzer");
+//            }
+//            if(props.containsKey(RANGER_PORT)) {
+//                // Component ranger = new Ranger(props.getProperty(RANGER_PORT));
+//                System.out.println("Set ranger");
+//            }
+//            if(props.containsKey(BUTTON_PORT)) {
+//                // Component button = new Button(props.getProperty(BUTTON_PORT));
+//                System.out.println("Set button");
+//            }
+//            
+//        } catch (Exception ex) {
+//          ex.printStackTrace();
+//        }
         
         // testing Log, LoggingService, LogCollection, and LogIterator
         BasicLog a = new BasicLog(2112016,164600);
