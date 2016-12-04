@@ -83,15 +83,15 @@ public class Arm implements Activate {
                 //System.out.println(line);
 
                 switch (counter) {
-                    case 0: System.out.println("Trip Distance: " + line);
+//                    case 0: System.out.println("Trip Distance: " + line);
+//                        break;
+//                    case 1: System.out.println("Previous Distance: " + line);
+//                        break;
+                    case 0: date = Integer.parseInt(line);
                         break;
-                    case 1: System.out.println("Previous Distance: " + line);
+                    case 1: time = Integer.parseInt(line);
                         break;
-                    case 2: System.out.println(line);
-                        break;
-                    case 3: System.out.println(line);
-                        break;
-                    case 4: {
+                    case 2: {
                         //System.out.println(line);
                         widget = line;
                         break;
@@ -112,7 +112,7 @@ public class Arm implements Activate {
                 }
 
                 wg.setMessage(action);
-                ls.getInstance().addLog(b);
+                ls.addLog(b);
 
         }
         

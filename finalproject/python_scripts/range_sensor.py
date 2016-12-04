@@ -64,8 +64,8 @@ while loop:
         if distance < (prevDistance - 50) or distance > (prevDistance + 50):
                 loop = False
                 digitalWrite(led, 0)
-                print (distance)
-                print (prevDistance)
+                #print (distance)
+                #print (prevDistance)
     except TypeError:
         print ("Error")
     except IOError:
