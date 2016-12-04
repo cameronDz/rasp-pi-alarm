@@ -19,9 +19,25 @@ import grovepi
 # Connect the Grove Ultrasonic Ranger to digital port D2
 # Connect the button to D3
 # Connect the led to D4
-ultrasonic_ranger = 4
-button = 3
-led = 2
+
+separator = "="
+keys = {}
+
+with open('../config/environment.properties') as f:
+
+    for line in f:
+        if separator in line:
+
+            # Find the name and value by splitting the string
+            name, value = line.split(separator, 1)
+
+            # Assign key value pair to dict keys
+            # strip() removes white space from the ends of strings
+            keys[name.strip()] = value.strip()
+
+ultrasonic_ranger = int(keys['RANGER_PORT'])
+button = keys['BUTTON_PORT']
+led = keys['GREEN_LED_PORT']
 
 # Set up led
 pinMode(led,"OUTPUT")

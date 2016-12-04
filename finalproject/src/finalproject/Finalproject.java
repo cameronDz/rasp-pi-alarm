@@ -111,11 +111,11 @@ public class Finalproject {
         // while loop 
             // print, save, arm
         
-        
-        system.arm();
-        
-        
-        system.disarm();
+//        
+//        system.arm();
+//        
+//        
+//        system.disarm();
         
         
         
