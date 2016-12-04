@@ -82,9 +82,9 @@ public class Arm implements Activate {
                     break;
                 case 1: System.out.println("Previous Distance: " + line);
                     break;
-                case 2: date = Integer.parseInt(line);//System.out.println(line);
+                case 2: System.out.println(line);
                     break;
-                case 3: time = Integer.parseInt(line);//System.out.println(line);
+                case 3: System.out.println(line);
                     break;
                 case 4: {
                     //System.out.println(line);
@@ -108,6 +108,7 @@ public class Arm implements Activate {
             
             wg.setMessage(action);
             ls.getInstance().addLog(b);
+            System.out.println(ls.getInstance().toString());
         
 
         //return pr.exitValue();
