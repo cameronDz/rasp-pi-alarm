@@ -5,7 +5,10 @@
  */
 package edu.ccsu.cs417.group2.finalproject.factory;
 
+import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
 import edu.ccsu.cs417.group2.finalproject.logger.LogInterface;
+import edu.ccsu.cs417.group2.finalproject.logger.UserLogDecorator;
+import edu.ccsu.cs417.group2.finalproject.user.BasicUser;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,14 +47,14 @@ public class UserLogDecoratorFactoryTest {
     @Test
     public void testCreateLog() {
         System.out.println("createLog");
-        String user = "";
-        String action = "";
-        UserLogDecoratorFactory instance = new UserLogDecoratorFactory();
-        LogInterface expResult = null;
-        LogInterface result = instance.createLog(user, action);
+        String user = "ONE";
+        String action = "TWO";
+        UserLogDecoratorFactory userFactory = new UserLogDecoratorFactory();
+        LogInterface expResult = new BasicLog(1,2);
+        LogInterface d = new UserLogDecorator(new BasicUser(user), expResult);
+        d.setMessage(action);
+        LogInterface result = userFactory.createLog(user,action);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

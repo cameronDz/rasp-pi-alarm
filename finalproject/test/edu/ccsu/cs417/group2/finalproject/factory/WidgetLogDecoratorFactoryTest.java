@@ -5,7 +5,9 @@
  */
 package edu.ccsu.cs417.group2.finalproject.factory;
 
+import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
 import edu.ccsu.cs417.group2.finalproject.logger.LogInterface;
+import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecorator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,14 +46,14 @@ public class WidgetLogDecoratorFactoryTest {
     @Test
     public void testCreateLog() {
         System.out.println("createLog");
-        String widget = "";
-        String action = "";
-        WidgetLogDecoratorFactory instance = new WidgetLogDecoratorFactory();
-        LogInterface expResult = null;
-        LogInterface result = instance.createLog(widget, action);
+        String widget = "ONE";
+        String action = "TWO";
+        WidgetLogDecoratorFactory widgetFactory= new WidgetLogDecoratorFactory();
+        LogInterface expResult = new BasicLog(3,4);
+        LogInterface d = new WidgetLogDecorator(widget, expResult);
+        d.setMessage(action);
+        LogInterface result = widgetFactory.createLog(widget, action);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

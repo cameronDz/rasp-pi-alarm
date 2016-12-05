@@ -5,6 +5,7 @@
  */
 package edu.ccsu.cs417.group2.finalproject.factory;
 
+import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
 import edu.ccsu.cs417.group2.finalproject.logger.LogInterface;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -44,14 +45,12 @@ public class BasicLogFactoryTest {
     @Test
     public void testCreateLog() {
         System.out.println("createLog");
-        String message = "";
-        String empty = "";
-        BasicLogFactory instance = new BasicLogFactory();
-        LogInterface expResult = null;
-        LogInterface result = instance.createLog(message, empty);
+        String message = "ONE";
+        String empty = "TWO";
+        BasicLogFactory userFactory = new BasicLogFactory();
+        LogInterface expResult = new BasicLog(1,1,message);
+        LogInterface result = userFactory.createLog(message, empty);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
