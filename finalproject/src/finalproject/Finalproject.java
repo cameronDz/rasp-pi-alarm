@@ -15,7 +15,7 @@ import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
 import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
 import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
-
+import java.util.Scanner;
 import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
 
 
@@ -110,12 +110,54 @@ public class Finalproject {
             
         // while loop 
             // print, save, arm
+            
+        Scanner scan = new Scanner(System.in);
+        String input;
+        
+        boolean loop = true;
+        
+        while (loop) {
+            
+            // Run system for first time
+            system.arm();
+            
+            System.out.println("Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) exit");
+            
+            input = scan.next();
+            
+            switch (input) {
+                case "1": {
+                    // Print logs
+                    System.out.println(x);
+                    break;
+                }   
+                case "2": {
+                    // Set strategy
+                    System.out.println("Enter input: (1) buzzer strategy, (2) silent strategy");
+                    input = scan.next();
+                    if (input.equals("1")) {
+                        notifier.changeStrategy(new SilentStrategy());
+                        notifier.notifyUser();
+                    } else {
+                        notifier.changeStrategy(new BuzzerStrategy());
+                        notifier.notifyUser();
+                    }
+                    break;
+                }
+                case "3": {
+                    // Restart system by repeating loop
+                    break;
+                }
+                default:
+                    // Exit loop
+                    loop = false;   
+                    break;
+            }
+        
+        }
         
         
-        system.arm();
-        
-        
-        system.disarm();
+        //system.disarm();
         
         
         
