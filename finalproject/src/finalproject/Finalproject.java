@@ -1,27 +1,13 @@
 package finalproject;
 
-import edu.ccsu.cs417.group2.finalproject.adapter.Arm;
-import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapter;
-import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapterLED;
-import edu.ccsu.cs417.group2.finalproject.adapter.ArmLED;
 import edu.ccsu.cs417.group2.finalproject.builder.JsonLogBuilder;
-import edu.ccsu.cs417.group2.finalproject.builder.LogBuilder;
-import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
-import edu.ccsu.cs417.group2.finalproject.strategy.UserNotificationStrategy;
-import edu.ccsu.cs417.group2.finalproject.strategy.BuzzerStrategy;
-import edu.ccsu.cs417.group2.finalproject.strategy.SilentStrategy;
 import edu.ccsu.cs417.group2.finalproject.builder.LogReader;
 import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
-import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
-import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
+import edu.ccsu.cs417.group2.finalproject.logger.LogInterface;
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
-
-import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
-
-
-import edu.ccsu.cs417.group2.finalproject.factory.BasicLogFactory;
-import edu.ccsu.cs417.group2.finalproject.factory.WidgetLogDecoratorFactory;
-
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
+import edu.ccsu.cs417.group2.finalproject.strategy.BuzzerStrategy;
+import edu.ccsu.cs417.group2.finalproject.strategy.SilentStrategy;
 import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
 
 import java.io.IOException;
@@ -36,11 +22,9 @@ public class Finalproject {
     public static void main(String[] args) throws InterruptedException, IOException {
         
         // testing Log, LoggingService, LogCollection, and LogIterator
-        BasicLog a = new BasicLog(2112016,164600);
-        BasicLog b = new BasicLog(2112016,164700,"Has a message.");
-        BasicLog c = new BasicLog(2112016,164902);
-        LogDecorator d = BasicLogFactory.getLogDecorator(new WidgetLogDecoratorFactory("Motion Sensor", c));
-        d.setAction("Sense Movement");
+        LogInterface a = new BasicLog(2112016,164600);
+        LogInterface b = new BasicLog(2112016,164700,"Has a message.");
+        LogInterface c = new BasicLog(2112016,164902);
         
         // put logs into logging service collection
         LoggingService.getInstance().addLog(a);
@@ -70,25 +54,19 @@ public class Finalproject {
         // Create new security system object and run
         SecuritySystem system = new SecuritySystem();
         
+        system.arm();
+        system.disarm();
+        
+        // TODO implement code for main program
         // Sgin in user
         // if admin/mod
             // create user
-            
-            
         // while loop 
-            // print, save, arm
-        
-        
-        system.arm();
-        
-        
-        system.disarm();
-        
-        
-        
+            // print, save, arm  
         // end loop
+        // end program
         
-        
+        //TODO retest python with following code
         // Test activation of LED through adapter pattern
         /*
         ArmLED armLED = new ArmLED();
@@ -98,7 +76,6 @@ public class Finalproject {
         Thread.sleep(10000);
         adapterLED.activate();
         */
-
         // Test activation of system through adapter pattern
         /*
         Arm arm = new Arm();
@@ -106,6 +83,5 @@ public class Finalproject {
         arm.activate();
         adapter.activate();
         */
-        
     }
 }
