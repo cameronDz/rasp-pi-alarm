@@ -5,6 +5,7 @@
  */
 package edu.ccsu.cs417.group2.finalproject.logger;
 
+import edu.ccsu.cs417.group2.finalproject.factory.UserLogDecoratorFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -14,7 +14,7 @@ public class UserLogDecorator extends LogDecorator {
      * @param decoratedLog object being wrapped by class
      * @param user user object being logged
      */
-    public UserLogDecorator(UserInterface user, BasicLog decoratedLog) {
+    public UserLogDecorator(UserInterface user, LogInterface decoratedLog) {
         super(decoratedLog);
         this.user = user;
     }

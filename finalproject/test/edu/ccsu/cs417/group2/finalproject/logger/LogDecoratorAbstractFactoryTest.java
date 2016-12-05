@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import edu.ccsu.cs417.group2.finalproject.factory.AbstractLogFactory;
 
 /**
  *
@@ -43,14 +44,14 @@ public class LogDecoratorAbstractFactoryTest {
     @Test
     public void testCreateLogDecorator() {
         System.out.println("createLogDecorator");
-        LogDecoratorAbstractFactory instance = new LogDecoratorAbstractFactoryImpl();
+        AbstractLogFactory instance = new LogDecoratorAbstractFactoryImpl();
         BasicLog c = new BasicLog(2112016,164902);
         LogDecorator expResult = new WidgetLogDecorator("A", c);
         LogDecorator result = instance.createLogDecorator();
         assertEquals(expResult, result);
     }
 
-    public class LogDecoratorAbstractFactoryImpl implements LogDecoratorAbstractFactory {
+    public class LogDecoratorAbstractFactoryImpl implements AbstractLogFactory {
 
         public LogDecorator createLogDecorator() {
             BasicLog c = new BasicLog(2112016,164902);

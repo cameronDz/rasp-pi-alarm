@@ -19,8 +19,8 @@ import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
 
 
-import edu.ccsu.cs417.group2.finalproject.logger.LogDecoratorFactory;
-import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecoratorFactory;
+import edu.ccsu.cs417.group2.finalproject.factory.BasicLogFactory;
+import edu.ccsu.cs417.group2.finalproject.factory.WidgetLogDecoratorFactory;
 
 import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
 
@@ -39,7 +39,7 @@ public class Finalproject {
         BasicLog a = new BasicLog(2112016,164600);
         BasicLog b = new BasicLog(2112016,164700,"Has a message.");
         BasicLog c = new BasicLog(2112016,164902);
-        LogDecorator d = LogDecoratorFactory.getLogDecorator(new WidgetLogDecoratorFactory("Motion Sensor", c));
+        LogDecorator d = BasicLogFactory.getLogDecorator(new WidgetLogDecoratorFactory("Motion Sensor", c));
         d.setAction("Sense Movement");
         
         // put logs into logging service collection
