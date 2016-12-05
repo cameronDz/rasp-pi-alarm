@@ -10,16 +10,25 @@ import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import java.util.Scanner;
 
-
-import edu.ccsu.cs417.group2.finalproject.logger.LogDecoratorFactory;
-import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecoratorFactory;
-
+import edu.ccsu.cs417.group2.finalproject.builder.LogReader;
+import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
+import edu.ccsu.cs417.group2.finalproject.logger.LogInterface;
+import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
+import edu.ccsu.cs417.group2.finalproject.strategy.BuzzerStrategy;
+import edu.ccsu.cs417.group2.finalproject.strategy.SilentStrategy;
 import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
 import edu.ccsu.cs417.group2.finalproject.strategy.LightStrategy;
 import java.io.IOException;
 
 public class Finalproject {
 
+    private final static String GREEN_LED_PORT = "GREEN_LED_PORT";
+    private final static String RED_LED_PORT   = "RED_LED_PORT";
+    private final static String BUZZER_PORT    = "BUZZER_PORT";
+    private final static String RANGER_PORT    = "RANGER_PORT";
+    private final static String BUTTON_PORT    = "BUTTON_PORT";
+    
     /**
      * @param args the command line arguments
      * @throws InterruptedException
@@ -60,11 +69,9 @@ public class Finalproject {
 //        }
         
         // testing Log, LoggingService, LogCollection, and LogIterator
-        BasicLog a = new BasicLog(2112016,164600);
-        BasicLog b = new BasicLog(2112016,164700,"Has a message.");
-        BasicLog c = new BasicLog(2112016,164902);
-        LogDecorator d = LogDecoratorFactory.getLogDecorator(new WidgetLogDecoratorFactory("Motion Sensor", c));
-        d.setAction("Sense Movement");
+        LogInterface a = new BasicLog(2112016,164600);
+        LogInterface b = new BasicLog(2112016,164700,"Has a message.");
+        LogInterface c = new BasicLog(2112016,164902);
         
         // put logs into logging service collection
         LoggingService.getInstance().addLog(a);
@@ -95,11 +102,10 @@ public class Finalproject {
         // Create new security system object and run
         SecuritySystem system = new SecuritySystem();
         
+        // TODO implement code for main program
         // Sgin in user
         // if admin/mod
             // create user
-            
-            
         // while loop 
             // print, save, arm
             
@@ -150,9 +156,4 @@ public class Finalproject {
         
     }
     
-    private final static String GREEN_LED_PORT = "GREEN_LED_PORT";
-    private final static String RED_LED_PORT   = "RED_LED_PORT";
-    private final static String BUZZER_PORT    = "BUZZER_PORT";
-    private final static String RANGER_PORT    = "RANGER_PORT";
-    private final static String BUTTON_PORT    = "BUTTON_PORT";
 }

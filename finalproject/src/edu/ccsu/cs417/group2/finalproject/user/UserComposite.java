@@ -11,6 +11,7 @@ public abstract class UserComposite implements UserInterface {
     
     protected String name;
     protected List<UserInterface> userList;
+    protected UserComposite parent;
     
     /**
      * Used to get the name of the composite. 
@@ -59,6 +60,27 @@ public abstract class UserComposite implements UserInterface {
     }
     
     /**
+     * Gets the composite associated with the user
+     * @return parent, or self if parent is null
+     */
+    @Override
+    public UserComposite getComposite() {
+        if(parent == null) {
+            return this;
+        }
+        return parent;
+    }
+    
+    /**
+     * Sets the composite for user interface
+     * @param c composite to become the parent variable
+     */
+    @Override
+    public void setComposite(UserComposite c) {
+        this.parent = c;
+    }
+    
+    /**
      * Prints the composites name and then iterators through user list and
      * prints all user/composite information names.
      * @return String representation of the composite
@@ -83,6 +105,7 @@ public abstract class UserComposite implements UserInterface {
     public int hashCode() {
         int i = 0;
         i += name.hashCode();
+        i += this.parent.hashCode();
         
         // cycle through collection and sum the hash values of all elements
         Iterator itr = this.iterator();        
@@ -112,7 +135,8 @@ public abstract class UserComposite implements UserInterface {
             b = true;
         } else if( obj instanceof UserComposite) {
             UserComposite otherObj = (UserComposite) obj;
-            if( otherObj.getName().equals(this.getName()) ){
+            if( otherObj.getName().equals(this.getName()) && 
+                    otherObj.getComposite().equals(this.getComposite()) ){
                 // iterate through both collections, checking each element                
                 Iterator otherItr = otherObj.iterator();
                 Iterator thisItr = this.iterator();

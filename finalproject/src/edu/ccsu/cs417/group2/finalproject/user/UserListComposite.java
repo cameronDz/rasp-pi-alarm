@@ -14,5 +14,5 @@ public class UserListComposite extends UserComposite {
         this.name = name;
         this.userList = new ArrayList<>();
     }
-    
+        
 }
