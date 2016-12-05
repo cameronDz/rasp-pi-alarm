@@ -5,6 +5,7 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 import java.io.IOException;
 
 /**
@@ -23,7 +24,7 @@ public class ArmAdapter implements Activate {
     }
     
     @Override
-    public String activate() throws IOException {
+    public String activate(UserNotification notifier) throws IOException {
         
         return action.deactivate();
         

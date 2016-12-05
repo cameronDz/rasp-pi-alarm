@@ -10,6 +10,7 @@ import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecorator;
 
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,11 +28,12 @@ public class Arm implements Activate {
      *  Method activate() collects system type information to create an appropriate runtime
      *  environment which invokes a Python script. Feedback from the script is passed 
      *  back to the method.
+     * @param notifier used to notify the user when sensor is triggered
      * @throws IOException
      * @return String representing sensor that triggered script return
      */
     @Override
-    public String activate() throws IOException {
+    public String activate(UserNotification notifier) throws InterruptedException, IOException {
         
         
         String widget = "";
@@ -102,6 +104,7 @@ public class Arm implements Activate {
 
                 if (widget.equals("sensor")) {
                     action = "Sensor tripped";
+                    notifier.notifyUser();
                 } else if (widget.equals("button")) {
                     action = "Deactivated by button";
                 }
@@ -114,5 +117,4 @@ public class Arm implements Activate {
         //return pr.exitValue();
         return widget;
     }
-    
 }
