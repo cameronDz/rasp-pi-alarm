@@ -19,6 +19,18 @@ public interface UserInterface {
     public void setName(String name);
     
     /**
+     * Get composite of the user
+     * @return the composite associated with user
+     */
+    public UserComposite getComposite();
+    
+    /**
+     * Sets the composite of the user
+     * @param c the composite to be associated with user
+     */
+    public void setComposite(UserComposite c);
+    
+    /**
      * Override of the standard Java toString method 
      * @return Should return a String of all publicly available user info
      */

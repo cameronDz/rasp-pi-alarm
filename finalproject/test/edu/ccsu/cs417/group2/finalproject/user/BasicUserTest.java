@@ -136,4 +136,17 @@ public class BasicUserTest {
         assertEquals(expResult, result);
     }
     
+    /**
+     * Testing getComposite method with two objects with different names
+     */
+    @Test
+    public void testGetSetComposite() {
+        System.out.println("getComposite_setComposite");
+        UserComposite c = new UserListComposite("c");
+        BasicUser instance = new BasicUser("Barney");
+        instance.setComposite(c);
+        UserComposite expResult = c;
+        UserComposite result = instance.getComposite();
+        assertEquals(expResult, result);
+    }
 }

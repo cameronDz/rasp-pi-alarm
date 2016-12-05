@@ -11,6 +11,7 @@ public abstract class UserComposite implements UserInterface {
     
     protected String name;
     protected List<UserInterface> userList;
+    protected UserComposite parent;
     
     /**
      * Used to get the name of the composite. 
@@ -56,6 +57,27 @@ public abstract class UserComposite implements UserInterface {
      */
     public Iterator<UserInterface> iterator() {
         return userList.iterator();
+    }
+    
+    /**
+     * Gets the composite associated with the user
+     * @return parent, or self if parent is null
+     */
+    @Override
+    public UserComposite getComposite() {
+        if(parent == null) {
+            return this;
+        }
+        return parent;
+    }
+    
+    /**
+     * Sets the composite for user interface
+     * @param c composite to become the parent variable
+     */
+    @Override
+    public void setComposite(UserComposite c) {
+        this.parent = c;
     }
     
     /**

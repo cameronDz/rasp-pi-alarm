@@ -7,6 +7,7 @@ package edu.ccsu.cs417.group2.finalproject.user;
 public class BasicUser implements UserInterface {
     
     protected String name;
+    protected UserComposite parent;
     
     /**
      * Constructor for a basic user.
@@ -32,6 +33,24 @@ public class BasicUser implements UserInterface {
     @Override
     public void setName(String name) {
         this.name = name; 
+    }
+    
+    /**
+     * Returns the parent of the user
+     * @return The user composite associate with the user
+     */
+    @Override
+    public UserComposite getComposite() {
+        return parent; 
+    }    
+    
+    /**
+     * Sets the composite for user interface
+     * @param c composite to become the parent variable
+     */
+    @Override
+    public void setComposite(UserComposite c) {
+        this.parent = c;
     }
     
     /**

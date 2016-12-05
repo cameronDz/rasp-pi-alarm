@@ -8,6 +8,7 @@ public abstract class UserDecorator implements UserInterface {
     
     protected String status;
     protected final UserInterface decoratedUser;
+    protected UserComposite parent;
     
     /**
      * Abstract constructor, creates an object that must extend AbstractUser
@@ -57,6 +58,24 @@ public abstract class UserDecorator implements UserInterface {
      */
     public UserInterface getDecoratedUser() {
         return this.decoratedUser;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public UserComposite getComposite() {
+        return parent;
+    }
+    
+    /**
+     * Sets the composite for user interface
+     * @param c composite to become the parent variable
+     */
+    @Override
+    public void setComposite(UserComposite c) {
+        this.parent = c;
     }
     
     /**

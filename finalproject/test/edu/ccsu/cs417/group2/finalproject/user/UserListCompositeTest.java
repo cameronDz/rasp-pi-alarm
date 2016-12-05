@@ -252,4 +252,29 @@ public class UserListCompositeTest {
         assertEquals(expResult, result);
     }
     
+    /**
+     * Testing getComposite method with two objects with different names
+     */
+    @Test
+    public void testGetCompositeSelf() {
+        System.out.println("getComposite-self");
+        UserListComposite instance = new UserListComposite("List");
+        UserComposite expResult = instance;
+        UserComposite result = instance.getComposite();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Testing getComposite method with two objects with different names
+     */
+    @Test
+    public void testGetSetCompositeParent() {
+        System.out.println("getComposite_setComposite-parent");
+        UserListComposite instance = new UserListComposite("List");
+        UserComposite c = new UserListComposite("c");
+        instance.setComposite(c);
+        UserComposite expResult = c;
+        UserComposite result = instance.getComposite();
+        assertEquals(expResult, result);
+    }
 }
