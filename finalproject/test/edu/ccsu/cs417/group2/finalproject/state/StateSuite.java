@@ -14,10 +14,10 @@ import org.junit.runners.Suite;
 
 /**
  *
- * @author Tom
+ * @author curti
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({edu.ccsu.cs417.group2.finalproject.state.ArmedStateTest.class, edu.ccsu.cs417.group2.finalproject.state.SecuritySystemTest.class, edu.ccsu.cs417.group2.finalproject.state.DisarmedStateTest.class, edu.ccsu.cs417.group2.finalproject.state.DetectorStateTest.class})
+@Suite.SuiteClasses({edu.ccsu.cs417.group2.finalproject.state.SecuritySystemTest.class, edu.ccsu.cs417.group2.finalproject.state.DisarmedStateTest.class, edu.ccsu.cs417.group2.finalproject.state.ArmedStateTest.class, edu.ccsu.cs417.group2.finalproject.state.DetectorStateTest.class})
 public class StateSuite {
 
     @BeforeClass

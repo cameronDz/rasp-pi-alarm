@@ -5,6 +5,8 @@
  */
 package edu.ccsu.cs417.group2.finalproject.state;
 
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
+
 /**
  *
  * @author Tom
@@ -20,7 +22,7 @@ public class ArmedState implements DetectorState {
     }
     
     @Override
-    public void arm() {
+    public void arm(UserNotification notifier) {
         
         System.out.println("System is already armed.");
         

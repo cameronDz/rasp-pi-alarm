@@ -1,6 +1,8 @@
 
 package edu.ccsu.cs417.group2.finalproject.strategy;
 
+import java.io.IOException;
+
 /**
  * UserNotification used to set up strategies of notification when sensor goes off.
  * @author curti
@@ -28,7 +30,7 @@ public class UserNotification {
     /**
      * Executes the current strategy for user notification
      */
-    public void notifyUser() {
+    public void notifyUser() throws InterruptedException, IOException {
         strategy.execute();
     }
 }

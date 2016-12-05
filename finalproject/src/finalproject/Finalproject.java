@@ -1,30 +1,21 @@
 package finalproject;
 
-import edu.ccsu.cs417.group2.finalproject.adapter.Arm;
-import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapter;
-import edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapterLED;
-import edu.ccsu.cs417.group2.finalproject.adapter.ArmLED;
 import edu.ccsu.cs417.group2.finalproject.builder.JsonLogBuilder;
-import edu.ccsu.cs417.group2.finalproject.builder.LogBuilder;
 import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
-import edu.ccsu.cs417.group2.finalproject.strategy.UserNotificationStrategy;
 import edu.ccsu.cs417.group2.finalproject.strategy.BuzzerStrategy;
 import edu.ccsu.cs417.group2.finalproject.strategy.SilentStrategy;
 import edu.ccsu.cs417.group2.finalproject.builder.LogReader;
 import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
-import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
 import edu.ccsu.cs417.group2.finalproject.logger.LogDecorator;
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import java.util.Scanner;
-import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
 
 
 import edu.ccsu.cs417.group2.finalproject.logger.LogDecoratorFactory;
 import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecoratorFactory;
 
 import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
-import java.io.FileInputStream;
-import java.util.Properties;
+import edu.ccsu.cs417.group2.finalproject.strategy.LightStrategy;
 import java.io.IOException;
 
 public class Finalproject {
@@ -99,6 +90,7 @@ public class Finalproject {
         notifier.notifyUser();
         notifier.changeStrategy(new BuzzerStrategy());
         notifier.notifyUser();
+        notifier.changeStrategy(new LightStrategy());
         
         // Create new security system object and run
         SecuritySystem system = new SecuritySystem();
@@ -119,7 +111,7 @@ public class Finalproject {
         while (loop) {
             
             // Run system for first time
-            system.arm();
+            system.arm(notifier);
             
             System.out.println("Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) exit");
             
@@ -133,14 +125,14 @@ public class Finalproject {
                 }   
                 case "2": {
                     // Set strategy
-                    System.out.println("Enter input: (1) buzzer strategy, (2) silent strategy");
+                    System.out.println("Enter input: (1) buzzer strategy, (2) silent strategy, (3) light strategy");
                     input = scan.next();
                     if (input.equals("1")) {
-                        notifier.changeStrategy(new SilentStrategy());
-                        notifier.notifyUser();
-                    } else {
                         notifier.changeStrategy(new BuzzerStrategy());
-                        notifier.notifyUser();
+                    } else if(input.equals("2")) {
+                        notifier.changeStrategy(new SilentStrategy());
+                    } else {
+                        notifier.changeStrategy(new LightStrategy());
                     }
                     break;
                 }
@@ -155,28 +147,6 @@ public class Finalproject {
             }
         
         }
-        
-        
-        //system.disarm();
-        
-        
-        
-        // end loop
-        
-        
-        // Test activation of LED through adapter pattern
-//        ArmLED armLED = new ArmLED();
-//        ArmAdapterLED adapterLED = new ArmAdapterLED();
-//        armLED.activate();
-//             // Pause 10 seconds before deactivating
-//        Thread.sleep(10000);
-//        adapterLED.activate();
-//
-//        // Test activation of system through adapter pattern
-//        Arm arm = new Arm();
-//        ArmAdapter adapter = new ArmAdapter();
-//        arm.activate();
-//        adapter.activate();
         
     }
     

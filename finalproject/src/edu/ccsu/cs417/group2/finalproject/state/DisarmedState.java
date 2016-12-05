@@ -7,6 +7,7 @@ package edu.ccsu.cs417.group2.finalproject.state;
 
 import edu.ccsu.cs417.group2.finalproject.adapter.Arm;
 import edu.ccsu.cs417.group2.finalproject.adapter.ArmLED;
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 import java.io.IOException;
 
 /**
@@ -24,11 +25,11 @@ public class DisarmedState implements DetectorState {
     }
     
     @Override
-    public void arm() throws IOException {
+    public void arm(UserNotification notifier) throws InterruptedException, IOException {
 
         securitySystem.setDetectorState(securitySystem.getIsArmedState());
         Arm arm = new Arm();
-        arm.activate();
+        arm.activate(notifier);
         
         // Set disarmed state when control is passed back
         securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
