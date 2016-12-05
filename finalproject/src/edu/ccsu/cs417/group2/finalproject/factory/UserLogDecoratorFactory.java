@@ -25,8 +25,8 @@ public class UserLogDecoratorFactory implements AbstractLogFactory {
         
         // TODO add real date and time
         LogInterface l = new BasicLog(1,2);
-        UserLogDecorator x = new UserLogDecorator(u, l);
-        x.setMessage(action);
-        return x; 
+        UserLogDecorator d = new UserLogDecorator(u, l);
+        d.setMessage(action);
+        return l; 
     }
 }

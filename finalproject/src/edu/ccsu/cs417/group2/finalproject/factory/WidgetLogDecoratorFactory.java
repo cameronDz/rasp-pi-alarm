@@ -21,8 +21,8 @@ public class WidgetLogDecoratorFactory implements AbstractLogFactory {
         
         // TODO add real date and time
         LogInterface l = new BasicLog(3,4);
-        WidgetLogDecorator x = new WidgetLogDecorator(widget, l);
-        x.setMessage(action);
-        return x; 
+        WidgetLogDecorator d = new WidgetLogDecorator(widget, l);
+        d.setMessage(action);
+        return l; 
     }
 }
