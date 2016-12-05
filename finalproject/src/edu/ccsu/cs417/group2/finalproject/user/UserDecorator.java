@@ -100,6 +100,7 @@ public abstract class UserDecorator implements UserInterface {
         
         i += this.status.hashCode();
         i += this.decoratedUser.hashCode();
+        i += this.parent.hashCode();
         
         return i;
     }
@@ -124,7 +125,8 @@ public abstract class UserDecorator implements UserInterface {
         } else if( obj instanceof UserDecorator) {
             UserDecorator otherObj = (UserDecorator) obj;
             if( otherObj.getDecoratedUser().equals(this.getDecoratedUser()) &&
-                    otherObj.getStatus().equals(this.getStatus()) ){
+                    otherObj.getStatus().equals(this.getStatus()) &&
+                    otherObj.getComposite().equals(this.getComposite()) ){
                 b = true;
             }
         }

@@ -73,6 +73,7 @@ public class BasicUser implements UserInterface {
         int i = 0;
         
         i += this.name.hashCode();
+        i += this.parent.hashCode();
         
         return i;
     }
@@ -96,7 +97,8 @@ public class BasicUser implements UserInterface {
             b = true;
         } else if( obj instanceof BasicUser) {
             BasicUser otherObj = (BasicUser) obj;
-            if( otherObj.getName().equals(this.getName()) ){
+            if( otherObj.getName().equals(this.getName()) && 
+                    otherObj.getComposite().equals(this.getComposite()) ){
                 b = true;
             }
         }
