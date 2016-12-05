@@ -18,7 +18,7 @@ public class BasicLogFactory implements AbstractLogFactory {
     public LogInterface createLog(String message, String empty) {
         
         // TODO add time and date
-        
-        return new BasicLog(1,1,message);
+        LogInterface l = new BasicLog(1,1,message);
+        return l;
     }
 }
