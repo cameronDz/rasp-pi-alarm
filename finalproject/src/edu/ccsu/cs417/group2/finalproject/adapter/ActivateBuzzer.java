@@ -5,15 +5,14 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
-import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 import java.io.IOException;
 
 /**
- * Adapter interface used for LED activation event
- * @author Tom
+ *
+ * @author curti
  */
-public interface Activate {
+public interface ActivateBuzzer {
     
-    public String activate(UserNotification notifier) throws InterruptedException, IOException;
+    public int activate() throws IOException;
     
 }

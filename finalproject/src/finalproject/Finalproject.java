@@ -23,6 +23,7 @@ import edu.ccsu.cs417.group2.finalproject.logger.LogDecoratorFactory;
 import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecoratorFactory;
 
 import edu.ccsu.cs417.group2.finalproject.state.SecuritySystem;
+import edu.ccsu.cs417.group2.finalproject.strategy.LightStrategy;
 import java.io.FileInputStream;
 import java.util.Properties;
 import java.io.IOException;
@@ -99,6 +100,7 @@ public class Finalproject {
         notifier.notifyUser();
         notifier.changeStrategy(new BuzzerStrategy());
         notifier.notifyUser();
+        notifier.changeStrategy(new LightStrategy());
         
         // Create new security system object and run
         SecuritySystem system = new SecuritySystem();
@@ -112,7 +114,7 @@ public class Finalproject {
             // print, save, arm
         
         
-        system.arm();
+        system.arm(notifier);
         
         
         system.disarm();

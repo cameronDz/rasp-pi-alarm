@@ -5,6 +5,7 @@
  */
 package edu.ccsu.cs417.group2.finalproject.state;
 
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Tom
+ * @author curti
  */
 public class ArmedStateTest {
     
@@ -43,8 +44,9 @@ public class ArmedStateTest {
     @Test
     public void testArm() {
         System.out.println("arm");
+        UserNotification notifier = null;
         ArmedState instance = null;
-        instance.arm();
+        instance.arm(notifier);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

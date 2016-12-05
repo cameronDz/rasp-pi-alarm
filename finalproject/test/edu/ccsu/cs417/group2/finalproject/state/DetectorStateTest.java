@@ -5,6 +5,7 @@
  */
 package edu.ccsu.cs417.group2.finalproject.state;
 
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Tom
+ * @author curti
  */
 public class DetectorStateTest {
     
@@ -44,8 +45,9 @@ public class DetectorStateTest {
     @Test
     public void testArm() throws Exception {
         System.out.println("arm");
+        UserNotification notifier = null;
         DetectorState instance = new DetectorStateImpl();
-        instance.arm();
+        instance.arm(notifier);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -64,7 +66,7 @@ public class DetectorStateTest {
 
     public class DetectorStateImpl implements DetectorState {
 
-        public void arm() throws IOException {
+        public void arm(UserNotification notifier) throws IOException {
         }
 
         public void disarm() {

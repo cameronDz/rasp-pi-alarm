@@ -1,5 +1,5 @@
 # Date: 11/6/16
-# Program to turn off the LED at port D4
+# Program to turn on the buzzer
 
 import platform
 import sys
@@ -30,11 +30,11 @@ with open('../config/environment.properties') as f:
             # strip() removes white space from the ends of strings
             keys[name.strip()] = value.strip()
 
-# Connect the Grove LED to digital port D4
-led = int(keys['RED_LED_PORT'])
+# Connect the Grove Buzzer to specified port
+buzzer = int(keys['BUZZER_PORT'])
 
-pinMode(led,"OUTPUT")
+pinMode(buzzer,"OUTPUT")
 time.sleep(1)
 
-#Turn off the LED
-digitalWrite(led,0)		# Send HIGH to switch off LED
+#Turn on the buzzer
+digitalWrite(buzzer,1)		# Send HIGH to switch on buzzer
