@@ -22,16 +22,11 @@ import edu.ccsu.cs417.group2.finalproject.user.UserInterface;
 import edu.ccsu.cs417.group2.finalproject.user.UserListComposite;
 import edu.ccsu.cs417.group2.finalproject.user.UserModDecorator;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 public class Finalproject {
-    
-    private final static Date date = new Date();
     
     /**
      * @param args the command line arguments
@@ -86,7 +81,7 @@ public class Finalproject {
         while (loop) {
             
             // Run system for first time
-//            system.arm(notifier);
+            system.arm(notifier);
             
             if(user instanceof UserAdminDecorator)
                 System.out.println("Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit, (dl) delete logs");
@@ -130,7 +125,9 @@ public class Finalproject {
                     int date = (x.get(GregorianCalendar.DAY_OF_MONTH)) + 
                             (x.get(GregorianCalendar.MONTH) + 1) *100 +
                             x.get(GregorianCalendar.YEAR) *10000;
-                    int time = (int) new Date().getTime() * -1;
+                    int time = new Date().getHours() * 10000;
+                    time += new Date().getMinutes() * 100;
+                    time += new Date().getSeconds();
                     
                     if (input.equals("1")) {
                         notifier.changeStrategy(new BuzzerStrategy());
