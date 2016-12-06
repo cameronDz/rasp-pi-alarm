@@ -37,6 +37,7 @@ public abstract class UserComposite implements UserInterface {
      */
     public void addUser(UserInterface user) {
         this.userList.add(user);
+        user.setComposite(this);
     }
     
     /**

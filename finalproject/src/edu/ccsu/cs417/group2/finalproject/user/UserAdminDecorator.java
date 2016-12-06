@@ -1,5 +1,7 @@
 package edu.ccsu.cs417.group2.finalproject.user;
 
+import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
+
 /**
  * User Administrator is a decorated Abstract User that can delete Logs if they
  * have the corresponding log number.
@@ -22,7 +24,7 @@ public class UserAdminDecorator extends UserDecorator {
      * @param i the number of the Log being removed
      */
     public void deleteLog(int i) {
-        // TODO be implemented
+        LoggingService.getInstance().deleteLog();
     }    
     
     /**

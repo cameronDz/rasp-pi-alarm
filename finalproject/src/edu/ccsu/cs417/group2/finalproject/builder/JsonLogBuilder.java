@@ -45,6 +45,7 @@ public class JsonLogBuilder implements LogBuilder {
     public String getJsonLog() {
         String j = this.json;
         j += "}";
+        this.json = null;
         return j;
     }
     
