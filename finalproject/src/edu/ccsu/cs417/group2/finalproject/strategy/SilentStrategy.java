@@ -1,8 +1,6 @@
 
 package edu.ccsu.cs417.group2.finalproject.strategy;
 
-import edu.ccsu.cs417.group2.finalproject.adapter.ArmLED;
-import edu.ccsu.cs417.group2.finalproject.adapter.DisarmLED;
 import java.io.IOException;
 
 /**

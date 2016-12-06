@@ -2,6 +2,8 @@ package edu.ccsu.cs417.group2.finalproject.factory;
 
 import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
 import edu.ccsu.cs417.group2.finalproject.logger.LogInterface;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Class used to interact with the Abstract Factory
@@ -17,8 +19,16 @@ public class BasicLogFactory implements AbstractLogFactory {
     @Override
     public LogInterface createLog(String message, String empty) {
         
-        // TODO add time and date
-        LogInterface l = new BasicLog(1,1,message);
+        Date loadTime = new Date();
+        GregorianCalendar x = new GregorianCalendar();
+                    int date = (x.get(GregorianCalendar.DAY_OF_MONTH)) + 
+                            (x.get(GregorianCalendar.MONTH) + 1) *100 +
+                            x.get(GregorianCalendar.YEAR) *10000;
+                    int time = loadTime.getHours() * 10000;
+                    time += loadTime.getMinutes() * 100;
+                    time += loadTime.getSeconds();
+        
+        LogInterface l = new BasicLog(date,time,message);
         return l;
     }
 }

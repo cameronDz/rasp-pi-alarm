@@ -53,6 +53,27 @@ public abstract class UserComposite implements UserInterface {
     }
     
     /**
+     * Removes a user/composite from the composites list
+     * @param name the name of the user to be removed from the list
+     * @return user that was removed from the list
+     */
+    public UserInterface removeUser(String name) {
+        UserInterface r = null;
+        UserInterface check = null;
+        boolean found = false;
+        while(userList.iterator().hasNext() && !found) {
+            check = userList.iterator().next();
+            if(check.getName().equalsIgnoreCase(name)) {
+                found = true;
+            }
+        }
+        if(found)
+            if(this.userList.remove(check) == true)
+                r = check;
+        return r;
+    }
+    
+    /**
      * Gets object to cycle through list of users/composites
      * @return userList's iterator
      */

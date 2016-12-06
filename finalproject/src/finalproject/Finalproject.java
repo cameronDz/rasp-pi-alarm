@@ -28,6 +28,8 @@ import java.util.Iterator;
 
 public class Finalproject {
     
+    private final static Date loadTime = new Date();
+    
     /**
      * @param args the command line arguments
      * @throws InterruptedException
@@ -81,7 +83,7 @@ public class Finalproject {
         while (loop) {
             
             // Run system for first time
-            system.arm(notifier);
+//            system.arm(notifier);
             
             if(user instanceof UserAdminDecorator)
                 System.out.println("Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit, (dl) delete logs");
@@ -125,9 +127,9 @@ public class Finalproject {
                     int date = (x.get(GregorianCalendar.DAY_OF_MONTH)) + 
                             (x.get(GregorianCalendar.MONTH) + 1) *100 +
                             x.get(GregorianCalendar.YEAR) *10000;
-                    int time = new Date().getHours() * 10000;
-                    time += new Date().getMinutes() * 100;
-                    time += new Date().getSeconds();
+                    int time = loadTime.getHours() * 10000;
+                    time += loadTime.getMinutes() * 100;
+                    time += loadTime.getSeconds();
                     
                     if (input.equals("1")) {
                         notifier.changeStrategy(new BuzzerStrategy());
@@ -152,9 +154,6 @@ public class Finalproject {
                     //user logout
                     System.out.print("Enter user name: ");
                     input = scan.next();
-        
-                    // log factory
-                    logFact = new UserLogDecoratorFactory();
                     
                     if(input.equalsIgnoreCase("admin")) {
                         user = new UserAdminDecorator(new BasicUser(input));
@@ -181,7 +180,16 @@ public class Finalproject {
                     break;
                 }
                 case "du": {
-                    //Ummm nothing's here...
+                    
+                    if(user instanceof UserModDecorator) {
+                        System.out.println("Enter user name to delete: ");
+                        input = scan.next();
+                        ((UserModDecorator) user).deleteUser(input);
+                        LoggingService.getInstance().addLog(logFact.createLog(user.getName(), "user-deleted: " + input));
+                    }
+                    else {
+                        System.out.println("ERROR: Invalid user priviledges");
+                    }
                     break;
                 }
                 default:
