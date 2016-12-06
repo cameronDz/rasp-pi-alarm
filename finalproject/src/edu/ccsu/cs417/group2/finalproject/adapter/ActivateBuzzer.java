@@ -8,7 +8,7 @@ package edu.ccsu.cs417.group2.finalproject.adapter;
 import java.io.IOException;
 
 /**
- *
+ * Adapter interface used for buzzer activation event
  * @author curti
  */
 public interface ActivateBuzzer {

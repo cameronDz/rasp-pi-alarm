@@ -8,7 +8,7 @@ package edu.ccsu.cs417.group2.finalproject.state;
 import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 
 /**
- *
+ * Class representing an armed security system state in the state design pattern
  * @author Tom
  */
 public class ArmedState implements DetectorState {
@@ -20,7 +20,11 @@ public class ArmedState implements DetectorState {
         securitySystem = newSecuritySystem;
         
     }
-    
+
+    /**
+    * Method to arm an armed state in the security system.
+    * @param notifier used to notify the user when sensor is triggered
+    */
     @Override
     public void arm(UserNotification notifier) {
         
@@ -28,12 +32,12 @@ public class ArmedState implements DetectorState {
         
     }
     
+    /**
+    * Method to disarm an armed state in the security system.
+    */
     @Override
     public void disarm() {
         
-        // Activate red LED for disarmed state
-        // ArmLED armLED = new ArmLED();
-        // armLED.activate(red);
         securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
         
     }

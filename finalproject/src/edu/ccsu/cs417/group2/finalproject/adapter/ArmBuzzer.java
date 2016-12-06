@@ -11,11 +11,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *
+ * ArmBuzzer class implements ActivateBuzzer interface in adapter pattern to activate buzzer.
  * @author curti
  */
 public class ArmBuzzer implements ActivateBuzzer {
     
+    /**
+     *  Method activate() collects system type information to create an appropriate runtime
+     *  environment which invokes a Python script. Feedback from the script is passed 
+     *  back to the method.
+     * @throws IOException
+     * @return integer of 0 upon completion
+     */
     @Override
     public int activate() throws IOException {
         

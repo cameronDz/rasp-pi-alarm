@@ -8,7 +8,8 @@ package edu.ccsu.cs417.group2.finalproject.adapter;
 import java.io.IOException;
 
 /**
- *
+ * Class involved in buzzer adapter to call method to turn off (deactivate) buzzer
+ *  using same method call.
  * @author curti
  */
 public class ArmAdapterBuzzer implements ActivateBuzzer {

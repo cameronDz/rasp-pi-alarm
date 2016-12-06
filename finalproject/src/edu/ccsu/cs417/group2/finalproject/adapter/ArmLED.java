@@ -20,9 +20,8 @@ public class ArmLED implements ActivateLED {
      *  Method activate() collects system type information to create an appropriate runtime
      *  environment which invokes a Python script. Feedback from the script is passed 
      *  back to the method.
-     * param String red (rPi D7) or green (rPi D2)
      * @throws IOException
-     * @return int runtime exitValue
+     * @return integer of 0 upon completion
      */
     @Override
     public int activate() throws IOException {
@@ -64,7 +63,6 @@ public class ArmLED implements ActivateLED {
             // Display each output line from python script
             System.out.println(line);
         }
-        //return pr.exitValue();
         return 0;
     }
 }

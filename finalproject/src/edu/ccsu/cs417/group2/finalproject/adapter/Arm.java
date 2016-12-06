@@ -6,9 +6,7 @@
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
 import edu.ccsu.cs417.group2.finalproject.logger.BasicLog;
-import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import edu.ccsu.cs417.group2.finalproject.logger.WidgetLogDecorator;
-
 import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 
@@ -31,6 +29,7 @@ public class Arm implements Activate {
      * @param notifier used to notify the user when sensor is triggered
      * @throws IOException
      * @return String representing sensor that triggered script return
+     * @throws InterruptedException
      */
     @Override
     public String activate(UserNotification notifier) throws InterruptedException, IOException {
@@ -75,14 +74,12 @@ public class Arm implements Activate {
 
             String action = "";
             int counter = 0;
-            //String widget = "";
             int time = 0, date = 0;
 
             LoggingService ls = LoggingService.getInstance();
 
             while((line = bfr.readLine()) != null) {
-                // Display each output line from python script
-                //System.out.println(line);
+                // Recieve information from python script
 
                 switch (counter) {
                     case 0: date = Integer.parseInt(line);
@@ -113,8 +110,6 @@ public class Arm implements Activate {
                 ls.addLog(b);
 
         }
-
-        //return pr.exitValue();
         return widget;
     }
 }
