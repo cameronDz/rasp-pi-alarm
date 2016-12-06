@@ -83,7 +83,7 @@ public class Finalproject {
         while (loop) {
             
             // Run system for first time
-//            system.arm(notifier);
+           system.arm(notifier);
             
             if(user instanceof UserAdminDecorator)
                 System.out.println("Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit, (dl) delete logs");
