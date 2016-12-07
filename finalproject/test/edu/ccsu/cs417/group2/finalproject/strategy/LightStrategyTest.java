@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ccsu.cs417.group2.finalproject.adapter;
+package edu.ccsu.cs417.group2.finalproject.strategy;
 
 import java.io.IOException;
 import org.junit.After;
@@ -15,11 +15,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Tom
+ * @author curti
  */
-public class ArmAdapterLEDTest {
+public class LightStrategyTest {
     
-    public ArmAdapterLEDTest() {
+    public LightStrategyTest() {
     }
     
     @BeforeClass
@@ -39,23 +39,21 @@ public class ArmAdapterLEDTest {
     }
 
     /**
-     * Test of activate method, of class ArmAdapterLED.
-     * @throws IOException
+     * Test of execute method, of class LightStrategy.
      */
     @Test
-    public void testActivate() throws IOException {
-        System.out.println("activate");
-        ArmAdapterLED instance = new ArmAdapterLED();
-        int expResult = 0;
-        int result = instance.activate();
+    public void testExecute() throws Exception {
+        System.out.println("execute");
+        LightStrategy instance = new LightStrategy();
         try {
-            result = instance.activate();
+            instance.execute();
         } catch(IOException ex) {
             fail("IOException reported: " + ex.getMessage());
+        } catch(InterruptedException ex) {
+            fail("InterruptedException reported: " + ex.getMessage());
         }
-        assertEquals(expResult, result);
+        //Test passes if no exceptions thrown
+        assertTrue(true);
     }
-    
-
     
 }

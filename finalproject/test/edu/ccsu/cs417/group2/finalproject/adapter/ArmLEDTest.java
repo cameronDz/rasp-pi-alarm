@@ -40,13 +40,13 @@ public class ArmLEDTest {
 
     /**
      * Test of activate method, of class ArmLED.
-     * @throws Exception
+     * @throws java.io.IOException
      */
     @Test
-    public void testActivate() throws Exception {
+    public void testActivate() throws IOException {
         System.out.println("activate");
         ArmLED instance = new ArmLED();
-        int expResult = 2;
+        int expResult = 0;
         int result = instance.activate();
         try {
             result = instance.activate();

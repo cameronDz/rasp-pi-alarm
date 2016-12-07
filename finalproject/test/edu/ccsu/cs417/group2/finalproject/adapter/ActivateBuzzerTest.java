@@ -15,11 +15,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Tom
+ * @author curti
  */
-public class ArmAdapterLEDTest {
+public class ActivateBuzzerTest {
     
-    public ArmAdapterLEDTest() {
+    public ActivateBuzzerTest() {
     }
     
     @BeforeClass
@@ -39,13 +39,13 @@ public class ArmAdapterLEDTest {
     }
 
     /**
-     * Test of activate method, of class ArmAdapterLED.
-     * @throws IOException
+     * Test of activate method, of class ActivateBuzzer.
+     * @throws java.io.IOException
      */
     @Test
-    public void testActivate() throws IOException {
+    public void testActivateArmBuzzerException() throws IOException {
         System.out.println("activate");
-        ArmAdapterLED instance = new ArmAdapterLED();
+        ActivateBuzzer instance = new ArmBuzzer();
         int expResult = 0;
         int result = instance.activate();
         try {
@@ -56,6 +56,24 @@ public class ArmAdapterLEDTest {
         assertEquals(expResult, result);
     }
     
-
+    /**
+     * Test of deactivate method for the buzzer
+     * @throws java.io.IOException
+     */
+    @Test
+    public void testActivateDisarmBuzzerException() throws IOException {
+        System.out.println("activate");
+        ActivateBuzzer instance = new ArmBuzzer();
+        DisarmBuzzer test = new DisarmBuzzer();
+        int expResult = 0;
+        int result = instance.activate();
+        try {
+            result = instance.activate();
+            test.deactivate();
+        } catch(IOException ex) {
+            fail("IOException reported: " + ex.getMessage());
+        }
+        assertEquals(expResult, result);
+    }
     
 }

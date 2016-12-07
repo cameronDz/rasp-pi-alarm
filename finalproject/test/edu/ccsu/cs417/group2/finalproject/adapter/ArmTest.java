@@ -5,6 +5,8 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
+import edu.ccsu.cs417.group2.finalproject.strategy.SilentStrategy;
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,11 +47,12 @@ public class ArmTest {
     @Test
     public void testActivate() throws Exception {
         System.out.println("activate");
+        UserNotification notifier = new UserNotification(new SilentStrategy());
         Arm instance = new Arm();
         String expResult = "";
-        String result = instance.activate();
+        String result = instance.activate(notifier);
         try {
-            result = instance.activate();
+            result = instance.activate(notifier);
         } catch(IOException ex) {
             fail("IOException reported: " + ex.getMessage());
         }

@@ -5,6 +5,8 @@
  */
 package edu.ccsu.cs417.group2.finalproject.user;
 
+import edu.ccsu.cs417.group2.finalproject.logger.LogCollection;
+import edu.ccsu.cs417.group2.finalproject.logger.LoggingService;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -121,8 +123,8 @@ public class UserAdminDecoratorTest {
         int i = 1;
         UserAdminDecorator instance = new UserAdminDecorator(new BasicUser("Tom"));
         instance.deleteLog(i);
-        // TODO implement delete log first and test
-        fail("deleteLog not implemented yet");
+        
+        assertTrue(LoggingService.getInstance().getLogs().equals(new LogCollection()));
     }
 
     /**
