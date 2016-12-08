@@ -46,8 +46,8 @@ public class UserModDecoratorTest {
         String name = "";
         UserModDecorator instance = new UserModDecorator(new BasicUser("Hillary"));
         instance.deleteUser(name);
-        // TODO implement delete user first and test
-        fail("deleteUser not implemented yet");
+        // Delete user never fully implemented
+        fail("deleteUser not implemented");
     }
 
     /**

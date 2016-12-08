@@ -40,13 +40,13 @@ public class DisarmLEDTest {
 
     /**
      * Test of deactivate method, of class DisarmLED.
-     * @throws Exception
+     * @throws java.io.IOException
      */
     @Test
-    public void testDeactivate() throws Exception {
+    public void testDeactivate() throws IOException {
         System.out.println("deactivate");
         DisarmLED instance = new DisarmLED();
-        int expResult = 2;
+        int expResult = 0;
         int result = instance.deactivate();
         try {
             result = instance.deactivate();
