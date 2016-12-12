@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author Tom
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({edu.ccsu.cs417.group2.finalproject.adapter.ActivateLEDTest.class, edu.ccsu.cs417.group2.finalproject.adapter.DisarmTest.class, edu.ccsu.cs417.group2.finalproject.adapter.ArmTest.class, edu.ccsu.cs417.group2.finalproject.adapter.ActivateTest.class, edu.ccsu.cs417.group2.finalproject.adapter.DisarmLEDTest.class, edu.ccsu.cs417.group2.finalproject.adapter.ArmLEDTest.class, edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapterLEDTest.class, edu.ccsu.cs417.group2.finalproject.adapter.ArmAdapterTest.class})
+@Suite.SuiteClasses({DisarmBuzzerTest.class, ArmAdapterLEDTest.class, ActivateBuzzerTest.class, DisarmTest.class, ArmBuzzerTest.class, ActivateTest.class, DisarmLEDTest.class, ArmAdapterTest.class, ArmTest.class, ArmAdapterBuzzerTest.class, ActivateLEDTest.class, ArmLEDTest.class})
 public class AdapterSuite {
 
     @BeforeClass

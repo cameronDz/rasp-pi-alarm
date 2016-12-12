@@ -13,7 +13,7 @@ public abstract class LogDecorator implements LogInterface {
      * Abstract constructor that creates an object that must extend AbstractLog
      * @param decoratedLog 
      */
-    public LogDecorator(BasicLog decoratedLog) {
+    public LogDecorator(LogInterface decoratedLog) {
         this.decoratedLog = decoratedLog;
         this.action = "";
     }

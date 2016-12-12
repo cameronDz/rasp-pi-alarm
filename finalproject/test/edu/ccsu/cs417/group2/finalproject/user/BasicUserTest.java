@@ -116,10 +116,10 @@ public class BasicUserTest {
     @Test
     public void testEqualsPass() {
         System.out.println("equals");
-        BasicUser user = new BasicUser("Angela");
-        BasicUser instance = new BasicUser("Angela");
+        BasicUser user = new BasicUser("Martin");
+        BasicUser instance = new BasicUser("Martin");
         boolean expResult = true;
-        boolean result = instance.equals(user);
+        boolean result = user.equals(instance);
         assertEquals(expResult, result);
     }
     
@@ -136,4 +136,17 @@ public class BasicUserTest {
         assertEquals(expResult, result);
     }
     
+    /**
+     * Testing getComposite method with two objects with different names
+     */
+    @Test
+    public void testGetSetComposite() {
+        System.out.println("getComposite_setComposite");
+        UserComposite c = new UserListComposite("c");
+        BasicUser instance = new BasicUser("Barney");
+        instance.setComposite(c);
+        UserComposite expResult = c;
+        UserComposite result = instance.getComposite();
+        assertEquals(expResult, result);
+    }
 }

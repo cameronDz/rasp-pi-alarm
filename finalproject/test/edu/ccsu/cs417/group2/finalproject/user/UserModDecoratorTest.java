@@ -46,8 +46,8 @@ public class UserModDecoratorTest {
         String name = "";
         UserModDecorator instance = new UserModDecorator(new BasicUser("Hillary"));
         instance.deleteUser(name);
-        // TODO implement delete user first and test
-        fail("deleteUser not implemented yet");
+        // Delete user never fully implemented
+        fail("deleteUser not implemented");
     }
 
     /**
@@ -187,4 +187,18 @@ public class UserModDecoratorTest {
         assertEquals(expResult, result);
     }
     
+    /**
+     * Testing getComposite method with two objects with different names
+     */
+    @Test
+    public void testGetSetComposite() {
+        System.out.println("getComposite_setComposite");
+        UserComposite c = new UserListComposite("c");
+        UserInterface u = new BasicUser("Barney");
+        UserModDecorator instance = new UserModDecorator(u);
+        instance.setComposite(c);
+        UserComposite expResult = c;
+        UserComposite result = instance.getComposite();
+        assertEquals(expResult, result);
+    }
 }

@@ -5,6 +5,7 @@
  */
 package edu.ccsu.cs417.group2.finalproject.adapter;
 
+import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
 import java.io.IOException;
 
 /**
@@ -13,6 +14,6 @@ import java.io.IOException;
  */
 public interface Activate {
     
-    public String activate() throws IOException;
+    public String activate(UserNotification notifier) throws InterruptedException, IOException;
     
 }

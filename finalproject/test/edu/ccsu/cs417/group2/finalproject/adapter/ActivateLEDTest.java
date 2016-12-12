@@ -46,7 +46,7 @@ public class ActivateLEDTest {
     public void testActivateArmLEDException() throws IOException{
         System.out.println("activateArm");
         ActivateLED instance = new ArmLED();
-        int expResult = 2;
+        int expResult = 0;
         int result = instance.activate();
         try {
             result = instance.activate();
@@ -64,10 +64,12 @@ public class ActivateLEDTest {
     public void testActivateDisarmLEDException() throws IOException {
         System.out.println("activateDisarm");
         ActivateLED instance = new ArmLED();
-        int expResult = 2;
+        DisarmLED test = new DisarmLED();
+        int expResult = 0;
         int result = instance.activate();
         try {
             result = instance.activate();
+            test.deactivate();
         } catch(IOException ex) {
             fail("IOException reported: " + ex.getMessage());
         }
@@ -75,7 +77,7 @@ public class ActivateLEDTest {
     }
 
     public class ActivateLEDImpl implements ActivateLED {
-
+        
         @Override
         public int activate() throws IOException {
             return 0;

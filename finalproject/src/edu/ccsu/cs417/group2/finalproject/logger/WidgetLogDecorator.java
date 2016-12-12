@@ -13,7 +13,7 @@ public class WidgetLogDecorator extends LogDecorator {
      * @param decoratedLog object being wrapped by class
      * @param widget String representation of the widget being logged
      */
-    public WidgetLogDecorator(String widget, BasicLog decoratedLog) {
+    public WidgetLogDecorator(String widget, LogInterface decoratedLog) {
         super(decoratedLog);
         this.widget = widget;
     }

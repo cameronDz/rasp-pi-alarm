@@ -39,6 +39,10 @@ public class LoggingService {
         logs.addLog(l);
     }
     
+    public void deleteLog() {
+        logs = new LogCollection();
+    }
+    
     /**
      * Calls the LogCollections toString() method to return a String 
      * representation of all the Logs 

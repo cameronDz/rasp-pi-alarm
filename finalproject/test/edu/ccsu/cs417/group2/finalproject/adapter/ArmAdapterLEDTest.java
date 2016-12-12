@@ -46,7 +46,7 @@ public class ArmAdapterLEDTest {
     public void testActivate() throws IOException {
         System.out.println("activate");
         ArmAdapterLED instance = new ArmAdapterLED();
-        int expResult = 2;
+        int expResult = 0;
         int result = instance.activate();
         try {
             result = instance.activate();

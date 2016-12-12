@@ -1,6 +1,9 @@
 
 package edu.ccsu.cs417.group2.finalproject.strategy;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,6 +16,8 @@ import static org.junit.Assert.*;
  * @author curti
  */
 public class UserNotificationTest {
+    
+    private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     
     public UserNotificationTest() {
     }
@@ -27,10 +32,12 @@ public class UserNotificationTest {
     
     @Before
     public void setUp() {
+        System.setOut(new PrintStream(outContent));
     }
     
     @After
     public void tearDown() {
+        System.setOut(null);
     }
 
     /**
@@ -39,23 +46,29 @@ public class UserNotificationTest {
     @Test
     public void testChangeStrategy() {
         System.out.println("changeStrategy");
-        UserNotificationStrategy strategy = null;
-        UserNotification instance = null;
+        UserNotificationStrategy strategy = new BuzzerStrategy();
+        UserNotification instance = new UserNotification(new SilentStrategy());
         instance.changeStrategy(strategy);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //Only silent strategy prints this output
+        assertTrue(outContent.toString().contains("Intruder detected!"));
     }
 
     /**
      * Test of notifyUser method, of class UserNotification.
      */
     @Test
-    public void testNotifyUser() {
+    public void testNotifyUser() throws InterruptedException, IOException {
         System.out.println("notifyUser");
-        UserNotification instance = null;
-        instance.notifyUser();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        UserNotification instance = new UserNotification(new SilentStrategy());
+        try {
+            instance.notifyUser();
+        } catch(IOException ex) {
+            fail("IOException reported: " + ex.getMessage());
+        } catch(InterruptedException ex) {
+            fail("InterruptedException reported: " + ex.getMessage());
+        }
+        //Test passes if no exceptions thrown
+        assertTrue(true);
     }
     
 }
