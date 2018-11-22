@@ -44,7 +44,10 @@ Once the jar is executed, the system will automatically arm. Using the button co
 - [ ] Move test directory to src, and add java directory - src/test/java
 - [ ] Move main class to proper java package
 - [ ] Move project directory to root directory
-- [ ] Update .gitignore
+- [ ] Update .gitignore with Eclipse IDE files and new pathing
+- [ ] Double check formatting for Java classes
+- [ ] Check all 'well-behaved' methods and tests for proper behavoir
+- [ ] Look into removing GrovePi and using Maven to import project
 
 ### Authors ###
 * **Cameron Dziurgot** - *Owner of current reposoitory. Group member for initial project.* [cameronDz](https://github.com/cameronDz)
