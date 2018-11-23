@@ -1,2 +1,11 @@
+# Files to ignore from source control #
+
+# NetBeans #
 /finalproject/nbproject/private/
 /finalproject/build/
+
+# Eclipse # 
+.settings/
+.project
+.classpath
+
