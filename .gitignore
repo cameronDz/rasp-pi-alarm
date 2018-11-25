@@ -3,9 +3,10 @@
 # NetBeans #
 /finalproject/nbproject/private/
 /finalproject/build/
+nbproject/private/
+build/
 
 # Eclipse # 
 .settings/
 .project
 .classpath
-
