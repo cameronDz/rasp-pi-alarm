@@ -60,7 +60,6 @@ public class Finalproject {
         input= scan.nextLine();
         
         UserInterface user;
-        
         if(input.equalsIgnoreCase("admin")) {
             user = new UserAdminDecorator(new BasicUser(input));
             userListSpecial.addUser(user);
@@ -77,7 +76,7 @@ public class Finalproject {
         LoggingService.getInstance().addLog(logFact.createLog(user.getName(), "user-login"));
                 
         boolean loop = true;        
-        while (loop) {            
+        while (loop) {
             // Run system for first time
             system.arm(notifier);
             

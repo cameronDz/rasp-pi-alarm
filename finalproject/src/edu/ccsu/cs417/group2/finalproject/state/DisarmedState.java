@@ -35,7 +35,7 @@ public class DisarmedState implements DetectorState {
         arm.activate(notifier);
         
         // Set disarmed state when control is passed back
-        securitySystem.setDetectorState(securitySystem.getIsDisarmedState());        
+        securitySystem.setDetectorState(securitySystem.getIsDisarmedState());   
     }
     
     /**
