@@ -13,14 +13,14 @@ git clone https://github.com/cameronDz/rasp-pi-alarm.git
 
 ### Properties ###
 The properties file format is the name of the component in all capital letters assigning the port number that the component is set. The defualt settings are as follows:
-* GREEN_LED_PORT=2
+* GREEN_LED_PORT=4
 * RED_LED_PORT=7
 * BUZZER_PORT=8
-* RANGER_PORT=4
+* RANGER_PORT=2
 * BUTTON_PORT=3
 
 ### Deployment ### 
-To deploy and run the application, navigate to the root directory in the Raspberry Pi terminal, and execute the application .jar file using the command
+To deploy and run the application, navigate to the root directory in the Raspberry Pi terminal, and execute the application .jar file using the command:
 
 ```
 java -jar dist/finalproject.jar
