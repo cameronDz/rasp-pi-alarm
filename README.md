@@ -39,10 +39,10 @@ Once the jar is executed, the system will automatically arm. Using the button co
 
 ### Change Log (TODO) List ###
 
-- [ ] Move java src packages to /src/main/java directory
-- [ ] Move python scripts to /src/main/python directory and update pathing
-- [ ] Move test directory to src, and add java directory - src/test/java
-- [ ] Move main class to proper java package
+- [x] Move java src packages to /src/main/java directory
+- [x] Move python scripts to /src/main/python directory and update pathing
+- [x] Move test directory to src, and add java directory - src/test/java
+- [x] Move main class to proper java package
 - [ ] Move project directory to root directory
 - [ ] Update .gitignore with Eclipse IDE files and new pathing
 - [ ] Double check formatting for Java classes
