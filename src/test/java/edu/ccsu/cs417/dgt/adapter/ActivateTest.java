@@ -1,19 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.ccsu.cs417.dgt.adapter;
 
-import edu.ccsu.cs417.dgt.adapter.Activate;
-import edu.ccsu.cs417.dgt.adapter.Arm;
 import edu.ccsu.cs417.dgt.strategy.SilentStrategy;
 import edu.ccsu.cs417.dgt.strategy.UserNotification;
 import java.io.IOException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,29 +11,11 @@ import static org.junit.Assert.*;
  * @author ngreeshdfg
  */
 public class ActivateTest {
-    
-    public ActivateTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of activate method for the exception and expected return code
      * @throws IOException
+     * @throws InterruptedException
      */
     @Test
     public void testActivateArmException() throws IOException, InterruptedException {
@@ -64,6 +35,7 @@ public class ActivateTest {
     /**
      * Test of deactivate method for the exception and expected return code
      * @throws IOException
+     * @throws InterruptedException
      */
     @Test
     public void testActivateDisarmException() throws IOException, InterruptedException {
@@ -82,6 +54,7 @@ public class ActivateTest {
 
     /**
      * Test of activate method, of class Activate.
+     * @throws Exception
      */
     @Test
     public void testActivate() throws Exception {
@@ -94,13 +67,12 @@ public class ActivateTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+    
     public class ActivateImpl implements Activate {
 
         @Override
         public String activate(UserNotification notifier) throws InterruptedException, IOException {
             return "";
         }
-    }
-   
+    }   
 }

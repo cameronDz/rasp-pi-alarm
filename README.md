@@ -45,7 +45,7 @@ Once the jar is executed, the system will automatically arm. Using the button co
 - [x] Move main class to proper java package
 - [x] Move project directory to root directory
 - [x] Update .gitignore with Eclipse IDE files and new pathing
-- [ ] Double check formatting for Java classes
+- [x] Double check formatting for Java classes
 - [ ] Check all 'well-behaved' methods and tests for proper behavoir
 - [ ] Look into removing GrovePi and using Maven to import project
 

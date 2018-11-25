@@ -1,17 +1,10 @@
-
 package edu.ccsu.cs417.dgt.strategy;
 
-import edu.ccsu.cs417.dgt.strategy.BuzzerStrategy;
-import edu.ccsu.cs417.dgt.strategy.UserNotification;
-import edu.ccsu.cs417.dgt.strategy.UserNotificationStrategy;
-import edu.ccsu.cs417.dgt.strategy.SilentStrategy;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,17 +15,6 @@ import static org.junit.Assert.*;
 public class UserNotificationTest {
     
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    
-    public UserNotificationTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
     @Before
     public void setUp() {
@@ -73,6 +55,5 @@ public class UserNotificationTest {
         }
         //Test passes if no exceptions thrown
         assertTrue(true);
-    }
-    
+    }    
 }

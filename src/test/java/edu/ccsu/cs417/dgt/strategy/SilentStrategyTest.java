@@ -1,12 +1,6 @@
-
 package edu.ccsu.cs417.dgt.strategy;
 
-import edu.ccsu.cs417.dgt.strategy.SilentStrategy;
 import java.io.IOException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,28 +9,11 @@ import static org.junit.Assert.*;
  * @author curti
  */
 public class SilentStrategyTest {
-    
-    public SilentStrategyTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of execute method, of class SilentStrategy.
+     * @throws java.lang.InterruptedException
+     * @throws java.io.IOException
      */
     @Test
     public void testExecute() throws InterruptedException, IOException {
@@ -52,5 +29,4 @@ public class SilentStrategyTest {
         //Test passes if no exceptions thrown
         assertTrue(true);
     }
-    
 }

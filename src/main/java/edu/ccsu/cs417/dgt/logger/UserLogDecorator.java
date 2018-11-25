@@ -1,6 +1,7 @@
 package edu.ccsu.cs417.dgt.logger;
 
 import edu.ccsu.cs417.dgt.user.UserInterface;
+
 /**
  * Log that details a Users action
  * @author Cameron

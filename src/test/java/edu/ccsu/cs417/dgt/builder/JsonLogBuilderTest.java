@@ -137,6 +137,5 @@ public class JsonLogBuilderTest {
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
-    }
-    
+    }    
 }

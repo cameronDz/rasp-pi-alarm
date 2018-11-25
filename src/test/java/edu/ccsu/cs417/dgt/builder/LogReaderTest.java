@@ -94,6 +94,5 @@ public class LogReaderTest {
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
-    }
-    
+    }    
 }

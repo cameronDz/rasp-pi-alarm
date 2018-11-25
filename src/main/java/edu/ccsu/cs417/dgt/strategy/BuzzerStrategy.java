@@ -1,4 +1,3 @@
-
 package edu.ccsu.cs417.dgt.strategy;
 
 import edu.ccsu.cs417.dgt.adapter.ArmBuzzer;

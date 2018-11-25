@@ -23,6 +23,5 @@ public class BasicLogFactoryTest {
         LogInterface expResult = new BasicLog(1,1,message);
         LogInterface result = userFactory.createLog(message, empty);
         assertEquals(expResult, result);
-    }
-    
+    }    
 }

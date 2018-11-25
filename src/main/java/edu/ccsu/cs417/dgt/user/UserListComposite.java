@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Extends UserComposite to create a User List object. Since this is just an 
- * instanciable version of UserComposite, there is not hashCode, equals, or 
+ * instance-able version of UserComposite, there is not hashCode, equals, or 
  * toString functions overridden.
  * @author Cameron
  */

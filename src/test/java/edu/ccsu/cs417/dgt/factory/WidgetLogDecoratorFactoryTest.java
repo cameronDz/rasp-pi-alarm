@@ -26,6 +26,5 @@ public class WidgetLogDecoratorFactoryTest {
         d.setMessage(action);
         LogInterface result = widgetFactory.createLog(widget, action);
         assertEquals(expResult, result);
-    }
-    
+    }    
 }
