@@ -1,45 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.ccsu.cs417.dgt.logger;
 
-import edu.ccsu.cs417.dgt.logger.BasicLog;
-import edu.ccsu.cs417.dgt.logger.LogCollection;
 import java.util.Iterator;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.instanceOf;
+
 /**
  *
  * @author ngreeshdfg
  */
 public class LogCollectionTest {
     
-    public LogCollectionTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of addLog method, of class LogCollection.
      */

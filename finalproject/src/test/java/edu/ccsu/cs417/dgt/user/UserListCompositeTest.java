@@ -1,21 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.ccsu.cs417.dgt.user;
 
-import edu.ccsu.cs417.dgt.user.UserListComposite;
-import edu.ccsu.cs417.dgt.user.UserModDecorator;
-import edu.ccsu.cs417.dgt.user.UserInterface;
-import edu.ccsu.cs417.dgt.user.BasicUser;
-import edu.ccsu.cs417.dgt.user.UserAdminDecorator;
-import edu.ccsu.cs417.dgt.user.UserComposite;
 import java.util.Iterator;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,18 +13,7 @@ import static org.junit.Assert.*;
 public class UserListCompositeTest {
     
     UserListComposite comp;
-    
-    public UserListCompositeTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+        
     @Before
     public void setUp() {
         comp = new UserListComposite("List");
@@ -79,8 +55,7 @@ public class UserListCompositeTest {
         System.out.println("addUser");
         UserInterface user = new BasicUser("Ashley");
         comp.addUser(user);
-        String expResult = "List: \n"
-                + "Ashley\n";
+        String expResult = "List: \n" + "Ashley\n";
         String result = comp.toString();
         assertEquals(expResult, result);
     }
@@ -95,9 +70,7 @@ public class UserListCompositeTest {
         UserInterface user2 = new UserModDecorator(new BasicUser("Mitch"));
         comp.addUser(user1);
         comp.addUser(user2);
-        String expResult = "List: \n"
-                + "Ashley\n"
-                + "Mitch Moderator\n";
+        String expResult = "List: \n" + "Ashley\n" + "Mitch Moderator\n";
         String result = comp.toString();
         assertEquals(expResult, result);
     }
@@ -176,10 +149,8 @@ public class UserListCompositeTest {
         comp.addUser(sally);
         comp.addUser(martin);
         comp.addUser(george);
-        String expResult = "List: \n"
-                + "Sally Moderator\n"
-                + "Martin\n"
-                + "George Administrator\n";
+        String expResult = "List: \n" + "Sally Moderator\n"
+                + "Martin\n" + "George Administrator\n";
         String result = comp.toString();
         assertEquals(expResult, result);
     }

@@ -29,8 +29,7 @@ public class ArmBuzzer implements ActivateBuzzer {
         String[] cmd = new String[2];
         
         // Get operating system
-        String osName = System.getProperty("os.name");
-        String path;
+        String osName = System.getProperty("os.name"); 
         
         // Get .jar file parent file path
         File f = new File(System.getProperty("java.class.path"));
@@ -39,15 +38,13 @@ public class ArmBuzzer implements ActivateBuzzer {
         // Note: Windows 10 returns Windows 8.1 as OS identifier
         if (osName.equals("Windows 8.1") || osName.equals("Windows 7")) {
             // For Windows based systems
-            path = dir.toString() + "\\python_scripts\\buzzer_on.py";
             cmd[0] = "python.exe";
+            cmd[1] = dir.toString() + "\\python_scripts\\buzzer_on.py";
         } else {
             // For Linux based systems
-            path = dir.toString() + "/python_scripts/buzzer_on.py";
             cmd[0] = "python";
+            cmd[1] = dir.toString() + "/python_scripts/buzzer_on.py";
         }
-        
-        cmd[1] = path;
         
         // Create runtime to execute external command
         Runtime rt = Runtime.getRuntime();

@@ -1,21 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.ccsu.cs417.dgt.user;
 
-import edu.ccsu.cs417.dgt.user.UserListComposite;
-import edu.ccsu.cs417.dgt.user.BasicUser;
-import edu.ccsu.cs417.dgt.user.UserInterface;
-import edu.ccsu.cs417.dgt.user.UserAdminDecorator;
-import edu.ccsu.cs417.dgt.user.UserComposite;
 import edu.ccsu.cs417.dgt.logger.LogCollection;
 import edu.ccsu.cs417.dgt.logger.LoggingService;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,25 +10,6 @@ import static org.junit.Assert.*;
  * @author curti
  */
 public class UserAdminDecoratorTest {
-    
-    public UserAdminDecoratorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
     
     /**
      * Test of getName method, of class UserAdminDecorator.
@@ -56,7 +23,7 @@ public class UserAdminDecoratorTest {
         assertEquals(expResult, result);
     }
     
-     /**
+    /**
      * Test of setName method, of class UserAdminDecorator.
      */
     @Test
@@ -127,8 +94,7 @@ public class UserAdminDecoratorTest {
         System.out.println("deleteLog");
         int i = 1;
         UserAdminDecorator instance = new UserAdminDecorator(new BasicUser("Tom"));
-        instance.deleteLog(i);
-        
+        instance.deleteLog(i);        
         assertTrue(LoggingService.getInstance().getLogs().equals(new LogCollection()));
     }
 

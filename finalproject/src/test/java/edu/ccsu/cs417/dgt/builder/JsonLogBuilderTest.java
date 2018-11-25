@@ -1,10 +1,5 @@
 package edu.ccsu.cs417.dgt.builder;
 
-import edu.ccsu.cs417.dgt.builder.JsonLogBuilder;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,25 +8,6 @@ import static org.junit.Assert.*;
  * @author Cameron
  */
 public class JsonLogBuilderTest {
-    
-    public JsonLogBuilderTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of buildTime method, of class JsonLogBuilder.
