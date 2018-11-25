@@ -46,11 +46,11 @@ public class Arm implements Activate {
             if (osName.equals("Windows 8.1") || osName.equals("Windows 7")) {
                 // For Windows based systems
                 cmd[0] = "python.exe";
-                cmd[1] = dir.toString() + "\\python_scripts\\range_sensor.py";
+                cmd[1] = dir.toString() + "\\src\\main\\python\\range_sensor.py";
             } else {
                 // For Linux based systems
                 cmd[0] = "python";
-                cmd[1] = dir.toString() + "/python_scripts/range_sensor.py";
+                cmd[1] = dir.toString() + "/src/main/python/range_sensor.py";
             }  
             
             // Create runtime to execute external command

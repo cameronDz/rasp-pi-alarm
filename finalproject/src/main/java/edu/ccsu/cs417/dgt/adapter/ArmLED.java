@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.ccsu.cs417.dgt.adapter;
 
 import java.io.BufferedReader;
@@ -17,9 +12,9 @@ import java.io.InputStreamReader;
 public class ArmLED implements ActivateLED {
    
     /**
-     *  Method activate() collects system type information to create an appropriate runtime
-     *  environment which invokes a Python script. Feedback from the script is passed 
-     *  back to the method.
+     * Method activate() collects system type information to create an appropriate runtime
+     * environment which invokes a Python script. Feedback from the script is passed 
+     * back to the method.
      * @throws IOException
      * @return integer of 0 upon completion
      */
@@ -41,11 +36,11 @@ public class ArmLED implements ActivateLED {
         // Note: Windows 10 returns Windows 8.1 as OS identifier
         if (osName.equals("Windows 8.1") || osName.equals("Windows 7")) {
             // For Windows based systems
-            path = dir.toString() + "\\python_scripts\\led_on.py";
+            path = dir.toString() + "\\src\\main\\python\\led_on.py";
             cmd[0] = "python.exe";
         } else {
             // For Linux based systems
-            path = dir.toString() + "/python_scripts/led_on.py";
+            path = dir.toString() + "/src/main/python/led_on.py";
             cmd[0] = "python";
         }
         
