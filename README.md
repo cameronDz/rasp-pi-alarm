@@ -43,7 +43,7 @@ Once the jar is executed, the system will automatically arm. Using the button co
 - [x] Move python scripts to /src/main/python directory and update pathing
 - [x] Move test directory to src, and add java directory - src/test/java
 - [x] Move main class to proper java package
-- [ ] Move project directory to root directory
+- [x] Move project directory to root directory
 - [ ] Update .gitignore with Eclipse IDE files and new pathing
 - [ ] Double check formatting for Java classes
 - [ ] Check all 'well-behaved' methods and tests for proper behavoir
