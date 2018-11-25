@@ -20,10 +20,10 @@ The properties file format is the name of the component in all capital letters a
 * BUTTON_PORT=3
 
 ### Deployment ### 
-To deploy and run the application, navigate to the 'finalproject/dist' directory in the GrovePi terminal, and execute the finalproject.jar file using the command
+To deploy and run the application, navigate to the root directory in the Raspberry Pi terminal, and execute the application .jar file using the command
 
 ```
-java -jar finalproject.jar
+java -jar dist/finalproject.jar
 ```
 
 Once the jar is executed, the system will automatically arm. Using the button component will deactivate the alarm and prompt the user with several options.
@@ -44,7 +44,7 @@ Once the jar is executed, the system will automatically arm. Using the button co
 - [x] Move test directory to src, and add java directory - src/test/java
 - [x] Move main class to proper java package
 - [x] Move project directory to root directory
-- [ ] Update .gitignore with Eclipse IDE files and new pathing
+- [x] Update .gitignore with Eclipse IDE files and new pathing
 - [ ] Double check formatting for Java classes
 - [ ] Check all 'well-behaved' methods and tests for proper behavoir
 - [ ] Look into removing GrovePi and using Maven to import project
