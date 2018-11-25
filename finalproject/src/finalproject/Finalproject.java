@@ -29,6 +29,7 @@ import java.util.Iterator;
 public class Finalproject {
     
     private final static Date loadTime = new Date();
+    private static final String DEFAULT_INPUT_MESSAGE = "Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit";
     
     /**
      * @param args the command line arguments
@@ -63,12 +64,10 @@ public class Finalproject {
         if(input.equalsIgnoreCase("admin")) {
             user = new UserAdminDecorator(new BasicUser(input));
             userListSpecial.addUser(user);
-        }
-        else if(input.equalsIgnoreCase("mod")) {
+        } else if(input.equalsIgnoreCase("mod")) {
             user = new UserModDecorator(new BasicUser(input));
             userListSpecial.addUser(user);
-        }
-        else {
+        } else {
             user = new BasicUser(input);
             userList.addUser(user);
         }
@@ -76,22 +75,21 @@ public class Finalproject {
         // log factory
         AbstractLogFactory logFact = new UserLogDecoratorFactory();
         LoggingService.getInstance().addLog(logFact.createLog(user.getName(), "user-login"));
-        
-        
-        boolean loop = true;
-        
-        while (loop) {
-            
+                
+        boolean loop = true;        
+        while (loop) {            
             // Run system for first time
-           system.arm(notifier);
+            system.arm(notifier);
             
-            if(user instanceof UserAdminDecorator)
-                System.out.println("Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit, (dl) delete logs");
-            else if(user instanceof UserModDecorator)
-                System.out.println("Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit, (du) delete user");
-            else
-                System.out.println("Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit");
-            
+            String inputMessage;
+            if(user instanceof UserAdminDecorator) {
+                inputMessage = DEFAULT_INPUT_MESSAGE + ", (dl) delete logs: ";
+            } else if(user instanceof UserModDecorator) {
+                inputMessage = DEFAULT_INPUT_MESSAGE + ", (du) delete user: ";
+            } else {
+                inputMessage = DEFAULT_INPUT_MESSAGE + ": ";
+            }
+            System.out.println(inputMessage); 
             input = scan.next();
             
             switch (input) {
@@ -109,10 +107,11 @@ public class Finalproject {
                         while(logIterator.hasNext()) {
                             reader.parseLog(logIterator.next());
                             System.out.print(builder.getJsonLog());
-                            if(logIterator.hasNext())
+                            if(logIterator.hasNext()){
                                 System.out.println(",");
-                            else
+                            } else {
                                 System.out.println();
+                            }
                         }
                         System.out.println("]");
                     }
