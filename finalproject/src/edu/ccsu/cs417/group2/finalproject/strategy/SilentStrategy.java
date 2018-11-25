@@ -11,12 +11,11 @@ public class SilentStrategy  implements UserNotificationStrategy  {
     
     /**
      * Notifies, through the terminal, the user that the ranger detected something 
+     * @throws java.lang.InterruptedException
+     * @throws java.io.IOException
      */
     @Override
     public void execute() throws InterruptedException, IOException {
-        
-        System.out.println("Intruder detected!");
-        
+        System.out.println("Intruder detected!");        
     }
-    
 }

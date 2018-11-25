@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.ccsu.cs417.group2.finalproject.state;
 
 import edu.ccsu.cs417.group2.finalproject.strategy.UserNotification;
@@ -16,9 +11,7 @@ public class ArmedState implements DetectorState {
     SecuritySystem securitySystem;
     
     public ArmedState(SecuritySystem newSecuritySystem) {
-        
         securitySystem = newSecuritySystem;
-        
     }
 
     /**
@@ -27,9 +20,7 @@ public class ArmedState implements DetectorState {
     */
     @Override
     public void arm(UserNotification notifier) {
-        
         System.out.println("System is already armed.");
-        
     }
     
     /**
@@ -37,9 +28,6 @@ public class ArmedState implements DetectorState {
     */
     @Override
     public void disarm() {
-        
         securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
-        
     }
-    
 }

@@ -1,4 +1,3 @@
-
 package edu.ccsu.cs417.group2.finalproject.strategy;
 
 import java.io.IOException;
@@ -29,6 +28,8 @@ public class UserNotification {
     
     /**
      * Executes the current strategy for user notification
+     * @throws java.lang.InterruptedException
+     * @throws java.io.IOException
      */
     public void notifyUser() throws InterruptedException, IOException {
         strategy.execute();
