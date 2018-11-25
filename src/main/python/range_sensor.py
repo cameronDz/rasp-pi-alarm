@@ -23,7 +23,7 @@ import grovepi
 separator = "="
 keys = {}
 
-with open('../config/environment.properties') as f:
+with open('../../../config/environment.properties') as f:
 
     for line in f:
         if separator in line:

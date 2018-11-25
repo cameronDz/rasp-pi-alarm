@@ -35,7 +35,9 @@ public class SecuritySystem {
      * @throws IOException
      */
     public void arm(UserNotification notifier) throws InterruptedException, IOException {
+        System.out.println("[DEBUG] SecuritySystem - Entering arm"); 
         detectorState.arm(notifier);
+        System.out.println("[DEBUG] SecuritySystem - Exiting arm"); 
     }
     
     /**

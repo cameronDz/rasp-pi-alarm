@@ -28,7 +28,7 @@ import java.util.Iterator;
 
 public class Application {
     
-    private final static Date loadTime = new Date();
+    private static final Date LOAD_TIME = new Date();
     private static final String DEFAULT_INPUT_MESSAGE = "Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit";
     
     /**
@@ -38,9 +38,10 @@ public class Application {
      */
     public static void main(String[] args) throws InterruptedException, IOException {
         
-        // set up strategy
+        // set up strategy to start as silent
         UserNotification notifier = new UserNotification(new SilentStrategy());
         
+        // TODO to be moved out to LoggingService
         //Create json builder
         JsonLogBuilder builder = new JsonLogBuilder();
         LogReader reader = new LogReader(builder);
@@ -51,15 +52,17 @@ public class Application {
         Scanner scan = new Scanner(System.in);
         String input;
         
+        // TODO make global to support private method
         // make compostire
         UserComposite userList = new UserListComposite("basic");
         UserComposite userListSpecial = new UserListComposite("priveledged");
+        UserInterface user;
         
         //loggin user in
         System.out.print("Enter user name: ");
         input= scan.nextLine();
         
-        UserInterface user;
+        // TODO move to own method
         if(input.equalsIgnoreCase("admin")) {
             user = new UserAdminDecorator(new BasicUser(input));
             userListSpecial.addUser(user);
@@ -77,6 +80,8 @@ public class Application {
                 
         boolean loop = true;        
         while (loop) {
+            System.out.println("[DEBUG] Entering While Loop"); 
+            
             // Run system for first time
             system.arm(notifier);
             
@@ -100,6 +105,7 @@ public class Application {
                         System.out.println(LoggingService.getInstance().toString());
                     }
                     else {
+                        // TODO move to logging serivce in a toJson() method
                         LogCollection logs = LoggingService.getInstance().getLogs();
                         Iterator<LogInterface> logIterator = logs.iterator();
                         System.out.println("[");
@@ -125,9 +131,9 @@ public class Application {
                     int date = (x.get(GregorianCalendar.DAY_OF_MONTH)) + 
                             (x.get(GregorianCalendar.MONTH) + 1) *100 +
                             x.get(GregorianCalendar.YEAR) *10000;
-                    int time = loadTime.getHours() * 10000;
-                    time += loadTime.getMinutes() * 100;
-                    time += loadTime.getSeconds();
+                    int time = LOAD_TIME.getHours() * 10000;
+                    time += LOAD_TIME.getMinutes() * 100;
+                    time += LOAD_TIME.getSeconds();
                     
                     if (input.equals("1")) {
                         notifier.changeStrategy(new BuzzerStrategy());
