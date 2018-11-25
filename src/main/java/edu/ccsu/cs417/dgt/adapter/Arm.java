@@ -28,12 +28,9 @@ public class Arm implements Activate {
      */
     @Override
     public String activate(UserNotification notifier) throws InterruptedException, IOException {
-        System.out.println("[DEBUG] Arm - Entering activate"); 
         String widget = "";
         
-        while (!widget.equals("button")) { 
-        System.out.println("[DEBUG] Arm - Entering activate: while loop"); 
-            
+        while (!widget.equals("button")) {
             // Set up the command and parameter for location of the range file
             String[] cmd = new String[2];
 
@@ -53,10 +50,7 @@ public class Arm implements Activate {
                 // For Linux based systems
                 cmd[0] = "python";
                 cmd[1] = dir.toString() + "/src/main/python/range_sensor.py";
-            }  
-            
-            System.out.println("[DEBUG] Arm - cmd[0]: " + cmd[0]); 
-            System.out.println("[DEBUG] Arm - cmd[1]: " + cmd[1]); 
+            }
             
             // Create runtime to execute external command
             Runtime rt = Runtime.getRuntime();
@@ -108,9 +102,7 @@ public class Arm implements Activate {
 
             wg.setMessage(action);
             ls.addLog(b);
-            System.out.println("[DEBUG] Arm - Exiting activate: while loop"); 
         }
-        System.out.println("[DEBUG] Arm - Exiting activate"); 
         return widget;
     }
 }

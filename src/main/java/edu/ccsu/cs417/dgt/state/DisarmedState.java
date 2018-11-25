@@ -30,14 +30,12 @@ public class DisarmedState implements DetectorState {
     */
     @Override
     public void arm(UserNotification notifier) throws InterruptedException, IOException {
-        System.out.println("[DEBUG] DisarmedState - Entering arm"); 
         securitySystem.setDetectorState(securitySystem.getIsArmedState());
         Arm arm = new Arm();
         arm.activate(notifier);
         
         // Set disarmed state when control is passed back
-        securitySystem.setDetectorState(securitySystem.getIsDisarmedState());   
-        System.out.println("[DEBUG] DisarmedState - Exiting arm"); 
+        securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
     }
     
     /**

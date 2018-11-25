@@ -79,9 +79,7 @@ public class Application {
         LoggingService.getInstance().addLog(logFact.createLog(user.getName(), "user-login"));
                 
         boolean loop = true;        
-        while (loop) {
-            System.out.println("[DEBUG] Entering While Loop"); 
-            
+        while (loop) {            
             // Run system for first time
             system.arm(notifier);
             
