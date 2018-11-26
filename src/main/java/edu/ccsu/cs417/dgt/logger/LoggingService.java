@@ -1,5 +1,9 @@
 package edu.ccsu.cs417.dgt.logger;
 
+import edu.ccsu.cs417.dgt.builder.JsonLogBuilder;
+import edu.ccsu.cs417.dgt.builder.LogReader;
+import java.util.Iterator;
+
 /**
  * Singleton class used to store Collection of widget Logs. No implementation of
  * hashCode() or equals(Object obj) function since singleton design pattern will
@@ -50,6 +54,32 @@ public class LoggingService {
      */
     public LogCollection getLogs() {
         return logs;
+    }
+    
+    /**
+     * Return a 'pretty' JSON string to command line of the logs.
+     * @return String of JSON for logs
+     */
+    public String toJson() {
+        StringBuilder sb = new StringBuilder();
+        JsonLogBuilder builder = new JsonLogBuilder();
+        LogReader reader = new LogReader(builder);
+        Iterator<LogInterface> logIterator = logs.iterator();
+        // begin creating json
+        sb.append("[\n");
+        while(logIterator.hasNext()) {
+            reader.parseLog(logIterator.next());
+            sb.append("    ");
+            sb.append(builder.getJsonLog());
+            sb.append("\n");
+            if(logIterator.hasNext()){
+                sb.append(",\n");
+            } else {
+                sb.append("\n");
+            }
+        }
+        sb.append("]\n");
+        return sb.toString();
     }
     
     /**

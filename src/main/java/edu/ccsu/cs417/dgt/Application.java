@@ -1,14 +1,8 @@
 package edu.ccsu.cs417.dgt;
 
-import edu.ccsu.cs417.dgt.builder.JsonLogBuilder;
-import edu.ccsu.cs417.dgt.builder.LogReader;
-import java.util.Scanner;
-
 import edu.ccsu.cs417.dgt.factory.AbstractLogFactory;
 import edu.ccsu.cs417.dgt.factory.UserLogDecoratorFactory;
 import edu.ccsu.cs417.dgt.logger.BasicLog;
-import edu.ccsu.cs417.dgt.logger.LogCollection;
-import edu.ccsu.cs417.dgt.logger.LogInterface;
 import edu.ccsu.cs417.dgt.logger.LoggingService;
 import edu.ccsu.cs417.dgt.strategy.UserNotification;
 import edu.ccsu.cs417.dgt.strategy.BuzzerStrategy;
@@ -22,14 +16,19 @@ import edu.ccsu.cs417.dgt.user.UserInterface;
 import edu.ccsu.cs417.dgt.user.UserListComposite;
 import edu.ccsu.cs417.dgt.user.UserModDecorator;
 import java.io.IOException;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Iterator;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
 
 public class Application {
     
-    private static final Date LOAD_TIME = new Date();
     private static final String DEFAULT_INPUT_MESSAGE = "Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit";
+    
+    private static final UserComposite USER_LIST = new UserListComposite("basic");
+    private static final UserComposite PRIVILEDGED_USER_LIST = new UserListComposite("priveledged");
+    private static final AbstractLogFactory LOG_FACTORY = new UserLogDecoratorFactory();
+    
+    private static UserInterface user;
     
     /**
      * @param args the command line arguments
@@ -38,46 +37,17 @@ public class Application {
      */
     public static void main(String[] args) throws InterruptedException, IOException {
         
-        // set up strategy to start as silent
-        UserNotification notifier = new UserNotification(new SilentStrategy());
-        
-        // TODO to be moved out to LoggingService
-        //Create json builder
-        JsonLogBuilder builder = new JsonLogBuilder();
-        LogReader reader = new LogReader(builder);
-        
-        // Create new security system object and run
+        // Create new security system and notifier strategy
+        UserNotification notifier = new UserNotification(new SilentStrategy());        
         SecuritySystem system = new SecuritySystem();
-            
+        
+        // Create user input objects
         Scanner scan = new Scanner(System.in);
         String input;
         
-        // TODO make global to support private method
-        // make compostire
-        UserComposite userList = new UserListComposite("basic");
-        UserComposite userListSpecial = new UserListComposite("priveledged");
-        UserInterface user;
-        
         //loggin user in
-        System.out.print("Enter user name: ");
-        input= scan.nextLine();
+        input = logUserAccessIntoSystem(scan);
         
-        // TODO move to own method
-        if(input.equalsIgnoreCase("admin")) {
-            user = new UserAdminDecorator(new BasicUser(input));
-            userListSpecial.addUser(user);
-        } else if(input.equalsIgnoreCase("mod")) {
-            user = new UserModDecorator(new BasicUser(input));
-            userListSpecial.addUser(user);
-        } else {
-            user = new BasicUser(input);
-            userList.addUser(user);
-        }
-        
-        // log factory
-        AbstractLogFactory logFact = new UserLogDecoratorFactory();
-        LoggingService.getInstance().addLog(logFact.createLog(user.getName(), "user-login"));
-                
         boolean loop = true;        
         while (loop) {            
             // Run system for first time
@@ -101,22 +71,8 @@ public class Application {
                     input = scan.next();
                     if(input.equals("1")) {
                         System.out.println(LoggingService.getInstance().toString());
-                    }
-                    else {
-                        // TODO move to logging serivce in a toJson() method
-                        LogCollection logs = LoggingService.getInstance().getLogs();
-                        Iterator<LogInterface> logIterator = logs.iterator();
-                        System.out.println("[");
-                        while(logIterator.hasNext()) {
-                            reader.parseLog(logIterator.next());
-                            System.out.print(builder.getJsonLog());
-                            if(logIterator.hasNext()){
-                                System.out.println(",");
-                            } else {
-                                System.out.println();
-                            }
-                        }
-                        System.out.println("]");
+                    } else {
+                        System.out.println(LoggingService.getInstance().toJson());
                     }
                     break;
                 }   
@@ -125,13 +81,8 @@ public class Application {
                     System.out.println("Enter input: (1) buzzer strategy, (2) silent strategy, (3) light strategy");
                     input = scan.next();
                     
-                    GregorianCalendar x = new GregorianCalendar();
-                    int date = (x.get(GregorianCalendar.DAY_OF_MONTH)) + 
-                            (x.get(GregorianCalendar.MONTH) + 1) *100 +
-                            x.get(GregorianCalendar.YEAR) *10000;
-                    int time = LOAD_TIME.getHours() * 10000;
-                    time += LOAD_TIME.getMinutes() * 100;
-                    time += LOAD_TIME.getSeconds();
+                    int date = getDateInteger(new Timestamp(System.currentTimeMillis()));
+                    int time = getTimeInteger(new Timestamp(System.currentTimeMillis()));
                     
                     if (input.equals("1")) {
                         notifier.changeStrategy(new BuzzerStrategy());
@@ -153,52 +104,83 @@ public class Application {
                     break;
                 }
                 case "4": {
-                    //user logout
-                    System.out.print("Enter user name: ");
-                    input = scan.next();
-                    
-                    if(input.equalsIgnoreCase("admin")) {
-                        user = new UserAdminDecorator(new BasicUser(input));
-                        userListSpecial.addUser(user);
-                    }
-                    else if(input.equalsIgnoreCase("mod")) {
-                        user = new UserModDecorator(new BasicUser(input));
-                        userListSpecial.addUser(user);
-                    }
-                    else {
-                        user = new BasicUser(input);
-                        userList.addUser(user);
-                    }
-                    LoggingService.getInstance().addLog(logFact.createLog(user.getName(), "user-login"));
+                    //user logout/in
+                    input = logUserAccessIntoSystem(scan);
                     break;
                 }
                 case "dl": {
                     if(user instanceof UserAdminDecorator) {
                         ((UserAdminDecorator) user).deleteLog(0);
-                    }
-                    else {
+                    } else {
                         System.out.println("ERROR: Invalid user priviledges");
                     }
                     break;
                 }
-                case "du": {
-                    
+                case "du": {                    
                     if(user instanceof UserModDecorator) {
                         System.out.println("Enter user name to delete: ");
                         input = scan.next();
                         ((UserModDecorator) user).deleteUser(input);
-                        LoggingService.getInstance().addLog(logFact.createLog(user.getName(), "user-deleted: " + input));
-                    }
-                    else {
+                        LoggingService.getInstance().addLog(LOG_FACTORY.createLog(user.getName(), "user-deleted: " + input));
+                    } else {
                         System.out.println("ERROR: Invalid user priviledges");
                     }
                     break;
                 }
-                default:
+                default: {
                     // Exit loop
                     loop = false;   
                     break;
+                }
             }
         } 
+    }
+
+    /**
+     * Takes user input, adds input as new user name to appropriate list, logs into system
+     * @param scan Scanner used to take user input
+     * @return String of the input provided by the user.
+     */
+    private static String logUserAccessIntoSystem(Scanner scan) {        
+        System.out.print("Enter user name: ");
+        String input = scan.nextLine();
+        if(input.equalsIgnoreCase("admin")) {
+            user = new UserAdminDecorator(new BasicUser(input));
+            PRIVILEDGED_USER_LIST.addUser(user);
+        } else if(input.equalsIgnoreCase("mod")) {
+            user = new UserModDecorator(new BasicUser(input));
+            PRIVILEDGED_USER_LIST.addUser(user);
+        } else {
+            user = new BasicUser(input);
+            USER_LIST.addUser(user);
+        }
+        LoggingService.getInstance().addLog(LOG_FACTORY.createLog(user.getName(), "user-login"));
+        return input;
+    }
+
+    /**
+     * Gets digits of current date in following format YYYYMMDD.
+     * @param timestamp Timestamp being passed of current date
+     * @return Integer of current date.
+     */
+    protected static int getDateInteger(Timestamp timestamp) { 
+        String[] dates = timestamp.toString().split("-");
+        int sum = Integer.valueOf(dates[0]) * 10000;
+        sum += Integer.valueOf(dates[1]) * 100;
+        sum += Integer.valueOf(dates[2].substring(0,2)) * 1;
+        return sum;
+    }
+
+    /**
+     * Gets digits of current time in following format hhmmss.
+     * @param timestamp Timestamp being passed of current date
+     * @return Integer of current time.
+     */
+    protected static int getTimeInteger(Timestamp timestamp) { 
+        String[] times = timestamp.toString().split(" ")[1].split(":");
+        int sum = Integer.valueOf(times[0]) * 10000;
+        sum += Integer.valueOf(times[1]) * 100;
+        sum += Integer.valueOf(times[2].substring(0,2)) * 1;
+        return sum;
     }
 }
