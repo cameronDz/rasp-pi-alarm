@@ -71,12 +71,10 @@ public class LoggingService {
             reader.parseLog(logIterator.next());
             sb.append("    ");
             sb.append(builder.getJsonLog());
-            sb.append("\n");
             if(logIterator.hasNext()){
-                sb.append(",\n");
-            } else {
-                sb.append("\n");
-            }
+                sb.append(",");
+            } 
+            sb.append("\n");
         }
         sb.append("]\n");
         return sb.toString();

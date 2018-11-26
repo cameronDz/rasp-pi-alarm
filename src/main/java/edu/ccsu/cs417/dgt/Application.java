@@ -17,7 +17,6 @@ import edu.ccsu.cs417.dgt.user.UserListComposite;
 import edu.ccsu.cs417.dgt.user.UserModDecorator;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Application {
