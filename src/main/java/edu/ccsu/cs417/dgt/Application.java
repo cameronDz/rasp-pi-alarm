@@ -3,6 +3,7 @@ package edu.ccsu.cs417.dgt;
 import edu.ccsu.cs417.dgt.factory.AbstractLogFactory;
 import edu.ccsu.cs417.dgt.factory.UserLogDecoratorFactory;
 import edu.ccsu.cs417.dgt.logger.BasicLog;
+import edu.ccsu.cs417.dgt.logger.LogTool;
 import edu.ccsu.cs417.dgt.logger.LoggingService;
 import edu.ccsu.cs417.dgt.strategy.UserNotification;
 import edu.ccsu.cs417.dgt.strategy.BuzzerStrategy;
@@ -17,11 +18,32 @@ import edu.ccsu.cs417.dgt.user.UserListComposite;
 import edu.ccsu.cs417.dgt.user.UserModDecorator;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
     
-    private static final String DEFAULT_INPUT_MESSAGE = "Enter input: (1) print logs, (2) set strategy, (3) restart system, or (4) change user, (5) exit";
+    private static final String DEFAULT_INPUT_MESSAGE = 
+            "Enter system option:\n" +
+            "(1) Print all logs\n" + 
+            "(2) Set alarm strategy\n" + 
+            "(3) Activate alarm system\n" +
+            "(4) Change user name\n" +
+            "(5) Quit and Exit application\n";
+    private static final String STRATEGY_OPTIONS = 
+            "Select Alarm Strategy Option:\n" +
+            "(1) Buzzer: alarm tripped deactivates system and buzzer is set off.\n" +
+            "(2) Silent: alarm is tripped logs incident, alarm stays active.\n" +
+            "(3) Light: alarm tripped deactivates system and red light is turned on.\n" +
+            "Enter selection: ";
+    private static final String LOG_OPTIONS = 
+            "Select log format:\n" + 
+            "(1) Print Text logs.\n" +
+            "(2) Print JSON logs.\n" +
+            "Enter selection: ";
+    private static final List<String> DEFAULT_OPTIONS_LIST = Arrays.asList(
+            new String[] {"1", "2", "3", "4", "5", "DL", "DI"});
     
     private static final UserComposite USER_LIST = new UserListComposite("basic");
     private static final UserComposite PRIVILEDGED_USER_LIST = new UserListComposite("priveledged");
@@ -45,7 +67,7 @@ public class Application {
         String input;
         
         //loggin user in
-        input = logUserAccessIntoSystem(scan);
+        input = logUserAccessIntoSystem();
         
         boolean loop = true;        
         while (loop) {            
@@ -54,19 +76,20 @@ public class Application {
             
             String inputMessage;
             if(user instanceof UserAdminDecorator) {
-                inputMessage = DEFAULT_INPUT_MESSAGE + ", (dl) delete logs: ";
+                inputMessage = DEFAULT_INPUT_MESSAGE + "(DL) Delete Logs\n";
             } else if(user instanceof UserModDecorator) {
-                inputMessage = DEFAULT_INPUT_MESSAGE + ", (du) delete user: ";
-            } else {
-                inputMessage = DEFAULT_INPUT_MESSAGE + ": ";
+                inputMessage = DEFAULT_INPUT_MESSAGE + "(DU) Delete User\n";
             }
-            System.out.println(inputMessage); 
-            input = scan.next();
-            
-            switch (input) {
+            input = "";
+            while(!DEFAULT_OPTIONS_LIST.contains(input)) {
+                inputMessage = DEFAULT_INPUT_MESSAGE + "Ener selection: "; 
+                System.out.println(inputMessage); 
+                input = scan.next().toUpperCase();
+            }
+            switch (input.toLowerCase()) {
                 case "1": {
                     // Print logs
-                    System.out.println("Enter input: (1) print String logs, (2) print Json logs");
+                    System.out.println(LOG_OPTIONS);
                     input = scan.next();
                     if(input.equals("1")) {
                         System.out.println(LoggingService.getInstance().toString());
@@ -77,11 +100,11 @@ public class Application {
                 }   
                 case "2": {
                     // Set strategy
-                    System.out.println("Enter input: (1) buzzer strategy, (2) silent strategy, (3) light strategy");
+                    System.out.println(STRATEGY_OPTIONS);
                     input = scan.next();
                     
-                    int date = getDateInteger(new Timestamp(System.currentTimeMillis()));
-                    int time = getTimeInteger(new Timestamp(System.currentTimeMillis()));
+                    int date = LogTool.getDateInteger(new Timestamp(System.currentTimeMillis()));
+                    int time = LogTool.getTimeInteger(new Timestamp(System.currentTimeMillis()));
                     
                     if (input.equals("1")) {
                         notifier.changeStrategy(new BuzzerStrategy());
@@ -104,7 +127,7 @@ public class Application {
                 }
                 case "4": {
                     //user logout/in
-                    input = logUserAccessIntoSystem(scan);
+                    input = logUserAccessIntoSystem();
                     break;
                 }
                 case "dl": {
@@ -136,11 +159,11 @@ public class Application {
     }
 
     /**
-     * Takes user input, adds input as new user name to appropriate list, logs into system
-     * @param scan Scanner used to take user input
+     * Takes user input, adds input as new user name to appropriate list, logs into system.
      * @return String of the input provided by the user.
      */
-    private static String logUserAccessIntoSystem(Scanner scan) {        
+    private static String logUserAccessIntoSystem() {
+        Scanner scan = new Scanner(System.in);
         System.out.print("Enter user name: ");
         String input = scan.nextLine();
         if(input.equalsIgnoreCase("admin")) {
@@ -154,32 +177,7 @@ public class Application {
             USER_LIST.addUser(user);
         }
         LoggingService.getInstance().addLog(LOG_FACTORY.createLog(user.getName(), "user-login"));
+        scan.close();
         return input;
-    }
-
-    /**
-     * Gets digits of current date in following format YYYYMMDD.
-     * @param timestamp Timestamp being passed of current date
-     * @return Integer of current date.
-     */
-    protected static int getDateInteger(Timestamp timestamp) { 
-        String[] dates = timestamp.toString().split("-");
-        int sum = Integer.valueOf(dates[0]) * 10000;
-        sum += Integer.valueOf(dates[1]) * 100;
-        sum += Integer.valueOf(dates[2].substring(0,2)) * 1;
-        return sum;
-    }
-
-    /**
-     * Gets digits of current time in following format hhmmss.
-     * @param timestamp Timestamp being passed of current date
-     * @return Integer of current time.
-     */
-    protected static int getTimeInteger(Timestamp timestamp) { 
-        String[] times = timestamp.toString().split(" ")[1].split(":");
-        int sum = Integer.valueOf(times[0]) * 10000;
-        sum += Integer.valueOf(times[1]) * 100;
-        sum += Integer.valueOf(times[2].substring(0,2)) * 1;
-        return sum;
     }
 }
