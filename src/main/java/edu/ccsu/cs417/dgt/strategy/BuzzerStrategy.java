@@ -31,4 +31,8 @@ public class BuzzerStrategy implements UserNotificationStrategy {
         buzOff.deactivate();
     }
     
+    @Override
+    public String getName() {
+        return "BUZZER";
+    }
 }

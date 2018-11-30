@@ -17,7 +17,7 @@ public class UserModDecoratorTest {
         System.out.println("deleteUser");
         String name = "";
         UserModDecorator instance = new UserModDecorator(new BasicUser("Hillary"));
-        instance.deleteUser(name);
+        instance.deleteUser(instance, name);
         // Delete user never fully implemented
         fail("deleteUser not implemented");
     }

@@ -10,18 +10,23 @@ import java.io.IOException;
  */
 public class LightStrategy implements UserNotificationStrategy {
     
-        /**
-         * Notifies the user that the sensor has been tripped by lighting up the red LED
-         */
-        @Override
-        public void execute() throws InterruptedException, IOException {
-            ArmLED redOn = new ArmLED();
-            DisarmLED redOff = new DisarmLED();
-        
-            System.out.println("Intruder detected, red alert!");
-        
-            redOn.activate();
-            Thread.sleep(100);
-            redOff.deactivate();
-        }
+    /**
+     * Notifies the user that the sensor has been tripped by lighting up the red LED
+     */
+    @Override
+    public void execute() throws InterruptedException, IOException {
+        ArmLED redOn = new ArmLED();
+        DisarmLED redOff = new DisarmLED();
+
+        System.out.println("Intruder detected, red alert!");
+
+        redOn.activate();
+        Thread.sleep(100);
+        redOff.deactivate();
+    }
+    
+    @Override
+    public String getName() {
+        return "LIGHT";
+    }
 }

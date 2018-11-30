@@ -17,4 +17,9 @@ public class SilentStrategy  implements UserNotificationStrategy  {
     public void execute() throws InterruptedException, IOException {
         System.out.println("Intruder detected!");        
     }
+    
+    @Override
+    public String getName() {
+        return "SILENT";
+    }
 }

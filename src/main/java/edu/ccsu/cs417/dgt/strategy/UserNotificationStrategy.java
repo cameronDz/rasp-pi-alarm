@@ -13,5 +13,11 @@ public interface UserNotificationStrategy {
      * @throws java.lang.InterruptedException
      * @throws java.io.IOException
      */
-    void execute() throws InterruptedException, IOException;    
+    public void execute() throws InterruptedException, IOException;    
+    
+    /**
+     * Returns the name of the strategy for logging purposes.
+     * @return String of Strategy name.
+     */
+    public String getName();
 }
