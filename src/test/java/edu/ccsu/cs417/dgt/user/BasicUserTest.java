@@ -41,7 +41,7 @@ public class BasicUserTest {
 	public void testToString() {
 		System.out.println("toString");
 		BasicUser instance = new BasicUser("Elmer");
-		String expResult = "Elmer";
+		String expResult = "BasicUser [name=Elmer, parent=null]";
 		String result = instance.toString();
 		assertEquals(expResult, result);
 	}

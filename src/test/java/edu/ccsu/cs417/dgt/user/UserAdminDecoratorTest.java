@@ -81,7 +81,7 @@ public class UserAdminDecoratorTest {
 	public void testToString() {
 		System.out.println("toString");
 		UserAdminDecorator instance = new UserAdminDecorator(new BasicUser("Jason"));
-		String expResult = "Jason Administrator";
+		String expResult = "UserAdminDecorator [BasicUser [name=Jason, parent=null] Administrator]";
 		String result = instance.toString();
 		assertEquals(expResult, result);
 	}

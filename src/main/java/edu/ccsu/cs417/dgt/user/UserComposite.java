@@ -131,7 +131,7 @@ public abstract class UserComposite implements UserInterface {
 		StringBuilder list = new StringBuilder();
 		list.append("[");
 		while (itr.hasNext()) {
-			list.append(itr.next().toString());
+			list.append(itr.next().getName());
 			if (itr.hasNext()) {
 				list.append(",");
 			}

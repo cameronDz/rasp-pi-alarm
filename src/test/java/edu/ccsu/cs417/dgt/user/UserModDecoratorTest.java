@@ -103,7 +103,7 @@ public class UserModDecoratorTest {
 	public void testToString() {
 		System.out.println("toString");
 		UserModDecorator instance = new UserModDecorator(new BasicUser("Jason"));
-		String expResult = "Jason Moderator";
+		String expResult = "BasicUser [name=Jason, parent=null] Moderator";
 		String result = instance.toString();
 		assertEquals(expResult, result);
 	}

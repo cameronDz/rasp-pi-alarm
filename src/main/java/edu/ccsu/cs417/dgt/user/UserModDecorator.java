@@ -41,6 +41,11 @@ public class UserModDecorator extends UserDecorator {
 	}
 
 	@Override
+	public String toString() {
+		return "UserModDecorator [" + super.toString() + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		return super.hashCode();
 	}
