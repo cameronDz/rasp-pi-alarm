@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.PrintStream;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -26,6 +29,9 @@ public class UserNotificationTest {
 		System.setOut(null);
 	}
 
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+
 	@Test
 	public void testChangeStrategy() {
 		UserNotificationStrategy strategy = new BuzzerStrategy();
@@ -37,10 +43,9 @@ public class UserNotificationTest {
 	}
 
 	@Test
-	public void testNotifyUser() throws InterruptedException, IOException {
+	public void execute_noPython_throwException() throws InterruptedException, IOException {
+		exception.expect(InterruptedException.class);
 		UserNotification instance = new UserNotification(new SilentStrategy());
 		instance.notifyUser();
-		// assert true if no exception thrown
-		assertTrue(true);
 	}
 }

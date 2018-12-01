@@ -1,8 +1,10 @@
 package edu.ccsu.cs417.dgt.strategy;
 
 import java.io.IOException;
+
+import org.junit.Rule;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.rules.ExpectedException;
 
 /**
  *
@@ -10,11 +12,13 @@ import static org.junit.Assert.*;
  */
 public class SilentStrategyTest {
 
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+
 	@Test
-	public void testExecute() throws InterruptedException, IOException {
+	public void execute_noPython_throwException() throws InterruptedException, IOException {
+		exception.expect(InterruptedException.class);
 		SilentStrategy instance = new SilentStrategy();
 		instance.execute();
-		// assert true if no exceptions are thrown
-		assertTrue(true);
 	}
 }
