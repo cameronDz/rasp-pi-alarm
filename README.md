@@ -1,6 +1,10 @@
 # CS417 Fall 16 - FinalProject: Definitely Group Two #
 Application was initial final group project for CS417: Design Patterns, at CCSU. Initial project design was an alarm system designed for a raspberry pi that utilizing Python scripts and implementing design patterns using Java. 
 
+[!(https://img.shields.io/badge/build-passing-brightgreen.svg)]
+[!(https://img.shields.io/badge/code%20coverage-59.7%25-yellowgreen.svg)]
+[!(https://img.shields.io/badge/dependency-GrovePi%20for%20Raspberry%20Pi-blue.svg)]
+
 ## Getting Started ##
 The motion alarm system uses the GrovePi along with the LED, button, buzzer, and ultrasonic sensor to detect movement. The program uses a logging system that tracks the date and time of the event that triggered or dactivated the system as well as the sensor that caused the trip or deactivation.
 
