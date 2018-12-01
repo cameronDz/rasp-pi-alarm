@@ -17,7 +17,7 @@ public class SilentStrategyTest {
 
 	@Test
 	public void execute_noPython_throwException() throws InterruptedException, IOException {
-		exception.expect(InterruptedException.class);
+		exception.expect(IOException.class);
 		SilentStrategy instance = new SilentStrategy();
 		instance.execute();
 	}

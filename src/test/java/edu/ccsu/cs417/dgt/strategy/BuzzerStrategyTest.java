@@ -17,7 +17,7 @@ public class BuzzerStrategyTest {
 
 	@Test
 	public void execute_noPython_throwException() throws InterruptedException, IOException {
-		exception.expect(InterruptedException.class);
+		exception.expect(IOException.class);
 		BuzzerStrategy instance = new BuzzerStrategy();
 		instance.execute();
 	}

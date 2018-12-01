@@ -17,7 +17,7 @@ public class LightStrategyTest {
 
 	@Test
 	public void execute_noPython_throwException() throws InterruptedException, IOException {
-		exception.expect(InterruptedException.class);
+		exception.expect(IOException.class);
 		LightStrategy instance = new LightStrategy();
 		instance.execute();
 	}
