@@ -29,9 +29,6 @@ public class ArmedStateTest {
 		System.setOut(null);
 	}
 
-	/**
-	 * Test of arm method, of class ArmedState.
-	 */
 	@Test
 	public void arm_nullNotifier_returnAlreadyArmedAlert() {
 		UserNotification notifier = null;
