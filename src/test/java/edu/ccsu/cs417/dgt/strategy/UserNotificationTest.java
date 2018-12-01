@@ -13,47 +13,34 @@ import static org.junit.Assert.*;
  * @author curti
  */
 public class UserNotificationTest {
-    
-    private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    
-    @Before
-    public void setUp() {
-        System.setOut(new PrintStream(outContent));
-    }
-    
-    @After
-    public void tearDown() {
-        System.setOut(null);
-    }
 
-    /**
-     * Test of changeStrategy method, of class UserNotification.
-     */
-    @Test
-    public void testChangeStrategy() {
-        System.out.println("changeStrategy");
-        UserNotificationStrategy strategy = new BuzzerStrategy();
-        UserNotification instance = new UserNotification(new SilentStrategy());
-        instance.changeStrategy(strategy);
-        //Only silent strategy prints this output
-        assertTrue(outContent.toString().contains("Intruder detected!"));
-    }
+	private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    /**
-     * Test of notifyUser method, of class UserNotification.
-     */
-    @Test
-    public void testNotifyUser() throws InterruptedException, IOException {
-        System.out.println("notifyUser");
-        UserNotification instance = new UserNotification(new SilentStrategy());
-        try {
-            instance.notifyUser();
-        } catch(IOException ex) {
-            fail("IOException reported: " + ex.getMessage());
-        } catch(InterruptedException ex) {
-            fail("InterruptedException reported: " + ex.getMessage());
-        }
-        //Test passes if no exceptions thrown
-        assertTrue(true);
-    }    
+	@Before
+	public void setUp() {
+		System.setOut(new PrintStream(outContent));
+	}
+
+	@After
+	public void tearDown() {
+		System.setOut(null);
+	}
+
+	@Test
+	public void testChangeStrategy() {
+		UserNotificationStrategy strategy = new BuzzerStrategy();
+		UserNotification instance = new UserNotification(new SilentStrategy());
+		instance.changeStrategy(strategy);
+		boolean expected = true;
+		boolean actual = outContent.toString().contains("Intruder detected!");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testNotifyUser() throws InterruptedException, IOException {
+		UserNotification instance = new UserNotification(new SilentStrategy());
+		instance.notifyUser();
+		// assert true if no exception thrown
+		assertTrue(true);
+	}
 }
