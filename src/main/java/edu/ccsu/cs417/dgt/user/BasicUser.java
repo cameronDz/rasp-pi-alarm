@@ -11,13 +11,49 @@ public class BasicUser implements UserInterface {
 	protected UserComposite parent;
 
 	/**
-	 * Constructor for a basic user.
+	 * Empty constructor, sets variables to default values.
+	 */
+	public BasicUser() {
+		super();
+		this.name = "";
+		this.parent = null;
+	}
+
+	/**
+	 * Loaded constructor with String parameter for name variable.
 	 * 
 	 * @param name
-	 *            name variable for the user created
+	 *            String name variable for the user created.
 	 */
 	public BasicUser(String name) {
+		super();
 		this.name = name;
+	}
+
+	/**
+	 * Loaded constructor with UserComposite parameter for parent variable.
+	 * 
+	 * @param parent
+	 *            UserComposite to be set as parent variable.
+	 */
+	public BasicUser(UserComposite parent) {
+		super();
+		this.name = "";
+		this.parent = parent;
+	}
+
+	/**
+	 * Full constructor with all variables set through parameters.
+	 * 
+	 * @param name
+	 *            String name variable for the user created.
+	 * @param parent
+	 *            UserComposite to be set as parent variable.
+	 */
+	public BasicUser(String name, UserComposite parent) {
+		super();
+		this.name = name;
+		this.parent = parent;
 	}
 
 	/**
@@ -31,10 +67,10 @@ public class BasicUser implements UserInterface {
 	}
 
 	/**
-	 * Used to set the name/handle of a user.
+	 * Setter for name variable.
 	 * 
 	 * @param name
-	 *            name/handle to be set for the user
+	 *            String name/handle to be set for the user.
 	 */
 	@Override
 	public void setName(String name) {
@@ -42,9 +78,9 @@ public class BasicUser implements UserInterface {
 	}
 
 	/**
-	 * Returns the parent of the user
+	 * Getter for parent variable.
 	 * 
-	 * @return The user composite associate with the user
+	 * @return UserComposite referenced by the parent variable.
 	 */
 	@Override
 	public UserComposite getComposite() {
@@ -52,14 +88,14 @@ public class BasicUser implements UserInterface {
 	}
 
 	/**
-	 * Sets the composite for user interface
+	 * Setter for parent variable.
 	 * 
-	 * @param c
-	 *            composite to become the parent variable
+	 * @param composite
+	 *            UserComposite to become the parent variable.
 	 */
 	@Override
-	public void setComposite(UserComposite c) {
-		this.parent = c;
+	public void setComposite(UserComposite composite) {
+		this.parent = composite;
 	}
 
 	@Override

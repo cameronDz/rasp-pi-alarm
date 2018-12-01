@@ -41,6 +41,30 @@ public abstract class UserComposite implements UserInterface {
 	}
 
 	/**
+	 * Gets the composite associated with the user
+	 *
+	 * @return UserComposite parent, or self if parent is null
+	 */
+	@Override
+	public UserComposite getComposite() {
+		if (parent == null) {
+			return this;
+		}
+		return parent;
+	}
+
+	/**
+	 * Sets the composite for user interface
+	 *
+	 * @param parent
+	 *            UserComposite composite to become the parent variable.
+	 */
+	@Override
+	public void setComposite(UserComposite parent) {
+		this.parent = parent;
+	}
+
+	/**
 	 * Adds a new user or composite to the composites list
 	 *
 	 * @param user
@@ -99,30 +123,6 @@ public abstract class UserComposite implements UserInterface {
 	 */
 	public Iterator<UserInterface> iterator() {
 		return userList.iterator();
-	}
-
-	/**
-	 * Gets the composite associated with the user
-	 *
-	 * @return UserComposite parent, or self if parent is null
-	 */
-	@Override
-	public UserComposite getComposite() {
-		if (parent == null) {
-			return this;
-		}
-		return parent;
-	}
-
-	/**
-	 * Sets the composite for user interface
-	 *
-	 * @param parent
-	 *            UserComposite composite to become the parent variable.
-	 */
-	@Override
-	public void setComposite(UserComposite parent) {
-		this.parent = parent;
 	}
 
 	@Override

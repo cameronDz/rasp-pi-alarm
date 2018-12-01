@@ -15,7 +15,7 @@ public class UserAdminDecorator extends UserDecorator {
 	 * decorated user.
 	 * 
 	 * @param decoratedUser
-	 *            object being wrapped as a UserAdmin
+	 *            UserInterface object being wrapped as a UserAdmin.
 	 */
 	public UserAdminDecorator(UserInterface decoratedUser) {
 		super(decoratedUser);
@@ -23,13 +23,27 @@ public class UserAdminDecorator extends UserDecorator {
 	}
 
 	/**
-	 * given a Log's number ID, removes that Log from records
+	 * Removes all logs from Singleton.
 	 * 
-	 * @param i
-	 *            the number of the Log being removed
+	 * @return Integer number of logs removed.
 	 */
-	public void deleteLog(int i) {
-		LoggingService.getInstance().deleteLog();
+	public Integer deleteLog() {
+		return LoggingService.getInstance().deleteLog();
+	}
+
+	/**
+	 * Removes the parameter value of logs from Singleton. Will return the number of
+	 * logs removed from application Singleton storing logs.
+	 * 
+	 * @param number
+	 *            Integer value of Log number being removed.
+	 */
+	public Integer deleteLog(Integer number) {
+		Integer ret = 0;
+		if (number != null && number > 0) {
+			LoggingService.getInstance().deleteLog();
+		}
+		return ret;
 	}
 
 	@Override
