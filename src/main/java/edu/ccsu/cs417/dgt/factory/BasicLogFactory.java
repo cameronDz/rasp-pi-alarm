@@ -1,34 +1,33 @@
 package edu.ccsu.cs417.dgt.factory;
 
+import java.sql.Timestamp;
+
 import edu.ccsu.cs417.dgt.logger.BasicLog;
 import edu.ccsu.cs417.dgt.logger.LogInterface;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import edu.ccsu.cs417.dgt.logger.LogTool;
 
 /**
  * Class used to interact with the Abstract Factory
+ * 
  * @author Adam
  */
 public class BasicLogFactory implements AbstractLogFactory {
-    /**
-     * Function getLogDecorator lets you obtain a LogDecorator
-     * @param message message for a basic log
-     * @param empty empty parameter, only purpose is to override interface
-     * @return LogInterface log being created
-     */
-    @Override
-    public LogInterface createLog(String message, String empty) {
-        
-        Date loadTime = new Date();
-        GregorianCalendar x = new GregorianCalendar();
-                    int date = (x.get(GregorianCalendar.DAY_OF_MONTH)) + 
-                            (x.get(GregorianCalendar.MONTH) + 1) *100 +
-                            x.get(GregorianCalendar.YEAR) *10000;
-                    int time = loadTime.getHours() * 10000;
-                    time += loadTime.getMinutes() * 100;
-                    time += loadTime.getSeconds();
-        
-        LogInterface l = new BasicLog(date,time,message);
-        return l;
-    }
+
+	/**
+	 * Function getLogDecorator lets you obtain a LogDecorator
+	 * 
+	 * @param message
+	 *            String message for a basic log
+	 * @param empty
+	 *            String empty parameter, only purpose is to override interface
+	 * @return LogInterface log being created
+	 */
+	@Override
+	public LogInterface createLog(String message, String empty) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		int date = LogTool.getDateInteger(timestamp);
+		int time = LogTool.getTimeInteger(timestamp);
+		LogInterface log = new BasicLog(date, time, message);
+		return log;
+	}
 }

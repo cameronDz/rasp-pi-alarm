@@ -1,9 +1,8 @@
 package edu.ccsu.cs417.dgt.factory;
 
-import edu.ccsu.cs417.dgt.logger.BasicLog;
-import edu.ccsu.cs417.dgt.logger.LogInterface;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -11,17 +10,11 @@ import static org.junit.Assert.*;
  */
 public class BasicLogFactoryTest {
 
-    /**
-     * Test of createLog method, of class BasicLogFactory.
-     */
-    @Test
-    public void testCreateLog() {
-        System.out.println("createLog");
-        String message = "ONE";
-        String empty = "TWO";
-        BasicLogFactory userFactory = new BasicLogFactory();
-        LogInterface expResult = new BasicLog(1,1,message);
-        LogInterface result = userFactory.createLog(message, empty);
-        assertEquals(expResult, result);
-    }    
+	@Test
+	public void createLog_emptyParam_emptyParamNotInReturn() {
+		BasicLogFactory userFactory = new BasicLogFactory();
+		boolean expected = false;
+		boolean actual = userFactory.createLog("expected", "empty").toString().contains("empty");
+		assertEquals(expected, actual);
+	}
 }

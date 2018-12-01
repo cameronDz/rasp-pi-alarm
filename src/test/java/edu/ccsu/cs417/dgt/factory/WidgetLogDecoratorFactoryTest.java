@@ -1,10 +1,10 @@
 package edu.ccsu.cs417.dgt.factory;
 
-import edu.ccsu.cs417.dgt.logger.BasicLog;
-import edu.ccsu.cs417.dgt.logger.LogInterface;
-import edu.ccsu.cs417.dgt.logger.WidgetLogDecorator;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import edu.ccsu.cs417.dgt.logger.LogInterface;
 
 /**
  *
@@ -12,19 +12,12 @@ import static org.junit.Assert.*;
  */
 public class WidgetLogDecoratorFactoryTest {
 
-    /**
-     * Test of createLog method, of class WidgetLogDecoratorFactory.
-     */
-    @Test
-    public void testCreateLog() {
-        System.out.println("createLog");
-        String widget = "ONE";
-        String action = "TWO";
-        WidgetLogDecoratorFactory widgetFactory= new WidgetLogDecoratorFactory();
-        LogInterface expResult = new BasicLog(3,4);
-        LogInterface d = new WidgetLogDecorator(widget, expResult);
-        d.setMessage(action);
-        LogInterface result = widgetFactory.createLog(widget, action);
-        assertEquals(expResult, result);
-    }    
+	@Test
+	public void createLog_widgetFactory_logToStringContainsWidgetString() {
+		WidgetLogDecoratorFactory widgetFactory = new WidgetLogDecoratorFactory();
+		LogInterface log = widgetFactory.createLog("ONE", "TWO");
+		boolean expected = true;
+		boolean actual = log.toString().contains("WIDGET: ONE ACTION: TWO");
+		assertEquals(expected, actual);
+	}
 }
