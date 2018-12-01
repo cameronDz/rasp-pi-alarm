@@ -60,7 +60,7 @@ public class Application {
         Scanner scan = new Scanner(System.in);
         String input;
 
-        //loggin user in
+        //log in user in
         input = logUserAccessIntoSystem();
 
         boolean loop = true;
@@ -152,6 +152,9 @@ public class Application {
                 }
             }
         }
+        scan.close();
+        System.out.println();
+        System.exit(0);
     }
 
     /**
