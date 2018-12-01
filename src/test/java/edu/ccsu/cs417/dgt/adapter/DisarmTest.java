@@ -18,5 +18,4 @@ public class DisarmTest {
 		String result = instance.deactivate();
 		assertEquals(expResult, result);
 	}
-
 }

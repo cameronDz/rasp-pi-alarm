@@ -38,14 +38,16 @@ public class UserNotificationTest {
 		UserNotification instance = new UserNotification(new SilentStrategy());
 		instance.changeStrategy(strategy);
 		boolean expected = true;
-		boolean actual = outContent.toString().contains("Intruder detected!");
+		boolean actual = outContent.toString().contains("Strategy change");
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void execute_noPython_throwException() throws InterruptedException, IOException {
-		exception.expect(IOException.class);
 		UserNotification instance = new UserNotification(new SilentStrategy());
 		instance.notifyUser();
+		boolean expected = true;
+		boolean actual = outContent.toString().contains("Intruder detected!");
+		assertEquals(expected, actual);
 	}
 }

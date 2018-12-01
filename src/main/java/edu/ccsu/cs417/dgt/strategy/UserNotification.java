@@ -33,6 +33,8 @@ public class UserNotification {
         BasicLog log = new BasicLog(message);
         LoggingService.getInstance().addLog(log);
         this.strategy = strategy;
+        String userMessage = "Strategy change to " + strategy.getName();
+        System.out.println(userMessage);
     }
 
     /**

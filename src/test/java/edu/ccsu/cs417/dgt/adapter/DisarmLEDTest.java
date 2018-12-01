@@ -24,5 +24,4 @@ public class DisarmLEDTest {
 		}
 		assertEquals(expResult, result);
 	}
-
 }
