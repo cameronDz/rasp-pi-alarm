@@ -11,20 +11,16 @@ import static org.junit.Assert.*;
  */
 public class UserLogDecoratorTest {
 
-    /**
-     * Test of setMessage method, of class UserLogDecorator.
-     */
     @Test
     public void testSetMessage() {
-        System.out.println("setMessage");
         String s = "message";
         BasicUser user = new BasicUser("Sammy");
         BasicLog log = new BasicLog(1,2);
         UserLogDecorator instance = new UserLogDecorator(user, log);
         instance.setMessage(s);
-        String expResult = "USER: Sammy PERFORMED: " + s;
-        String result = instance.getMessage();
-        assertEquals(expResult, result);
+        String expected = "USER: BasicUser [name=Sammy, parent=null] PERFORMED: message";
+        String actual = instance.getMessage();
+        assertEquals(expected, actual);
     }
 
     /**
