@@ -22,7 +22,7 @@ public abstract class UserComposite implements UserInterface {
 	/**
 	 * Used to get the name of the composite.
 	 *
-	 * @return String of the composite.
+	 * @return String of the composite name.
 	 */
 	@Override
 	public String getName() {
@@ -33,7 +33,7 @@ public abstract class UserComposite implements UserInterface {
 	 * Used to set the name of the composite.
 	 *
 	 * @param name
-	 *            name of the composite
+	 *            String name of the composite
 	 */
 	@Override
 	public void setName(String name) {
@@ -104,7 +104,7 @@ public abstract class UserComposite implements UserInterface {
 	/**
 	 * Gets the composite associated with the user
 	 *
-	 * @return parent, or self if parent is null
+	 * @return UserComposite parent, or self if parent is null
 	 */
 	@Override
 	public UserComposite getComposite() {
@@ -117,12 +117,12 @@ public abstract class UserComposite implements UserInterface {
 	/**
 	 * Sets the composite for user interface
 	 *
-	 * @param c
-	 *            composite to become the parent variable
+	 * @param parent
+	 *            UserComposite composite to become the parent variable.
 	 */
 	@Override
-	public void setComposite(UserComposite c) {
-		this.parent = c;
+	public void setComposite(UserComposite parent) {
+		this.parent = parent;
 	}
 
 	@Override
