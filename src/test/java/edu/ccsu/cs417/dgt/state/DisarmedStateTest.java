@@ -1,33 +1,54 @@
 package edu.ccsu.cs417.dgt.state;
 
-import edu.ccsu.cs417.dgt.strategy.UserNotification;
+import static org.junit.Assert.assertEquals;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import edu.ccsu.cs417.dgt.strategy.UserNotification;
 
 /**
- * TODO write tests to pass
+ * 
  * @author curti
  */
 public class DisarmedStateTest {
 
-    /**
-     * Test of arm method, of class DisarmedState.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testArm() throws Exception {
-        System.out.println("arm");
-        UserNotification notifier = null;
-        DisarmedState instance = null;
-        instance.arm(notifier);
-    }
+	private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    /**
-     * Test of disarm method, of class DisarmedState.
-     */
-    @Test
-    public void testDisarm() {
-        System.out.println("disarm");
-        DisarmedState instance = null;
-        instance.disarm();
-    }
+	@Before
+	public void setUp() {
+		System.setOut(new PrintStream(outContent));
+	}
+
+	@After
+	public void tearDown() {
+		System.setOut(null);
+	}
+
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+
+	@Test
+	public void arm_nullNotifier_throwException() throws InterruptedException, IOException {
+		exception.expect(IOException.class);
+		UserNotification notifier = null;
+		DisarmedState instance = new DisarmedState();
+		instance.arm(notifier);
+	}
+
+	@Test
+	public void disarm_emptyConstructor_getAlreadyArmedMessage() {
+		DisarmedState instance = new DisarmedState();
+		instance.disarm();
+		boolean expected = true;
+		boolean actual = outContent.toString().contains("System already disarmed.");
+		assertEquals(expected, actual);
+	}
 }

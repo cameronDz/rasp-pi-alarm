@@ -1,69 +1,83 @@
 package edu.ccsu.cs417.dgt.state;
 
 import edu.ccsu.cs417.dgt.strategy.UserNotification;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 
 /**
  * TODO write tests to pass
+ * 
  * @author curti
  */
 public class SecuritySystemTest {
-    
-    /**
-     * Test of setDetectorState method, of class SecuritySystem.
-     */
-    @Test
-    public void testSetDetectorState() {
-        System.out.println("setDetectorState");
-        DetectorState newDetectorState = null;
-        SecuritySystem instance = new SecuritySystem();
-        instance.setDetectorState(newDetectorState);
-    }
 
-    /**
-     * Test of arm method, of class SecuritySystem.
-     * @throws Exception
-     */
-    @Test
-    public void testArm() throws Exception {
-        System.out.println("arm");
-        UserNotification notifier = null;
-        SecuritySystem instance = new SecuritySystem();
-        instance.arm(notifier);
-    }
+	private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    /**
-     * Test of disarm method, of class SecuritySystem.
-     */
-    @Test
-    public void testDisarm() {
-        System.out.println("disarm");
-        SecuritySystem instance = new SecuritySystem();
-        instance.disarm();
-    }
+	@Before
+	public void setUp() {
+		System.setOut(new PrintStream(outContent));
+	}
 
-    /**
-     * Test of getIsArmedState method, of class SecuritySystem.
-     */
-    @Test
-    public void testGetIsArmedState() {
-        System.out.println("getIsArmedState");
-        SecuritySystem instance = new SecuritySystem();
-        DetectorState expResult = null;
-        DetectorState result = instance.getIsArmedState();
-        assertEquals(expResult, result);
-    }
+	@After
+	public void tearDown() {
+		System.setOut(null);
+	}
 
-    /**
-     * Test of getIsDisarmedState method, of class SecuritySystem.
-     */
-    @Test
-    public void testGetIsDisarmedState() {
-        System.out.println("getIsDisarmedState");
-        SecuritySystem instance = new SecuritySystem();
-        DetectorState expResult = null;
-        DetectorState result = instance.getIsDisarmedState();
-        assertEquals(expResult, result);
-    }
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+
+	@Test
+	public void setDetectorState_nullParameter_notAllowNullDetector() {
+		DetectorState newDetectorState = null;
+		SecuritySystem instance = new SecuritySystem();
+		instance.setDetectorState(newDetectorState);
+		boolean expected = true;
+		boolean actual = outContent.toString().contains("Can not set null detectorState.");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void arm_nullNotifier_throwException() throws InterruptedException, IOException {
+		exception.expect(IOException.class);
+		UserNotification notifier = null;
+		SecuritySystem instance = new SecuritySystem();
+		instance.arm(notifier);
+	}
+
+	@Test
+	public void disarm_emptyConstructor_getAlreadyDisarmedMessage() {
+		SecuritySystem instance = new SecuritySystem();
+		instance.disarm();
+		boolean expected = true;
+		boolean actual = outContent.toString().contains("System already disarmed.");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void getIsArmedState_emptyConstructor_equalClassNames() {
+		SecuritySystem instance = new SecuritySystem();
+		DetectorState armed = new ArmedState();
+		String expected = armed.getClass().getSimpleName();
+		String actual = instance.getIsArmedState().getClass().getSimpleName();
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void getIsDisarmedState_emptyConstructor_equalClassNames() {
+		SecuritySystem instance = new SecuritySystem();
+		DetectorState armed = new DisarmedState();
+		String expected = armed.getClass().getSimpleName();
+		String actual = instance.getIsDisarmedState().getClass().getSimpleName();
+		assertEquals(expected, actual);
+	}
 }

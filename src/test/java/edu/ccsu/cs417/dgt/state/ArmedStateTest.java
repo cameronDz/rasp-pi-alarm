@@ -1,32 +1,53 @@
 package edu.ccsu.cs417.dgt.state;
 
-import edu.ccsu.cs417.dgt.strategy.UserNotification;
+import static org.junit.Assert.assertEquals;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import edu.ccsu.cs417.dgt.strategy.UserNotification;
+
 /**
- * TODO write tests to pass
+ * 
  * @author curti
  */
 public class ArmedStateTest {
 
-    /**
-     * Test of arm method, of class ArmedState.
-     */
-    @Test
-    public void testArm() {
-        System.out.println("arm");
-        UserNotification notifier = null;
-        ArmedState instance = null;
-        instance.arm(notifier);
-    }
+	private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    /**
-     * Test of disarm method, of class ArmedState.
-     */
-    @Test
-    public void testDisarm() {
-        System.out.println("disarm");
-        ArmedState instance = null;
-        instance.disarm();
-    }    
+	@Before
+	public void setUp() {
+		System.setOut(new PrintStream(outContent));
+	}
+
+	@After
+	public void tearDown() {
+		System.setOut(null);
+	}
+
+	/**
+	 * Test of arm method, of class ArmedState.
+	 */
+	@Test
+	public void arm_nullNotifier_returnAlreadyArmedAlert() {
+		UserNotification notifier = null;
+		ArmedState instance = new ArmedState();
+		instance.arm(notifier);
+		boolean expected = true;
+		boolean actual = outContent.toString().contains("System is already armed.");
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void disarm() {
+		ArmedState instance = new ArmedState();
+		instance.disarm();
+		boolean expected = true;
+		boolean actual = outContent.toString().contains("System has been disarmed.");
+		assertEquals(expected, actual);
+	}
 }
