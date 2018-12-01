@@ -9,116 +9,72 @@ import static org.junit.Assert.*;
  */
 public class BasicUserTest {
 
-	/**
-	 * Test of getName method, of class BasicUser.
-	 */
 	@Test
-	public void testGetName() {
-		System.out.println("getName");
-		BasicUser instance = new BasicUser("Kyle");
-		String expResult = "Kyle";
-		String result = instance.getName();
-		assertEquals(expResult, result);
+	public void nameGetSet_emptyConstructor_returnEqualName() {
+		String expected = "Kyle";
+		BasicUser instance = new BasicUser();
+		instance.setName(expected);
+		String actual = instance.getName();
+		assertEquals(expected, actual);
 	}
 
-	/**
-	 * Test of setName method, of class BasicUser.
-	 */
 	@Test
-	public void testSetName() {
-		System.out.println("setName");
-		String name = "Suzy";
-		BasicUser instance = new BasicUser("Kyle");
-		instance.setName(name);
-		String result = instance.getName();
-		assertEquals(name, result);
-	}
-
-	/**
-	 * Test of toString method, of class BasicUser.
-	 */
-	@Test
-	public void testToString() {
-		System.out.println("toString");
-		BasicUser instance = new BasicUser("Elmer");
-		String expResult = "BasicUser [name=Elmer, parent=null]";
-		String result = instance.toString();
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Test of hashCode method, of class BasicUser.
-	 */
-	@Test
-	public void testHashCode() {
-		System.out.println("hashCode");
-		BasicUser instance1 = new BasicUser("Kelly");
-		BasicUser instance2 = new BasicUser("Kelly");
-		assertTrue(instance1.hashCode() == instance2.hashCode());
-	}
-
-	/**
-	 * Testing Equals method with null object parameter
-	 */
-	@Test
-	public void testEqualsNull() {
-		System.out.println("equals");
-		BasicUser user = null;
-		BasicUser instance = new BasicUser("Angela");
-		boolean expResult = false;
-		boolean result = instance.equals(user);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Testing Equals method with same object as parameter
-	 */
-	@Test
-	public void testEqualsThis() {
-		System.out.println("equals");
-		BasicUser instance = new BasicUser("Angela");
-		boolean expResult = true;
-		boolean result = instance.equals(instance);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Testing Equals method with two objects with same name
-	 */
-	@Test
-	public void testEqualsPass() {
-		System.out.println("equals");
-		BasicUser user = new BasicUser("Martin");
-		BasicUser instance = new BasicUser("Martin");
-		boolean expResult = true;
-		boolean result = user.equals(instance);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Testing Equals method with two objects with different names
-	 */
-	@Test
-	public void testEqualsFail() {
-		System.out.println("equals");
-		BasicUser user = new BasicUser("Barney");
-		BasicUser instance = new BasicUser("Angela");
-		boolean expResult = false;
-		boolean result = instance.equals(user);
-		assertEquals(expResult, result);
-	}
-
-	/**
-	 * Testing getComposite method with two objects with different names
-	 */
-	@Test
-	public void testGetSetComposite() {
-		System.out.println("getComposite_setComposite");
-		UserComposite c = new UserListComposite("c");
+	public void compositeGetSet_emptyConstructor_returnEqualComposite() {
+		UserComposite composite = new UserListComposite("c");
 		BasicUser instance = new BasicUser("Barney");
-		instance.setComposite(c);
-		UserComposite expResult = c;
-		UserComposite result = instance.getComposite();
-		assertEquals(expResult, result);
+		instance.setComposite(composite);
+		UserComposite expected = composite;
+		UserComposite actual = instance.getComposite();
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void toString_nameConstructor_getBasicString() {
+		BasicUser instance = new BasicUser("Elmer");
+		String expected = "BasicUser [name=Elmer, parent=null]";
+		String actual = instance.toString();
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void hashCode_sameObject_equalHashValues() {
+		int expected = new BasicUser("Kelly").hashCode();
+		int actual = new BasicUser("Kelly").hashCode();
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void equals_nullParam_returnNull() {
+		BasicUser instance = new BasicUser("Angela");
+		BasicUser other = null;
+		boolean expected = false;
+		boolean actual = instance.equals(other);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void equals_sameObject_returnTrue() {
+		BasicUser instance = new BasicUser("Angela");
+		boolean expected = true;
+		boolean actual = instance.equals(instance);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void equalsPass_equalObject_returnTrue() {
+		BasicUser instance = new BasicUser("Martin");
+		BasicUser other = new BasicUser("Martin");
+		boolean expected = true;
+		boolean actual = instance.equals(other);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void equals_differentObjects_returnFalse() {
+		BasicUser instance = new BasicUser("Angela");
+		BasicUser other = new BasicUser("Barney");
+		boolean expected = false;
+		boolean actual = instance.equals(other);
+		assertEquals(expected, actual);
 	}
 }
