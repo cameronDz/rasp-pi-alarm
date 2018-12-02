@@ -19,7 +19,8 @@ import java.util.Scanner;
 
 public class Application {
 
-    private static final String DEFAULT_INPUT_MESSAGE
+    private static final String ENTER_SELECTION = "Enter selection: ";
+    private static final String DEFAULT_OPTIONS
             = "Enter system option:\n"
             + "(1) Print all logs\n"
             + "(2) Set alarm strategy\n"
@@ -31,12 +32,12 @@ public class Application {
             + "(1) Buzzer: alarm tripped deactivates system and buzzer is set off.\n"
             + "(2) Silent: alarm is tripped logs incident, alarm stays active.\n"
             + "(3) Light: alarm tripped deactivates system and red light is turned on.\n"
-            + "Enter selection: ";
+            + ENTER_SELECTION;
     private static final String LOG_OPTIONS
             = "Select log format:\n"
             + "(1) Print Text logs.\n"
             + "(2) Print JSON logs.\n"
-            + "Enter selection: ";
+            + ENTER_SELECTION;
     private static final List<String> DEFAULT_OPTIONS_LIST = Arrays.asList(
             new String[]{"1", "2", "3", "4", "5", "DL", "DI"});
 
@@ -62,27 +63,19 @@ public class Application {
 
         boolean loop = true;
         while (loop) {
-            try {
-                // Run system for first time
-                system.arm(notifier);
-            } catch (InterruptedException | IOException ex) {
-                String message = "System has encountered an issue: " + 
-                        ex.getMessage() + "\n" +
-                        "Application shutting down.";
-                System.out.println(message);
-                System.exit(1);
-            } 
-
+            
+            system.disarm();
+            System.out.println(" ** System is not armed. **");
             String inputMessage;
             if (user instanceof UserAdminDecorator) {
-                inputMessage = DEFAULT_INPUT_MESSAGE + "(DL) Delete Logs\n";
+                inputMessage = DEFAULT_OPTIONS + "(DL) Delete Logs\n";
             } else if (user instanceof UserModDecorator) {
-                inputMessage = DEFAULT_INPUT_MESSAGE + "(DU) Delete User\n";
+                inputMessage = DEFAULT_OPTIONS + "(DU) Delete User\n";
             }
             input = "";
             while (!DEFAULT_OPTIONS_LIST.contains(input)) {
-                inputMessage = DEFAULT_INPUT_MESSAGE + "Ener selection: ";
-                System.out.println(inputMessage);
+                inputMessage = DEFAULT_OPTIONS + ENTER_SELECTION;
+                System.out.print(inputMessage);
                 input = scan.next().toUpperCase();
             }
             switch (input.toLowerCase()) {
@@ -90,7 +83,7 @@ public class Application {
                     // Print logs
                     input = "";
                     while (!"1".equals(input) && !"2".equals(input)) {
-                        System.out.println(LOG_OPTIONS);
+                        System.out.print(LOG_OPTIONS);
                         input = scan.next();
                         if ("1".equals(input)) {
                             System.out.println(LoggingService.getInstance().toString());
@@ -104,7 +97,7 @@ public class Application {
                     // Set strategy
                     input = "";
                     while (!"1".equals(input) && !"2".equals(input) && !"3".equals(input)) {
-                        System.out.println(STRATEGY_OPTIONS);
+                        System.out.print(STRATEGY_OPTIONS);
                         input = scan.next();
                         switch (input) {
                             case "1": {
@@ -142,7 +135,7 @@ public class Application {
                 }
                 case "du": {
                     if (user instanceof UserModDecorator) {
-                        System.out.println("Enter user name to delete: ");
+                        System.out.print("Enter user name to delete: ");
                         input = scan.next();
                         ((UserModDecorator) user).deleteUser(user, input);
                     } else {
@@ -154,8 +147,18 @@ public class Application {
                     // Exit loop
                     loop = false;
                     break;
-                }
+                } 
             }
+            try {
+                // Run system for first time
+                system.arm(notifier);
+                System.out.print(" ** System is now armed. **");
+            } catch (InterruptedException | IOException ex) {
+                String message = "System has encountered an issue: " + 
+                        ex.getMessage() + "\nApplication shutting down.";
+                System.out.println(message);
+                System.exit(1);
+            } 
         }
         scan.close();
         System.out.println("Application shutting down.");
