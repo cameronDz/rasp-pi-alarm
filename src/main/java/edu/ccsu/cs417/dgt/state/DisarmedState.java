@@ -18,7 +18,7 @@ public class DisarmedState implements DetectorState {
 	 * Empty constructor. Instantiates new SecuritySystem object.
 	 */
 	public DisarmedState() {
-		this.securitySystem = new SecuritySystem();
+            this.securitySystem = new SecuritySystem();
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class DisarmedState implements DetectorState {
 	 * @param newSecuritySystem
 	 */
 	public DisarmedState(SecuritySystem newSecuritySystem) {
-		this.securitySystem = newSecuritySystem;
+            this.securitySystem = newSecuritySystem;
 	}
 
 	/**
@@ -41,12 +41,12 @@ public class DisarmedState implements DetectorState {
 	 */
 	@Override
 	public void arm(UserNotification notifier) throws InterruptedException, IOException {
-		securitySystem.setDetectorState(securitySystem.getIsArmedState());
-		Arm arm = new Arm();
-		arm.activate(notifier);
-		// Set disarmed state when control is passed back
-		securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
-		System.out.println("System has been armed.");
+            System.out.println("System has been armed.");
+            securitySystem.setDetectorState(securitySystem.getIsArmedState());
+            Arm arm = new Arm();
+            arm.activate(notifier);
+            // Set disarmed state when control is passed back
+            securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
 	}
 
 	/**
@@ -54,6 +54,6 @@ public class DisarmedState implements DetectorState {
 	 */
 	@Override
 	public void disarm() {
-		System.out.println("System already disarmed.");
+            System.out.println("System already disarmed.");
 	}
 }

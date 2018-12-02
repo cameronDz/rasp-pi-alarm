@@ -64,8 +64,8 @@ public class Application {
         boolean loop = true;
         while (loop) {
             
+            System.out.println("System being disarmed.");
             system.disarm();
-            System.out.println(" ** System is not armed. **");
             String inputMessage;
             if (user instanceof UserAdminDecorator) {
                 inputMessage = DEFAULT_OPTIONS + "(DL) Delete Logs\n";
@@ -151,8 +151,8 @@ public class Application {
             }
             try {
                 // Run system for first time
+                System.out.println(" ** System being armed. **");
                 system.arm(notifier);
-                System.out.print(" ** System is now armed. **");
             } catch (InterruptedException | IOException ex) {
                 String message = "System has encountered an issue: " + 
                         ex.getMessage() + "\nApplication shutting down.";

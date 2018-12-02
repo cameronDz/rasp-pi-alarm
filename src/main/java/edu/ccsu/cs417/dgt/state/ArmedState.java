@@ -15,7 +15,7 @@ public class ArmedState implements DetectorState {
 	 * Empty constructor, instantiates new SecuritySystem variable.
 	 */
 	public ArmedState() {
-		securitySystem = new SecuritySystem();
+            securitySystem = new SecuritySystem();
 	}
 
 	/**
@@ -25,7 +25,7 @@ public class ArmedState implements DetectorState {
 	 *            SecuritySystem to arm/disarm.
 	 */
 	public ArmedState(SecuritySystem newSecuritySystem) {
-		securitySystem = newSecuritySystem;
+            securitySystem = newSecuritySystem;
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class ArmedState implements DetectorState {
 	 */
 	@Override
 	public void arm(UserNotification notifier) {
-		System.out.println("System is already armed.");
+            System.out.println("System is already armed.");
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ArmedState implements DetectorState {
 	 */
 	@Override
 	public void disarm() {
-		securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
-		System.out.println("System has been disarmed.");
+            System.out.println("System has been disarmed.");
+            securitySystem.setDetectorState(securitySystem.getIsDisarmedState());
 	}
 }
