@@ -44,29 +44,34 @@ public class Application {
     private static final UserComposite PRIVILEDGED_USER_LIST = new UserListComposite("priveledged");
 
     private static UserInterface user;
+    private static Scanner scan;
+    private static String input;
 
     /**
-     * @param args the command line arguments
-     * @throws InterruptedException
-     * @throws IOException
+     * @param args String array the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String... args) {
 
         // Create new security system and notifier strategy
         UserNotification notifier = new UserNotification(new SilentStrategy());
         SecuritySystem system = new SecuritySystem();
 
         // Create user input objects
-        Scanner scan = new Scanner(System.in);
-        String input;
-
-        //log in user in
+        scan = new Scanner(System.in);
         input = logUserAccessIntoSystem();
 
         boolean loop = true;
         while (loop) {
-            // Run system for first time
-            system.arm(notifier);
+            try {
+                // Run system for first time
+                system.arm(notifier);
+            } catch (InterruptedException | IOException ex) {
+                String message = "System has encountered an issue: " + 
+                        ex.getMessage() + "\n" +
+                        "Application shutting down.";
+                System.out.println(message);
+                System.exit(1);
+            } 
 
             String inputMessage;
             if (user instanceof UserAdminDecorator) {
@@ -153,7 +158,7 @@ public class Application {
             }
         }
         scan.close();
-        System.out.println();
+        System.out.println("Application shutting down.");
         System.exit(0);
     }
 
@@ -164,9 +169,8 @@ public class Application {
      * @return String of the input provided by the user.
      */
     private static String logUserAccessIntoSystem() {
-        Scanner scan = new Scanner(System.in);
         System.out.print("Enter user name: ");
-        String input = scan.nextLine();
+        input = scan.nextLine();
         if (input.equalsIgnoreCase("admin")) {
             user = new UserAdminDecorator(new BasicUser(input));
             PRIVILEDGED_USER_LIST.addUser(user);
@@ -177,7 +181,6 @@ public class Application {
             user = new BasicUser(input);
             USER_LIST.addUser(user);
         }
-        scan.close();
         return input;
     }
 }
