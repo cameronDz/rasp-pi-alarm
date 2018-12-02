@@ -132,6 +132,11 @@ public class Application {
                     input = logUserAccessIntoSystem();
                     break;
                 }
+                case "5": {
+                    // exiting loop/application
+                    loop = false;
+                    break;
+                }
                 case "dl": {
                     if (user instanceof UserAdminDecorator) {
                         ((UserAdminDecorator) user).deleteLog();
@@ -151,22 +156,22 @@ public class Application {
                     break;
                 }
                 default: {
-                    // Exit loop
-                    loop = false;
                     System.out.println(INVALID_OPTION);
                     break;
-                } 
+                }
             }
-            try {
-                // Run system for first time
-                System.out.println(" ** System being armed. **");
-                system.arm(notifier);
-            } catch (InterruptedException | IOException ex) {
-                String message = "System has encountered an issue: " + 
-                        ex.getMessage() + "\nApplication shutting down.";
-                System.out.println(message);
-                System.exit(1);
-            } 
+            if(loop){
+                try {
+                    // Run system for first time
+                    System.out.println(" ** System being armed. **");
+                    system.arm(notifier);
+                } catch (InterruptedException | IOException ex) {
+                    String message = "System has encountered an issue: " + 
+                            ex.getMessage() + "\nApplication shutting down.";
+                    System.out.println(message);
+                    System.exit(1);
+                }
+            }
         }
         scan.close();
         System.out.println("Application shutting down.");
