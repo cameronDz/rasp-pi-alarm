@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class Application {
 
     private static final String ENTER_SELECTION = "Enter selection: ";
+    private static final String INVALID_OPTION = "ERROR: Invalid option, try again.\n";
     private static final String DEFAULT_OPTIONS
             = "Enter system option:\n"
             + "(1) Print all logs\n"
@@ -89,6 +90,8 @@ public class Application {
                             System.out.println(LoggingService.getInstance().toString());
                         } else if ("2".equals(input)) {
                             System.out.println(LoggingService.getInstance().toJson());
+                        } else { 
+                            System.out.println(INVALID_OPTION); 
                         }
                     }
                     break;
@@ -112,6 +115,10 @@ public class Application {
                                 notifier.changeStrategy(new LightStrategy());
                                 break;
                             }
+                            default: {
+                                System.out.println(INVALID_OPTION);
+                                break;
+                            }
                         }
                     }
                     break;
@@ -127,7 +134,7 @@ public class Application {
                 }
                 case "dl": {
                     if (user instanceof UserAdminDecorator) {
-                        ((UserAdminDecorator) user).deleteLog(0);
+                        ((UserAdminDecorator) user).deleteLog();
                     } else {
                         System.out.println("ERROR: Invalid user priviledges");
                     }
@@ -146,6 +153,7 @@ public class Application {
                 default: {
                     // Exit loop
                     loop = false;
+                    System.out.println(INVALID_OPTION);
                     break;
                 } 
             }
@@ -173,7 +181,7 @@ public class Application {
      */
     private static String logUserAccessIntoSystem() {
         System.out.print("Enter user name: ");
-        input = scan.nextLine();
+        input = scan.next();
         if (input.equalsIgnoreCase("admin")) {
             user = new UserAdminDecorator(new BasicUser(input));
             PRIVILEDGED_USER_LIST.addUser(user);
