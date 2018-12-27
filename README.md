@@ -4,6 +4,7 @@ Application was initial final group project for CS417: Design Patterns, at CCSU.
 ![build](https://img.shields.io/badge/build-passing-brightgreen.svg)
 ![coverage](https://img.shields.io/badge/code%20coverage-59.7%25-yellowgreen.svg)
 ![dependencies](https://img.shields.io/badge/dependency-GrovePi%20for%20Raspberry%20Pi-blue.svg)
+![dependencies](https://img.shields.io/badge/dependency-Python3-blue.svg)
 
 ## Getting Started ##
 The motion alarm system uses the GrovePi along with the LED, button, buzzer, and ultrasonic sensor to detect movement. The program uses a logging system that tracks the date and time of the event that triggered or dactivated the system as well as the sensor that caused the trip or deactivation.
